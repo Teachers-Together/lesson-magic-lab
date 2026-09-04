@@ -102,10 +102,14 @@ function PlayZone() {
           <GameshowQuizGame activity={activity} adaptClass={adaptClass} />
         ) : activity.gameType === "carddeck" ? (
           <CardDeckGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "showdown" ? (
+          <TeamShowdownGame activity={activity} adaptClass={adaptClass} />
         ) : (
           <SortingGame activity={activity} adaptClass={adaptClass} />
         )}
       </main>
-    </div>
+      <UpgradeShop />
+      </div>
+    </PlayModeProvider>
   );
 }
