@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ActivitiesRouteImport } from './routes/activities'
 import { Route as CreateRouteImport } from './routes/create'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as PlayIndexRouteImport } from './routes/play.index'
 import { Route as PlayActivityIdRouteImport } from './routes/play.$activityId'
 
@@ -30,6 +31,11 @@ const CreateRoute = CreateRouteImport.update({
   path: '/create',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlayIndexRoute = PlayIndexRouteImport.update({
   id: '/play/',
   path: '/play/',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/activities': typeof ActivitiesRoute
   '/create': typeof CreateRoute
+  '/join': typeof JoinRoute
   '/play/$activityId': typeof PlayActivityIdRoute
   '/play/': typeof PlayIndexRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/activities': typeof ActivitiesRoute
   '/create': typeof CreateRoute
+  '/join': typeof JoinRoute
   '/play/$activityId': typeof PlayActivityIdRoute
   '/play': typeof PlayIndexRoute
 }
@@ -60,19 +68,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/activities': typeof ActivitiesRoute
   '/create': typeof CreateRoute
+  '/join': typeof JoinRoute
   '/play/$activityId': typeof PlayActivityIdRoute
   '/play/': typeof PlayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/activities' | '/create' | '/play/$activityId' | '/play/'
+  fullPaths:
+    '/' | '/activities' | '/create' | '/join' | '/play/$activityId' | '/play/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/activities' | '/create' | '/play/$activityId' | '/play'
+  to: '/' | '/activities' | '/create' | '/join' | '/play/$activityId' | '/play'
   id:
     | '__root__'
     | '/'
     | '/activities'
     | '/create'
+    | '/join'
     | '/play/$activityId'
     | '/play/'
   fileRoutesById: FileRoutesById
@@ -81,6 +92,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActivitiesRoute: typeof ActivitiesRoute
   CreateRoute: typeof CreateRoute
+  JoinRoute: typeof JoinRoute
   PlayActivityIdRoute: typeof PlayActivityIdRoute
   PlayIndexRoute: typeof PlayIndexRoute
 }
@@ -108,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/play/': {
       id: '/play/'
       path: '/play'
@@ -129,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActivitiesRoute: ActivitiesRoute,
   CreateRoute: CreateRoute,
+  JoinRoute: JoinRoute,
   PlayActivityIdRoute: PlayActivityIdRoute,
   PlayIndexRoute: PlayIndexRoute,
 }

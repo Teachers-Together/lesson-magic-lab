@@ -73,3 +73,18 @@ export function buzz(pattern: number | number[] = 40) {
     }
   }
 }
+
+/** Massive multi-burst explosion locked to the EduPulse palette (purple, green, orange, white). */
+export function megaCelebrate() {
+  const colors = ["#7c3aed", "#10b981", "#f97316", "#ffffff"];
+  const base = { colors, disableForReducedMotion: true };
+  confetti({ ...base, particleCount: 220, spread: 110, startVelocity: 45, origin: { y: 0.6 } });
+  [0, 200, 400, 700].forEach((d, i) =>
+    setTimeout(() => {
+      confetti({ ...base, particleCount: 90, angle: 60, spread: 80, origin: { x: 0, y: 0.7 } });
+      confetti({ ...base, particleCount: 90, angle: 120, spread: 80, origin: { x: 1, y: 0.7 } });
+      if (i % 2 === 0)
+        confetti({ ...base, particleCount: 120, spread: 360, startVelocity: 30, scalar: 1.1, origin: { y: 0.4 } });
+    }, d),
+  );
+}
