@@ -51,6 +51,9 @@ export const GAME_TEMPLATES: {
   { type: "wheel", name: "Wheel of Wonder", blurb: "Flick-to-spin physics wheel", emoji: "🎡" },
   { type: "flipcards", name: "Kinetic Flip Cards", blurb: "3D flip + word hotspot clicker", emoji: "🃏" },
   { type: "sorting", name: "Fluid Sorting Bins", blurb: "Organic drag-and-drop sticky notes", emoji: "🧲" },
+  { type: "maze", name: "Arcade Maze Chase", blurb: "Dodge obstacles, grab the right answer", emoji: "👾" },
+  { type: "openbox", name: "Open the Box", blurb: "Tap mystery boxes for speaking prompts", emoji: "🎁" },
+  { type: "groupsort", name: "ESL Group Sort", blurb: "Drag words into labelled category bins", emoji: "🗂️" },
 ];
 
 export const uid = () => Math.random().toString(36).slice(2, 10);
