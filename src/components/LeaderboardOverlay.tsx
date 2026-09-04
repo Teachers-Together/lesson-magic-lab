@@ -57,7 +57,7 @@ export function LeaderboardOverlay({
         <div className="mt-12 flex items-end justify-center gap-3 sm:gap-6">
           {order.map((t) => {
             const rank = ranked.indexOf(t);
-            const style = PODIUM_STYLE[rank] ?? PODIUM_STYLE[2];
+            const style = PODIUM_STYLE[rank] ?? PODIUM_STYLE[2]!;
             return (
               <div key={t.name} className="flex w-28 flex-col items-center sm:w-40">
                 {rank === 0 ? <Crown className="size-8 text-action" /> : null}

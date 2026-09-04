@@ -19,7 +19,7 @@ export const Route = createFileRoute("/join")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  validateSearch: (s: Record<string, unknown>) => ({ pin: typeof s.pin === "string" ? s.pin : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ pin: typeof s['pin'] === "string" ? (s['pin'] as string) : undefined }),
   component: JoinPage,
 });
 
