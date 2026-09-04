@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Bomb, Check, RefreshCw, Repeat, Skull, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { celebrate, tone } from "@/lib/fx";
@@ -92,10 +92,14 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
     setRound((r) => r + 1);
   };
 
-  if (allDone) {
-    const best = Math.max(scores[0], scores[1]);
-    recordPlay(activity.id, Math.min(100, best));
+  useEffect(() => {
+    if (!allDone) return;
+    recordPlay(activity.id, Math.min(100, Math.max(scores[0], scores[1])));
     celebrate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allDone]);
+
+  if (allDone) {
     return (
       <div className={cn("w-full max-w-lg rounded-3xl border-2 border-border bg-card p-8 text-center shadow-lift", adaptClass)}>
         <h2 className="font-display text-3xl font-extrabold">
