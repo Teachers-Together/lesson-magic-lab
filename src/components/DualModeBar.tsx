@@ -1,12 +1,19 @@
-import { Hand, MonitorPlay, Sparkles, Users } from "lucide-react";
+import { Flame, Hand, MonitorPlay, Sparkles, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { usePlayMode } from "@/lib/playmode";
 import { cn } from "@/lib/utils";
 
-export function DualModeBar({ showCashToggle }: { showCashToggle?: boolean }) {
-  const { mode, setMode, roomCode, cashEnabled, setCashEnabled } = usePlayMode();
+export function DualModeBar({
+  showCashToggle,
+  showHotSeat,
+}: {
+  showCashToggle?: boolean;
+  showHotSeat?: boolean;
+}) {
+  const { mode, setMode, roomCode, cashEnabled, setCashEnabled, hotSeat, setHotSeat } = usePlayMode();
+
 
   return (
     <div className="border-b border-border bg-muted/40 px-4 py-3 sm:px-8">
