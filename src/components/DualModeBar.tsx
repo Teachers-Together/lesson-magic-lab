@@ -83,8 +83,3 @@ export function DualModeBar({
     </div>
   );
 }
-
-      </div>
-    </div>
-  );
-}
