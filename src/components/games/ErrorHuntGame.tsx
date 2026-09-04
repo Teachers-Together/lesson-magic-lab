@@ -115,6 +115,7 @@ export function ErrorHuntGame(props: {
     } else {
       setShaking(wi);
       window.setTimeout(() => setShaking(null), 500);
+      setHadWrong(true);
       setStage({ kind: "pick", wrongClicks: 1 });
       onEvent?.({ type: "wrong_pick", itemId: item.id });
     }
@@ -129,6 +130,7 @@ export function ErrorHuntGame(props: {
     } else {
       setShaking("noerror");
       window.setTimeout(() => setShaking(null), 500);
+      setHadWrong(true);
       setStage({ kind: "pick", wrongClicks: 1 });
       onEvent?.({ type: "wrong_pick", itemId: item.id });
     }
