@@ -69,6 +69,7 @@ export function ErrorHuntGame(props: {
   const [stage, setStage] = React.useState<ItemStage>({ kind: "pick", wrongClicks: 0 });
   const [shaking, setShaking] = React.useState<number | "noerror" | null>(null);
   const [picked, setPicked] = React.useState<number | "noerror" | null>(null);
+  const [hadWrong, setHadWrong] = React.useState(false);
   const [results, setResults] = React.useState<{ item: GameItem; missed: boolean }[]>([]);
   const [done, setDone] = React.useState(false);
 
