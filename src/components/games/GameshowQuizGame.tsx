@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Sparkles, Timer, Zap } from "lucide-react";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
 import { buzz, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
@@ -183,7 +184,7 @@ export function GameshowQuizGame({
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {options.map((opt) => {
+        {options.map((opt, oi) => {
           if (hidden.includes(opt))
             return <div key={opt} className="rounded-2xl border-2 border-dashed border-primary-foreground/20 opacity-30" />;
           const isAnswer = opt === item.answer;
@@ -194,7 +195,7 @@ export function GameshowQuizGame({
               onClick={() => choose(opt)}
               disabled={!!picked}
               className={cn(
-                "rounded-2xl border-2 px-5 py-5 text-left text-base font-bold transition-all duration-200",
+                "flex items-center gap-3 rounded-2xl border-2 px-5 py-5 text-left text-base font-bold transition-all duration-200",
                 state === "idle" &&
                   "border-primary-foreground/25 bg-background/90 hover:-translate-y-1 hover:border-action hover:shadow-lift active:scale-[0.98]",
                 state === "correct" && "border-success bg-success text-success-foreground",
@@ -202,7 +203,8 @@ export function GameshowQuizGame({
                 state === "dim" && "border-primary-foreground/20 bg-background/60 opacity-45",
               )}
             >
-              {opt}
+              <ControlLabel index={oi} style="letter" />
+              <span>{opt}</span>
             </button>
           );
         })}

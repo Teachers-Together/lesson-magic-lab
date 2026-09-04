@@ -1,6 +1,8 @@
 import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
+import { usePlayMode } from "@/lib/playmode";
 import { buzz, burstAt, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
@@ -12,6 +14,7 @@ const BLANK = /_{2,}/;
 export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
+  const { cashEnabled, awardCorrect, awardWrong } = usePlayMode();
   const [round, setRound] = useState(0);
   const [filled, setFilled] = useState<Record<string, string>>({});
   const [wrongId, setWrongId] = useState<string | null>(null);
@@ -39,6 +42,7 @@ export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptC
       setFilled(next);
       tone("correct", soundOn);
       burstAt(x, y);
+      if (cashEnabled) awardCorrect();
       if (items.every((it) => next[it.id] === it.answer)) {
         celebrate();
         tone("win", soundOn);
@@ -49,6 +53,7 @@ export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptC
       setWrongId(id);
       tone("wrong", soundOn);
       buzz([30, 40, 30]);
+      if (cashEnabled) awardWrong();
       setTimeout(() => setWrongId(null), 550);
     }
   };
@@ -123,10 +128,11 @@ export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptC
               onDragStart={() => (dragged.current = word)}
               onClick={() => (dragged.current = word)}
               className={cn(
-                "cursor-grab rounded-full border-2 px-5 font-semibold",
+                "h-auto cursor-grab gap-2 rounded-full border-2 px-5 py-2 font-semibold",
                 spent && "opacity-35",
               )}
             >
+              <ControlLabel index={idx} className="size-7 text-sm" />
               {word}
             </Button>
           );

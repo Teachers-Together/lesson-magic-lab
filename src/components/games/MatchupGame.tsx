@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
 import { buzz, burstAt, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
@@ -71,7 +72,7 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
       <div className="grid grid-cols-2 gap-4 sm:gap-6">
         <div className="space-y-3">
           <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Items</p>
-          {left.map((it) => {
+          {left.map((it, li) => {
             const isMatched = matched.includes(it.id);
             return (
               <div
@@ -81,7 +82,7 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
                 onDragEnd={() => setDragId(null)}
                 onClick={() => !isMatched && setDragId(dragId === it.id ? null : it.id)}
                 className={cn(
-                  "cursor-grab rounded-2xl border-2 px-4 py-4 font-semibold transition-all select-none",
+                  "flex cursor-grab items-center gap-3 rounded-2xl border-2 px-4 py-4 font-semibold transition-all select-none",
                   isMatched
                     ? "border-success bg-success/12 text-success opacity-70"
                     : dragId === it.id
@@ -89,7 +90,8 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
                       : "border-border bg-card hover:border-primary hover:shadow-soft",
                 )}
               >
-                {it.prompt}
+                <ControlLabel index={li} />
+                <span>{it.prompt}</span>
               </div>
             );
           })}
@@ -99,7 +101,7 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
           <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
             Definitions
           </p>
-          {right.map((it) => {
+          {right.map((it, ri) => {
             const isMatched = matched.includes(it.id);
             return (
               <div
@@ -115,7 +117,7 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
                 }}
                 onClick={(e) => attempt(it.id, e.clientX, e.clientY)}
                 className={cn(
-                  "rounded-2xl border-2 border-dashed px-4 py-4 transition-all",
+                  "flex items-center gap-3 rounded-2xl border-2 border-dashed px-4 py-4 transition-all",
                   isMatched
                     ? "animate-pop border-solid border-success bg-success/12 text-success"
                     : wrongId === it.id
@@ -125,7 +127,8 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
                         : "border-border bg-muted/40",
                 )}
               >
-                {it.answer}
+                <ControlLabel index={ri} style="letter" />
+                <span>{it.answer}</span>
               </div>
             );
           })}

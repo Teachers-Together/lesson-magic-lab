@@ -22,7 +22,8 @@ export type GameType =
   | "anagram"
   | "cloze"
   | "gameshow"
-  | "carddeck";
+  | "carddeck"
+  | "showdown";
 
 export type QuizItem = { prompt: string; answer: string; distractors: string[] };
 export type PairItem = { prompt: string; answer: string };
@@ -65,6 +66,7 @@ export const GAME_TEMPLATES: {
   { type: "cloze", name: "Advanced Cloze", blurb: "Drag words into blanks in the passage", emoji: "✍️" },
   { type: "gameshow", name: "Gameshow Quiz", blurb: "High-drama quiz with 3 lifelines", emoji: "🎬" },
   { type: "carddeck", name: "Random Card Deck", blurb: "Deal speaking & roleplay prompt cards", emoji: "🂡" },
+  { type: "showdown", name: "Team Showdown", blurb: "Team vs team tiles with chance cards", emoji: "🏆" },
 ];
 
 export const uid = () => Math.random().toString(36).slice(2, 10);
@@ -284,6 +286,32 @@ const SEED: Activity[] = [
       ["Roleplay: Ask a stranger for directions to the train station.", "Directions", []],
       ["Roleplay: Return a broken item to a shop and ask for a refund.", "Negotiating", []],
       ["Roleplay: Introduce your family to a new classmate.", "Introductions", []],
+    ]),
+  },
+  {
+    id: "seed-team-showdown",
+    title: "Team Showdown: ESL Grammar Duel",
+    subject: "ESL / ELL",
+    gradeLevel: "Grade 6",
+    gameType: "showdown",
+    adaptation: "standard",
+    createdAt: "2026-09-04T09:00:00.000Z",
+    plays: 8,
+    avgScore: 90,
+    contentData: seedContent([
+      ["Past tense of 'buy'?", "bought", []],
+      ["Make it a question: She is from Spain.", "Is she from Spain?", []],
+      ["Preposition: We arrived ___ the station.", "at", []],
+      ["Plural of 'child'?", "children", []],
+      ["Correct: He don't like tea.", "He doesn't like tea.", []],
+      ["Comparative of 'good'?", "better", []],
+      ["Fill in: I have lived here ___ 2019.", "since", []],
+      ["Past continuous: They ___ (play) football at 6pm.", "were playing", []],
+      ["Opposite of 'expensive'?", "cheap", []],
+      ["Article: I saw ___ elephant at the zoo.", "an", []],
+      ["Past tense of 'teach'?", "taught", []],
+      ["Correct order: always / she / is / late.", "She is always late.", []],
+      ["Modal: You ___ wear a helmet. (obligation)", "must", []],
     ]),
   },
 ];

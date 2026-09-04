@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
+import { usePlayMode } from "@/lib/playmode";
 import { buzz, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
@@ -19,12 +21,18 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   const [done, setDone] = useState(false);
   const start = useRef(Date.now());
 
+  const { controlMode, cashEnabled, secondChance, awardCorrect, awardWrong } = usePlayMode();
   const items = activity.contentData;
   const item = items[i] ?? items[0];
   const options = useMemo(
-    () => (item ? shuffle([item.answer, ...(item.distractors.length ? item.distractors : ["Not sure", "None of these"])]) : []),
+    () => {
+      if (!item) return [];
+      let pool = item.distractors.length ? [...item.distractors] : ["Not sure", "None of these"];
+      if (secondChance && pool.length > 1) pool = pool.slice(0, pool.length - 1);
+      return shuffle([item.answer, ...pool]);
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [i, round, activity.id],
+    [i, round, activity.id, secondChance],
   );
 
   useEffect(() => {
@@ -58,9 +66,11 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
     if (ok) {
       setScore(s);
       tone("correct", soundOn);
+      if (cashEnabled) awardCorrect();
     } else {
       tone("wrong", soundOn);
       buzz([30, 40, 30]);
+      if (cashEnabled) awardWrong();
     }
     setTimeout(() => next(s), 950);
   };
@@ -110,7 +120,7 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        {options.map((opt) => {
+        {options.map((opt, oi) => {
           const isAnswer = opt === item.answer;
           const state = !picked ? "idle" : isAnswer ? "correct" : opt === picked ? "wrong" : "dim";
           return (
@@ -119,15 +129,17 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
               onClick={() => choose(opt)}
               disabled={!!picked}
               className={cn(
-                "rounded-2xl border-2 px-5 py-5 text-left text-base font-semibold transition-all duration-200",
+                "flex items-center gap-3 rounded-2xl border-2 px-5 py-5 text-left text-base font-semibold transition-all duration-200",
                 state === "idle" &&
                   "border-border bg-card hover:-translate-y-1 hover:border-primary hover:shadow-soft active:scale-[0.98]",
                 state === "correct" && "border-success bg-success/15 text-success",
                 state === "wrong" && "animate-shake border-destructive bg-destructive/12 text-destructive",
                 state === "dim" && "border-border bg-card opacity-45",
+                controlMode && "cursor-default",
               )}
             >
-              {opt}
+              <ControlLabel index={oi} style="letter" />
+              <span>{opt}</span>
             </button>
           );
         })}

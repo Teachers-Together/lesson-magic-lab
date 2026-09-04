@@ -15,6 +15,10 @@ import { AnagramGame } from "@/components/games/AnagramGame";
 import { ClozeGame } from "@/components/games/ClozeGame";
 import { GameshowQuizGame } from "@/components/games/GameshowQuizGame";
 import { CardDeckGame } from "@/components/games/CardDeckGame";
+import { TeamShowdownGame } from "@/components/games/TeamShowdownGame";
+import { DualModeBar } from "@/components/DualModeBar";
+import { UpgradeShop } from "@/components/UpgradeShop";
+import { PlayModeProvider } from "@/lib/playmode";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/play/$activityId")({
@@ -50,8 +54,10 @@ function PlayZone() {
 
   const adaptClass = activity.adaptation === "dyslexia" ? "dyslexia-mode" : "";
   const tpl = GAME_TEMPLATES.find((t) => t.type === activity.gameType)!;
+  const supportsCash = activity.gameType === "quiz" || activity.gameType === "cloze";
 
   return (
+    <PlayModeProvider>
     <div className="flex min-h-screen flex-col bg-background">
       <header className="flex items-center gap-3 border-b border-border px-4 py-3 sm:px-8">
         <div className="min-w-0 flex-1">
@@ -72,6 +78,10 @@ function PlayZone() {
           </Link>
         </Button>
       </header>
+
+      <DualModeBar showCashToggle={supportsCash} />
+
+
 
       <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-8">
         {activity.gameType === "quiz" ? (
@@ -98,10 +108,14 @@ function PlayZone() {
           <GameshowQuizGame activity={activity} adaptClass={adaptClass} />
         ) : activity.gameType === "carddeck" ? (
           <CardDeckGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "showdown" ? (
+          <TeamShowdownGame activity={activity} adaptClass={adaptClass} />
         ) : (
           <SortingGame activity={activity} adaptClass={adaptClass} />
         )}
       </main>
-    </div>
+      <UpgradeShop />
+      </div>
+    </PlayModeProvider>
   );
 }
