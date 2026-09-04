@@ -57,6 +57,21 @@ export function DualModeBar({
           </Badge>
         )}
 
+        {showHotSeat ? (
+          <Button
+            size="sm"
+            onClick={() => setHotSeat(!hotSeat)}
+            className={cn(
+              "gap-2 rounded-full font-bold",
+              hotSeat
+                ? "bg-gradient-action text-action-foreground"
+                : "bg-card text-foreground border-2 border-action hover:bg-action/10",
+            )}
+          >
+            <Flame className="size-4" /> {hotSeat ? "Exit Hot Seat" : "Toggle Hot Seat Mode"}
+          </Button>
+        ) : null}
+
         {showCashToggle ? (
           <label className="ml-auto flex items-center gap-2 text-xs font-bold">
             <Sparkles className="size-4 text-action" />
@@ -64,6 +79,11 @@ export function DualModeBar({
             <Switch checked={cashEnabled} onCheckedChange={setCashEnabled} />
           </label>
         ) : null}
+      </div>
+    </div>
+  );
+}
+
       </div>
     </div>
   );
