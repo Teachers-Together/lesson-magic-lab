@@ -193,7 +193,8 @@ export function useStore() {
 
 /* ---------------- Mock AI generation ---------------- */
 
-const BANKS: Record<string, [string, string, string[]][]> = {
+type Row = [string, string, string[]];
+const BANKS = {
   fractions: [
     ["Which fraction is equivalent to 1/2?", "4/8", ["1/4", "2/6", "3/8"]],
     ["The bottom number of a fraction is the…", "Denominator", ["Numerator", "Remainder", "Factor"]],
@@ -226,7 +227,7 @@ const BANKS: Record<string, [string, string, string[]][]> = {
     ["Why does this concept matter?", "It builds the next skill", ["It never matters", "It is decorative", "It is optional"]],
     ["Which is a supporting detail?", "An example that proves the idea", ["A contradiction", "An unrelated story", "A title"]],
   ],
-};
+} satisfies Record<string, Row[]>;
 
 function pickBank(prompt: string, notes: string) {
   const t = (prompt + " " + notes).toLowerCase();
@@ -244,7 +245,7 @@ export function generateContent(prompt: string, notes: string, count = 6): Conte
     .map((s) => s.trim())
     .filter((s) => s.length > 24)
     .slice(0, 2)
-    .map<[string, string, string[]]>((s) => [
+    .map<Row>((s) => [
       `From your notes: ${s.slice(0, 70)}…  — what is the key idea?`,
       s.split(" ").slice(0, 4).join(" "),
       ["An unrelated idea", "A minor detail", "None of these"],

@@ -105,7 +105,7 @@ export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptC
   const answer = (correct: boolean) => {
     if (challenge === null) return;
     const item = items[challenge];
-    const next = correct && !solved.includes(item.id) ? [...solved, item.id] : solved;
+    const next = item && correct && !solved.includes(item.id) ? [...solved, item.id] : solved;
     setSolved(next);
     tone(correct ? "correct" : "wrong", soundOn);
     if (!correct) buzz([30, 40, 30]);
@@ -203,10 +203,10 @@ export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptC
             <p className="text-xs font-bold tracking-widest text-action uppercase">
               Micro-challenge
             </p>
-            <p className="font-display mt-3 text-3xl font-extrabold">{items[challenge].prompt}</p>
+            <p className="font-display mt-3 text-3xl font-extrabold">{items[challenge]?.prompt}</p>
             {revealed ? (
               <p className="animate-pop mt-4 rounded-2xl bg-success/12 p-4 text-lg font-semibold text-success">
-                {items[challenge].answer}
+                {items[challenge]?.answer}
               </p>
             ) : (
               <Button variant="outline" className="mt-6" onClick={() => setRevealed(true)}>

@@ -111,7 +111,7 @@ export function FlipCardsGame({ activity, adaptClass }: { activity: Activity; ad
                     {isSolved ? "Correct!" : "Click the key word"}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {tokenMap[it.id].map((tk, idx) => (
+                    {(tokenMap[it.id] ?? []).map((tk, idx) => (
                       <button
                         key={`${tk.text}-${idx}`}
                         onClick={(e) => click(it.id, tk, e)}

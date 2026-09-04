@@ -20,7 +20,7 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   const start = useRef(Date.now());
 
   const items = activity.contentData;
-  const item = items[i];
+  const item = items[i] ?? items[0];
   const options = useMemo(
     () => (item ? shuffle([item.answer, ...(item.distractors.length ? item.distractors : ["Not sure", "None of these"])]) : []),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +53,7 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   const choose = (opt: string) => {
     if (picked) return;
     setPicked(opt);
-    const ok = opt === item.answer;
+    const ok = opt === item?.answer;
     const s = ok ? score + 1 : score;
     if (ok) {
       setScore(s);
@@ -64,6 +64,8 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
     }
     setTimeout(() => next(s), 950);
   };
+
+  if (!item) return <p className="text-muted-foreground">This activity has no content yet.</p>;
 
   if (done)
     return (
