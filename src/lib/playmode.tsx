@@ -42,6 +42,8 @@ type Ctx = {
   roomCode: string;
   cashEnabled: boolean;
   setCashEnabled: (v: boolean) => void;
+  hotSeat: boolean;
+  setHotSeat: (v: boolean) => void;
   cash: number;
   owned: PerkId[];
   insured: boolean;
@@ -59,6 +61,8 @@ const fallback: Ctx = {
   roomCode: "------",
   cashEnabled: false,
   setCashEnabled: () => {},
+  hotSeat: false,
+  setHotSeat: () => {},
   cash: 0,
   owned: [],
   insured: false,
@@ -83,6 +87,7 @@ export function PlayModeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<PlayMode>("independent");
   const [roomCode] = useState(makeRoomCode);
   const [cashEnabled, setCashEnabled] = useState(false);
+  const [hotSeat, setHotSeat] = useState(false);
   const [cash, setCash] = useState(0);
   const [owned, setOwned] = useState<PerkId[]>([]);
   const [insured, setInsured] = useState(false);
@@ -135,6 +140,8 @@ export function PlayModeProvider({ children }: { children: ReactNode }) {
       roomCode,
       cashEnabled,
       setCashEnabled,
+      hotSeat,
+      setHotSeat,
       cash,
       owned,
       insured,
@@ -144,7 +151,7 @@ export function PlayModeProvider({ children }: { children: ReactNode }) {
       awardWrong,
       resetCash,
     }),
-    [mode, roomCode, cashEnabled, cash, owned, insured, buy, awardCorrect, awardWrong, resetCash],
+    [mode, roomCode, cashEnabled, hotSeat, cash, owned, insured, buy, awardCorrect, awardWrong, resetCash],
   );
 
   return <PlayModeContext.Provider value={value}>{children}</PlayModeContext.Provider>;

@@ -4,6 +4,7 @@ import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { QuickShareHub } from "@/components/QuickShareHub";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/")({
@@ -56,6 +57,8 @@ function Dashboard() {
       }
     >
       <div className="space-y-8">
+        <QuickShareHub />
+
         <section className="overflow-hidden rounded-3xl bg-gradient-brand p-8 shadow-lift sm:p-10">
           <p className="text-xs font-bold tracking-widest text-primary-foreground/70 uppercase">
             AI Creator Hub

@@ -18,7 +18,10 @@ import { CardDeckGame } from "@/components/games/CardDeckGame";
 import { TeamShowdownGame } from "@/components/games/TeamShowdownGame";
 import { DualModeBar } from "@/components/DualModeBar";
 import { UpgradeShop } from "@/components/UpgradeShop";
+import { HotSeatOverlay } from "@/components/HotSeatOverlay";
+import { usePlayMode } from "@/lib/playmode";
 import { PlayModeProvider } from "@/lib/playmode";
+import type { Activity } from "@/lib/store";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/play/$activityId")({
@@ -54,6 +57,9 @@ function PlayZone() {
 
   const adaptClass = activity.adaptation === "dyslexia" ? "dyslexia-mode" : "";
   const tpl = GAME_TEMPLATES.find((t) => t.type === activity.gameType)!;
+  const supportsHotSeat = ["carddeck", "flipcards", "anagram", "matchup", "openbox", "quiz", "wheel", "showdown"].includes(
+    activity.gameType,
+  );
   const supportsCash = activity.gameType === "quiz" || activity.gameType === "cloze";
 
   return (
@@ -79,7 +85,8 @@ function PlayZone() {
         </Button>
       </header>
 
-      <DualModeBar showCashToggle={supportsCash} />
+      <DualModeBar showCashToggle={supportsCash} showHotSeat={supportsHotSeat} />
+      <HotSeatLayer activity={activity} />
 
 
 
@@ -118,4 +125,10 @@ function PlayZone() {
       </div>
     </PlayModeProvider>
   );
+}
+
+function HotSeatLayer({ activity }: { activity: Activity }) {
+  const { hotSeat, setHotSeat } = usePlayMode();
+  if (!hotSeat) return null;
+  return <HotSeatOverlay activity={activity} onClose={() => setHotSeat(false)} />;
 }
