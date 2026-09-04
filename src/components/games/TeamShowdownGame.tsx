@@ -87,7 +87,6 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
   };
 
   const allDone = used.length >= tiles.length;
-  const winner = scores[0] === scores[1] ? null : scores[0] > scores[1] ? 1 : 2;
 
   const restart = () => {
     setUsed([]);
