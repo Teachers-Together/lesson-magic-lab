@@ -101,7 +101,7 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
           <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
             Definitions
           </p>
-          {right.map((it) => {
+          {right.map((it, ri) => {
             const isMatched = matched.includes(it.id);
             return (
               <div
@@ -117,7 +117,7 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
                 }}
                 onClick={(e) => attempt(it.id, e.clientX, e.clientY)}
                 className={cn(
-                  "rounded-2xl border-2 border-dashed px-4 py-4 transition-all",
+                  "flex items-center gap-3 rounded-2xl border-2 border-dashed px-4 py-4 transition-all",
                   isMatched
                     ? "animate-pop border-solid border-success bg-success/12 text-success"
                     : wrongId === it.id
@@ -127,7 +127,8 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
                         : "border-border bg-muted/40",
                 )}
               >
-                {it.answer}
+                <ControlLabel index={ri} style="letter" />
+                <span>{it.answer}</span>
               </div>
             );
           })}
