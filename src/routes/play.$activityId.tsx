@@ -54,8 +54,10 @@ function PlayZone() {
 
   const adaptClass = activity.adaptation === "dyslexia" ? "dyslexia-mode" : "";
   const tpl = GAME_TEMPLATES.find((t) => t.type === activity.gameType)!;
+  const supportsCash = activity.gameType === "quiz" || activity.gameType === "cloze";
 
   return (
+    <PlayModeProvider>
     <div className="flex min-h-screen flex-col bg-background">
       <header className="flex items-center gap-3 border-b border-border px-4 py-3 sm:px-8">
         <div className="min-w-0 flex-1">
