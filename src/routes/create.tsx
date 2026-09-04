@@ -148,6 +148,27 @@ function CreatorHub() {
               placeholder="Paste lesson text / notes (optional) — the AI will mine it for key concepts."
               className="mt-3 min-h-36 rounded-2xl"
             />
+
+            <p className="mt-5 text-xs font-bold tracking-widest text-action uppercase">
+              ESL quick-starts
+            </p>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {ESL_ARCHETYPES.map((a) => (
+                <button
+                  key={a.label}
+                  onClick={() => {
+                    setPrompt(a.prompt);
+                    setGameType(a.gameType);
+                    setSubject(a.subject);
+                    setGrade(a.grade);
+                    toast.success(`ESL archetype loaded: ${a.label}`);
+                  }}
+                  className="rounded-full border-2 border-border px-3.5 py-1.5 text-xs font-bold transition-all hover:-translate-y-0.5 hover:border-action hover:bg-action/10"
+                >
+                  {a.emoji} {a.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="rounded-3xl border border-border bg-card p-6 shadow-soft">
