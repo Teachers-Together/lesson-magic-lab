@@ -42,6 +42,7 @@ export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptC
       setFilled(next);
       tone("correct", soundOn);
       burstAt(x, y);
+      if (cashEnabled) awardCorrect();
       if (items.every((it) => next[it.id] === it.answer)) {
         celebrate();
         tone("win", soundOn);
@@ -52,6 +53,7 @@ export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptC
       setWrongId(id);
       tone("wrong", soundOn);
       buzz([30, 40, 30]);
+      if (cashEnabled) awardWrong();
       setTimeout(() => setWrongId(null), 550);
     }
   };
