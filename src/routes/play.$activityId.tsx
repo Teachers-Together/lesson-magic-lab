@@ -77,6 +77,12 @@ function PlayZone() {
           <WheelGame activity={activity} adaptClass={adaptClass} />
         ) : activity.gameType === "flipcards" ? (
           <FlipCardsGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "maze" ? (
+          <MazeGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "openbox" ? (
+          <OpenBoxGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "groupsort" ? (
+          <GroupSortGame activity={activity} adaptClass={adaptClass} />
         ) : (
           <SortingGame activity={activity} adaptClass={adaptClass} />
         )}
