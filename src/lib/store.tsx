@@ -190,7 +190,8 @@ type Ctx = {
   toggleSound: () => void;
 };
 
-const StoreContext = createContext<Ctx | null>(null);
+const g = globalThis as unknown as { __eduPulseStoreCtx?: React.Context<Ctx | null> };
+const StoreContext = (g.__eduPulseStoreCtx ??= createContext<Ctx | null>(null));
 const KEY = "edupulse.activities.v1";
 
 export function StoreProvider({ children }: { children: ReactNode }) {
