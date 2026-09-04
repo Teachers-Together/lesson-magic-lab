@@ -104,7 +104,7 @@ export function RoleplayGame({
   return (
     <GameChrome
       title="Roleplay Dialogue"
-      targetStructure={targetStructure}
+      {...(targetStructure ? { targetStructure } : {})}
       teacherMode={teacherMode}
       onUndo={undo}
       onAdvance={advance}
