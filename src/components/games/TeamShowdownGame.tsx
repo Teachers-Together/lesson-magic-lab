@@ -3,6 +3,7 @@ import { Bomb, Check, RefreshCw, Repeat, Skull, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { celebrate, tone } from "@/lib/fx";
 import { useStore, type Activity } from "@/lib/store";
+import { LeaderboardOverlay } from "@/components/LeaderboardOverlay";
 import { cn } from "@/lib/utils";
 
 type Chance = "swap" | "thief" | "bomb";
@@ -45,6 +46,8 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
   const [revealed, setRevealed] = useState(false);
   const [scores, setScores] = useState<[number, number]>([0, 0]);
   const [turn, setTurn] = useState<0 | 1>(0);
+  const [correct, setCorrect] = useState<[number, number]>([0, 0]);
+  const [attempts, setAttempts] = useState<[number, number]>([0, 0]);
 
   const pick = (t: Tile) => {
     if (used.includes(t.n)) return;
@@ -60,8 +63,10 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
     setTurn((t) => (t === 0 ? 1 : 0));
   };
 
-  const score = (correct: boolean) => {
-    if (correct) {
+  const score = (isCorrect: boolean) => {
+    setAttempts(([a, b]) => (turn === 0 ? [a + 1, b] : [a, b + 1]));
+    if (isCorrect) {
+      setCorrect(([a, b]) => (turn === 0 ? [a + 1, b] : [a, b + 1]));
       tone("correct", soundOn);
       setScores(([a, b]) => (turn === 0 ? [a + 15, b] : [a, b + 15]));
     } else {
@@ -87,6 +92,8 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
   const restart = () => {
     setUsed([]);
     setScores([0, 0]);
+    setCorrect([0, 0]);
+    setAttempts([0, 0]);
     setTurn(0);
     setOpen(null);
     setRound((r) => r + 1);
@@ -101,18 +108,13 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
 
   if (allDone) {
     return (
-      <div className={cn("w-full max-w-lg rounded-3xl border-2 border-border bg-card p-8 text-center shadow-lift", adaptClass)}>
-        <h2 className="font-display text-3xl font-extrabold">
-          {winner ? `Team ${winner} wins!` : "It's a tie!"}
-        </h2>
-        <p className="mt-3 text-lg font-bold">
-          <span className="text-primary">Team 1: {scores[0]}</span> ·{" "}
-          <span className="text-action">Team 2: {scores[1]}</span>
-        </p>
-        <Button onClick={restart} className="mt-6 gap-2 bg-gradient-brand font-bold text-primary-foreground">
-          <RefreshCw className="size-4" /> Play again
-        </Button>
-      </div>
+      <LeaderboardOverlay
+        teams={[
+          { name: "Team 1", score: scores[0], correct: correct[0], attempts: attempts[0] },
+          { name: "Team 2", score: scores[1], correct: correct[1], attempts: attempts[1] },
+        ]}
+        onPlayAgain={restart}
+      />
     );
   }
 
