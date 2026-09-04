@@ -191,7 +191,7 @@ type Ctx = {
   toggleSound: () => void;
 };
 
-const g = globalThis as unknown as { __eduPulseStoreCtx?: React.Context<Ctx | null> };
+const g = globalThis as unknown as { __eduPulseStoreCtx?: Context<Ctx | null> };
 const StoreContext = (g.__eduPulseStoreCtx ??= createContext<Ctx | null>(null));
 const KEY = "edupulse.activities.v1";
 
