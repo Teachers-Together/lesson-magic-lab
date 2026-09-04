@@ -15,6 +15,10 @@ import { AnagramGame } from "@/components/games/AnagramGame";
 import { ClozeGame } from "@/components/games/ClozeGame";
 import { GameshowQuizGame } from "@/components/games/GameshowQuizGame";
 import { CardDeckGame } from "@/components/games/CardDeckGame";
+import { TeamShowdownGame } from "@/components/games/TeamShowdownGame";
+import { DualModeBar } from "@/components/DualModeBar";
+import { UpgradeShop } from "@/components/UpgradeShop";
+import { PlayModeProvider } from "@/lib/playmode";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/play/$activityId")({
