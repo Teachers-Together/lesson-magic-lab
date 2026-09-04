@@ -14,6 +14,7 @@ const BLANK = /_{2,}/;
 export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
+  const { cashEnabled, awardCorrect, awardWrong } = usePlayMode();
   const [round, setRound] = useState(0);
   const [filled, setFilled] = useState<Record<string, string>>({});
   const [wrongId, setWrongId] = useState<string | null>(null);
