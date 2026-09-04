@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Sparkles, Timer, Zap } from "lucide-react";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
 import { buzz, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
