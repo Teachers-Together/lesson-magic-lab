@@ -8,7 +8,15 @@ import {
   type ReactNode,
 } from "react";
 
-export type GameType = "quiz" | "matchup" | "wheel" | "flipcards" | "sorting";
+export type GameType =
+  | "quiz"
+  | "matchup"
+  | "wheel"
+  | "flipcards"
+  | "sorting"
+  | "maze"
+  | "openbox"
+  | "groupsort";
 
 export type QuizItem = { prompt: string; answer: string; distractors: string[] };
 export type PairItem = { prompt: string; answer: string };
