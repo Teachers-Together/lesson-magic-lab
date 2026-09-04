@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import {
   ADAPTATIONS,
+  ESL_ARCHETYPES,
   GAME_TEMPLATES,
   adaptContent,
   generateContent,
@@ -198,7 +199,7 @@ function CreatorHub() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {["General", "Mathematics", "Science", "Language Arts", "World Languages", "Social Studies"].map(
+                    {["General", "ESL / ELL", "Mathematics", "Science", "Language Arts", "World Languages", "Social Studies"].map(
                       (s) => (
                         <SelectItem key={s} value={s}>
                           {s}
