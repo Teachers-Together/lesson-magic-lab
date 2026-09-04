@@ -7,6 +7,9 @@ import { MatchupGame } from "@/components/games/MatchupGame";
 import { WheelGame } from "@/components/games/WheelGame";
 import { FlipCardsGame } from "@/components/games/FlipCardsGame";
 import { SortingGame } from "@/components/games/SortingGame";
+import { MazeGame } from "@/components/games/MazeGame";
+import { OpenBoxGame } from "@/components/games/OpenBoxGame";
+import { GroupSortGame } from "@/components/games/GroupSortGame";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/play/$activityId")({
