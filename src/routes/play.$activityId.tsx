@@ -88,6 +88,16 @@ function PlayZone() {
           <OpenBoxGame activity={activity} adaptClass={adaptClass} />
         ) : activity.gameType === "groupsort" ? (
           <GroupSortGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "whack" ? (
+          <WhackAMoleGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "anagram" ? (
+          <AnagramGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "cloze" ? (
+          <ClozeGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "gameshow" ? (
+          <GameshowQuizGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "carddeck" ? (
+          <CardDeckGame activity={activity} adaptClass={adaptClass} />
         ) : (
           <SortingGame activity={activity} adaptClass={adaptClass} />
         )}
