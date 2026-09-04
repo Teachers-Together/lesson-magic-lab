@@ -138,14 +138,9 @@ export function ErrorHuntGame(props: {
 
   const confirmCorrection = () => {
     if (stage.kind !== "say-correction") return;
-    const missed = false; // found the error; correction said aloud
-    setStage({ kind: "revealed", missed: stage.kind === "say-correction" ? false : false });
-    setStage({ kind: "revealed", missed: picked === null });
-    finishItem(false);
+    setStage({ kind: "revealed", missed: hadWrong });
+    finishItem(hadWrong);
   };
-
-  // if the student found it only after a wrong click, count the item as missed
-  const revealMissed = stage.kind === "revealed" ? stage.missed : false;
 
   // keyboard: 1-9 pick words, 0 = no error
   React.useEffect(() => {
