@@ -30,6 +30,10 @@ const COMMUNITY = [
   { title: "Idioms Matchup", author: "Mr. Osei", type: "Matchup", plays: "1.8k" },
   { title: "Periodic Table Wheel", author: "Dr. Kaur", type: "Wheel", plays: "980" },
   { title: "Fraction Sorting Bins", author: "Mrs. Chen", type: "Sorting", plays: "742" },
+  { title: "Present Continuous Maze Chase", author: "Ms. Nakamura", type: "Maze", plays: "2.6k" },
+  { title: "Prepositions of Place Hotspots", author: "Mr. Duarte", type: "Flip Cards", plays: "2.1k" },
+  { title: "Countable vs. Uncountable Sort", author: "Ms. Adeyemi", type: "Group Sort", plays: "1.4k" },
+  { title: "Speaking Warm-Up Boxes", author: "Mr. Lindqvist", type: "Open the Box", plays: "1.1k" },
 ];
 
 function Dashboard() {

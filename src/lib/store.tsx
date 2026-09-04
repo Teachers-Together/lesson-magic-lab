@@ -8,7 +8,15 @@ import {
   type ReactNode,
 } from "react";
 
-export type GameType = "quiz" | "matchup" | "wheel" | "flipcards" | "sorting";
+export type GameType =
+  | "quiz"
+  | "matchup"
+  | "wheel"
+  | "flipcards"
+  | "sorting"
+  | "maze"
+  | "openbox"
+  | "groupsort";
 
 export type QuizItem = { prompt: string; answer: string; distractors: string[] };
 export type PairItem = { prompt: string; answer: string };
@@ -43,6 +51,9 @@ export const GAME_TEMPLATES: {
   { type: "wheel", name: "Wheel of Wonder", blurb: "Flick-to-spin physics wheel", emoji: "🎡" },
   { type: "flipcards", name: "Kinetic Flip Cards", blurb: "3D flip + word hotspot clicker", emoji: "🃏" },
   { type: "sorting", name: "Fluid Sorting Bins", blurb: "Organic drag-and-drop sticky notes", emoji: "🧲" },
+  { type: "maze", name: "Arcade Maze Chase", blurb: "Dodge obstacles, grab the right answer", emoji: "👾" },
+  { type: "openbox", name: "Open the Box", blurb: "Tap mystery boxes for speaking prompts", emoji: "🎁" },
+  { type: "groupsort", name: "ESL Group Sort", blurb: "Drag words into labelled category bins", emoji: "🗂️" },
 ];
 
 export const uid = () => Math.random().toString(36).slice(2, 10);
@@ -103,6 +114,67 @@ const SEED: Activity[] = [
       ["Chloroplast", "Performs photosynthesis", []],
       ["Cell membrane", "Controls what enters and exits", []],
       ["Vacuole", "Stores water and nutrients", []],
+    ]),
+  },
+  {
+    id: "seed-present-continuous",
+    title: "Present Continuous — Missing Parts",
+    subject: "ESL / ELL",
+    gradeLevel: "Grade 4",
+    gameType: "maze",
+    adaptation: "ell",
+    createdAt: "2026-09-02T10:20:00.000Z",
+    plays: 56,
+    avgScore: 88,
+    contentData: seedContent([
+      ["She ______ to school every day.", "goes", ["go", "going", "gone"]],
+      ["Look! The baby ______ right now.", "is sleeping", ["sleep", "sleeps", "slept"]],
+      ["They ______ football in the park at the moment.", "are playing", ["play", "plays", "played"]],
+      ["I ______ my homework right now.", "am doing", ["do", "does", "did"]],
+      ["He ______ TV every evening.", "watches", ["watch", "watching", "is watch"]],
+    ]),
+  },
+  {
+    id: "seed-countable",
+    title: "Countable vs. Uncountable Nouns",
+    subject: "ESL / ELL",
+    gradeLevel: "Grade 5",
+    gameType: "groupsort",
+    adaptation: "standard",
+    createdAt: "2026-09-02T13:05:00.000Z",
+    plays: 61,
+    avgScore: 84,
+    contentData: seedContent([
+      ["apple", "Countable", []],
+      ["chair", "Countable", []],
+      ["book", "Countable", []],
+      ["coin", "Countable", []],
+      ["water", "Uncountable", []],
+      ["rice", "Uncountable", []],
+      ["money", "Uncountable", []],
+      ["advice", "Uncountable", []],
+    ]),
+  },
+  {
+    id: "seed-icebreakers",
+    title: "Speaking Warm-Up Boxes",
+    subject: "ESL / ELL",
+    gradeLevel: "Grade 6",
+    gameType: "openbox",
+    adaptation: "standard",
+    createdAt: "2026-09-03T07:45:00.000Z",
+    plays: 22,
+    avgScore: 95,
+    contentData: seedContent([
+      ["Tell us about your favorite holiday using the past tense.", "Past simple practice", []],
+      ["Describe what your family is doing right now.", "Present continuous", []],
+      ["What is something you have never eaten? Why?", "Present perfect", []],
+      ["Describe your bedroom using prepositions of place.", "Prepositions", []],
+      ["If you had one free day, what would you do?", "Second conditional", []],
+      ["Compare your city to another city you know.", "Comparatives", []],
+      ["Talk about a food you love — is it countable or uncountable?", "Nouns", []],
+      ["What are you going to do this weekend?", "Future plans", []],
+      ["Tell us about a person who inspires you.", "Descriptive adjectives", []],
     ]),
   },
 ];
@@ -227,16 +299,107 @@ const BANKS = {
     ["Why does this concept matter?", "It builds the next skill", ["It never matters", "It is decorative", "It is optional"]],
     ["Which is a supporting detail?", "An example that proves the idea", ["A contradiction", "An unrelated story", "A title"]],
   ],
+  presentContinuous: [
+    ["Look! She ______ a letter right now.", "is writing", ["write", "writes", "wrote"]],
+    ["They ______ football at the moment.", "are playing", ["play", "plays", "played"]],
+    ["I ______ to music right now.", "am listening", ["listen", "listens", "listened"]],
+    ["He ______ to school every day.", "goes", ["go", "going", "gone"]],
+    ["We ______ dinner in the kitchen now.", "are cooking", ["cook", "cooks", "cooked"]],
+    ["The cat ______ on the sofa at the moment.", "is sleeping", ["sleep", "sleeps", "slept"]],
+  ],
+  prepositions: [
+    ["The dog is ______ the box (inside it).", "in", ["on", "under", "between"]],
+    ["The book is ______ the table (top surface).", "on", ["in", "behind", "under"]],
+    ["The ball is ______ the chair (below).", "under", ["on", "in", "next to"]],
+    ["The lamp is ______ the sofa and the shelf.", "between", ["under", "in", "on"]],
+    ["The picture is ______ the wall.", "on", ["in", "under", "between"]],
+    ["The girl is standing ______ her friend.", "next to", ["in", "under", "on"]],
+  ],
+  phonics: [
+    ["Is 'go' an open or closed syllable?", "Open", ["Closed", "Silent e", "Vowel team"]],
+    ["Is 'cat' an open or closed syllable?", "Closed", ["Open", "Silent e", "Diphthong"]],
+    ["Build the CVC word: /m/ /a/ /p/", "map", ["mop", "mip", "pam"]],
+    ["Build the CVC word: /s/ /u/ /n/", "sun", ["san", "nus", "son"]],
+    ["Which word has a closed syllable?", "hop", ["he", "go", "we"]],
+    ["Which word has an open syllable?", "me", ["mat", "cup", "pin"]],
+  ],
+  nouns: [
+    ["apple", "Countable", ["Uncountable", "Neither", "Both"]],
+    ["water", "Uncountable", ["Countable", "Neither", "Both"]],
+    ["chair", "Countable", ["Uncountable", "Neither", "Both"]],
+    ["rice", "Uncountable", ["Countable", "Neither", "Both"]],
+    ["money", "Uncountable", ["Countable", "Neither", "Both"]],
+    ["book", "Countable", ["Uncountable", "Neither", "Both"]],
+  ],
 } satisfies Record<string, Row[]>;
 
 function pickBank(prompt: string, notes: string) {
   const t = (prompt + " " + notes).toLowerCase();
+  if (t.includes("present continuous") || t.includes("missing part") || t.includes("grammar"))
+    return BANKS.presentContinuous;
+  if (t.includes("preposition")) return BANKS.prepositions;
+  if (t.includes("syllable") || t.includes("cvc") || t.includes("phonic") || t.includes("spelling"))
+    return BANKS.phonics;
+  if (t.includes("countable") || t.includes("uncountable") || t.includes("noun")) return BANKS.nouns;
   if (t.includes("fraction") || t.includes("math")) return BANKS.fractions;
-  if (t.includes("spanish") || t.includes("verb") || t.includes("language")) return BANKS.spanish;
+  if (t.includes("spanish")) return BANKS.spanish;
+  if (t.includes("esl") || t.includes("english as a second") || t.includes("ell"))
+    return BANKS.presentContinuous;
+  if (t.includes("verb") || t.includes("language")) return BANKS.spanish;
   if (t.includes("photosynth") || t.includes("plant") || t.includes("cell") || t.includes("biolog"))
     return BANKS.photosynthesis;
   return BANKS.default;
 }
+
+export const ESL_ARCHETYPES: {
+  label: string;
+  prompt: string;
+  gameType: GameType;
+  subject: string;
+  grade: string;
+  emoji: string;
+}[] = [
+  {
+    label: "Present Continuous (missing parts)",
+    prompt: "Present continuous — complete the sentence with the missing part",
+    gameType: "maze",
+    subject: "ESL / ELL",
+    grade: "Grade 4",
+    emoji: "⏳",
+  },
+  {
+    label: "Prepositions of Place",
+    prompt: "Prepositions of place — the dog is ___ the box",
+    gameType: "flipcards",
+    subject: "ESL / ELL",
+    grade: "Grade 3",
+    emoji: "📦",
+  },
+  {
+    label: "Open & Closed Syllables / CVC",
+    prompt: "Open and closed syllables plus CVC word building practice",
+    gameType: "quiz",
+    subject: "ESL / ELL",
+    grade: "Grade 2",
+    emoji: "🔤",
+  },
+  {
+    label: "Countable vs. Uncountable Nouns",
+    prompt: "Countable vs uncountable nouns categorisation",
+    gameType: "groupsort",
+    subject: "ESL / ELL",
+    grade: "Grade 5",
+    emoji: "🗂️",
+  },
+  {
+    label: "Speaking Warm-Up Boxes",
+    prompt: "ESL conversation starters and speaking warm-up prompts",
+    gameType: "openbox",
+    subject: "ESL / ELL",
+    grade: "Grade 6",
+    emoji: "🎁",
+  },
+];
 
 export function generateContent(prompt: string, notes: string, count = 6): ContentItem[] {
   const bank = pickBank(prompt, notes);

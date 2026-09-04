@@ -7,6 +7,9 @@ import { MatchupGame } from "@/components/games/MatchupGame";
 import { WheelGame } from "@/components/games/WheelGame";
 import { FlipCardsGame } from "@/components/games/FlipCardsGame";
 import { SortingGame } from "@/components/games/SortingGame";
+import { MazeGame } from "@/components/games/MazeGame";
+import { OpenBoxGame } from "@/components/games/OpenBoxGame";
+import { GroupSortGame } from "@/components/games/GroupSortGame";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/play/$activityId")({
@@ -74,6 +77,12 @@ function PlayZone() {
           <WheelGame activity={activity} adaptClass={adaptClass} />
         ) : activity.gameType === "flipcards" ? (
           <FlipCardsGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "maze" ? (
+          <MazeGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "openbox" ? (
+          <OpenBoxGame activity={activity} adaptClass={adaptClass} />
+        ) : activity.gameType === "groupsort" ? (
+          <GroupSortGame activity={activity} adaptClass={adaptClass} />
         ) : (
           <SortingGame activity={activity} adaptClass={adaptClass} />
         )}
