@@ -17,7 +17,12 @@ export type GameType =
   | "sorting"
   | "maze"
   | "openbox"
-  | "groupsort";
+  | "groupsort"
+  | "whack"
+  | "anagram"
+  | "cloze"
+  | "gameshow"
+  | "carddeck";
 
 export type QuizItem = { prompt: string; answer: string; distractors: string[] };
 export type PairItem = { prompt: string; answer: string };
