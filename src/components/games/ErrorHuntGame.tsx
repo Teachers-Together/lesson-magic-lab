@@ -103,6 +103,7 @@ export function ErrorHuntGame(props: {
     setStage({ kind: "pick", wrongClicks: 0 });
     setPicked(null);
     setShaking(null);
+    setHadWrong(false);
   }, [index, items.length, results, onComplete]);
 
   const pickWord = (wi: number) => {
@@ -214,8 +215,7 @@ export function ErrorHuntGame(props: {
   const promptWords = words(item.prompt);
   const answerWords = words(item.answer);
   const fixed = fixSpan(item.prompt, item.answer);
-  const missedThisItem =
-    stage.kind === "pick" ? stage.wrongClicks > 0 : revealMissed;
+  const missedThisItem = stage.kind === "revealed" ? stage.missed : hadWrong;
 
   return (
     <GameChrome
