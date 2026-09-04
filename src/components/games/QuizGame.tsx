@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { GameSummary } from "@/components/GameSummary";
+import { LeaderboardOverlay } from "@/components/LeaderboardOverlay";
 import { ControlLabel } from "@/components/ControlLabel";
 import { usePlayMode } from "@/lib/playmode";
 import { buzz, celebrate, tone } from "@/lib/fx";
@@ -21,7 +22,8 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   const [done, setDone] = useState(false);
   const start = useRef(Date.now());
 
-  const { controlMode, cashEnabled, secondChance, awardCorrect, awardWrong } = usePlayMode();
+  const { controlMode, cashEnabled, cash, secondChance, awardCorrect, awardWrong, resetCash } = usePlayMode();
+  const [boardClosed, setBoardClosed] = useState(false);
   const items = activity.contentData;
   const item = items[i] ?? items[0];
   const options = useMemo(
@@ -76,6 +78,32 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   };
 
   if (!item) return <p className="text-muted-foreground">This activity has no content yet.</p>;
+
+  const replay = () => {
+    setRound((r) => r + 1);
+    setI(0);
+    setScore(0);
+    setPicked(null);
+    setLeft(QUESTION_SECONDS);
+    setDone(false);
+    setBoardClosed(false);
+    start.current = Date.now();
+  };
+
+  if (done && cashEnabled && !boardClosed)
+    return (
+      <LeaderboardOverlay
+        teams={[
+          { name: "Your Team", score: cash, correct: score, attempts: items.length },
+          { name: "Class Average", score: Math.round(cash * 0.7), correct: Math.round(score * 0.7), attempts: items.length },
+        ]}
+        onPlayAgain={() => {
+          resetCash();
+          replay();
+        }}
+        onClose={() => setBoardClosed(true)}
+      />
+    );
 
   if (done)
     return (
