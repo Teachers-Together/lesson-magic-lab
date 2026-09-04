@@ -10,6 +10,11 @@ import { SortingGame } from "@/components/games/SortingGame";
 import { MazeGame } from "@/components/games/MazeGame";
 import { OpenBoxGame } from "@/components/games/OpenBoxGame";
 import { GroupSortGame } from "@/components/games/GroupSortGame";
+import { WhackAMoleGame } from "@/components/games/WhackAMoleGame";
+import { AnagramGame } from "@/components/games/AnagramGame";
+import { ClozeGame } from "@/components/games/ClozeGame";
+import { GameshowQuizGame } from "@/components/games/GameshowQuizGame";
+import { CardDeckGame } from "@/components/games/CardDeckGame";
 import { GAME_TEMPLATES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/play/$activityId")({

@@ -60,6 +60,11 @@ export const GAME_TEMPLATES: {
   { type: "maze", name: "Arcade Maze Chase", blurb: "Dodge obstacles, grab the right answer", emoji: "👾" },
   { type: "openbox", name: "Open the Box", blurb: "Tap mystery boxes for speaking prompts", emoji: "🎁" },
   { type: "groupsort", name: "ESL Group Sort", blurb: "Drag words into labelled category bins", emoji: "🗂️" },
+  { type: "whack", name: "Whack-a-Mole", blurb: "Whack only the words that fit the rule", emoji: "🔨" },
+  { type: "anagram", name: "Anagram / Unjumble", blurb: "Drag letters or words into order", emoji: "🔤" },
+  { type: "cloze", name: "Advanced Cloze", blurb: "Drag words into blanks in the passage", emoji: "✍️" },
+  { type: "gameshow", name: "Gameshow Quiz", blurb: "High-drama quiz with 3 lifelines", emoji: "🎬" },
+  { type: "carddeck", name: "Random Card Deck", blurb: "Deal speaking & roleplay prompt cards", emoji: "🂡" },
 ];
 
 export const uid = () => Math.random().toString(36).slice(2, 10);
