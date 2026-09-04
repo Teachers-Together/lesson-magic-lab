@@ -66,9 +66,11 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
     if (ok) {
       setScore(s);
       tone("correct", soundOn);
+      if (cashEnabled) awardCorrect();
     } else {
       tone("wrong", soundOn);
       buzz([30, 40, 30]);
+      if (cashEnabled) awardWrong();
     }
     setTimeout(() => next(s), 950);
   };
