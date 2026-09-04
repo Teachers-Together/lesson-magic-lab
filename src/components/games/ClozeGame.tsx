@@ -1,6 +1,8 @@
 import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
+import { usePlayMode } from "@/lib/playmode";
 import { buzz, burstAt, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
