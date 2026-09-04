@@ -253,7 +253,7 @@ export function ErrorHuntGame(props: {
                     clickable && "cursor-pointer hover:bg-accent",
                     isPicked && "bg-emerald-500/15 text-emerald-600 ring-2 ring-emerald-500",
                     isFixed && "bg-emerald-500/15 text-emerald-600 ring-2 ring-emerald-500",
-                    shaking === wi && "animate-[shake_0.4s_ease-in-out] text-rose-500",
+                    shaking === wi && "animate-[shake-x_0.4s_ease-in-out] text-rose-500",
                   )}
                 >
                   {teacherMode && clickable && wi < 9 && <NumberBadge n={wi + 1} />}
@@ -271,7 +271,7 @@ export function ErrorHuntGame(props: {
               disabled={stage.kind !== "pick"}
               onClick={pickNoError}
               className={cn(
-                shaking === "noerror" && "animate-[shake_0.4s_ease-in-out] border-rose-500 text-rose-500",
+                shaking === "noerror" && "animate-[shake-x_0.4s_ease-in-out] border-rose-500 text-rose-500",
                 picked === "noerror" && "bg-emerald-500 text-white hover:bg-emerald-500",
               )}
             >
