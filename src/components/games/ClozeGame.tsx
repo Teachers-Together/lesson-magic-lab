@@ -128,10 +128,11 @@ export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptC
               onDragStart={() => (dragged.current = word)}
               onClick={() => (dragged.current = word)}
               className={cn(
-                "cursor-grab rounded-full border-2 px-5 font-semibold",
+                "h-auto cursor-grab gap-2 rounded-full border-2 px-5 py-2 font-semibold",
                 spent && "opacity-35",
               )}
             >
+              <ControlLabel index={idx} className="size-7 text-sm" />
               {word}
             </Button>
           );
