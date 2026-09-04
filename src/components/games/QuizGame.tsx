@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { GameSummary } from "@/components/GameSummary";
+import { ControlLabel } from "@/components/ControlLabel";
+import { usePlayMode } from "@/lib/playmode";
 import { buzz, celebrate, tone } from "@/lib/fx";
 import type { Activity } from "@/lib/store";
 import { useStore } from "@/lib/store";
@@ -19,12 +21,18 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   const [done, setDone] = useState(false);
   const start = useRef(Date.now());
 
+  const { controlMode, cashEnabled, secondChance, awardCorrect, awardWrong } = usePlayMode();
   const items = activity.contentData;
   const item = items[i] ?? items[0];
   const options = useMemo(
-    () => (item ? shuffle([item.answer, ...(item.distractors.length ? item.distractors : ["Not sure", "None of these"])]) : []),
+    () => {
+      if (!item) return [];
+      let pool = item.distractors.length ? [...item.distractors] : ["Not sure", "None of these"];
+      if (secondChance && pool.length > 1) pool = pool.slice(0, pool.length - 1);
+      return shuffle([item.answer, ...pool]);
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [i, round, activity.id],
+    [i, round, activity.id, secondChance],
   );
 
   useEffect(() => {
