@@ -28,10 +28,7 @@ function initialOrder(items: GameItem[]): GameItem[] {
   let shuffled = shuffle(items);
   if (items.length > 1) {
     let guard = 0;
-    while (
-      guard < 20 &&
-      shuffled.every((it, i) => Number.parseInt(it.answer, 10) === i + 1)
-    ) {
+    while (guard < 20 && shuffled.every((it, i) => Number.parseInt(it.answer, 10) === i + 1)) {
       shuffled = shuffle(items);
       guard += 1;
     }
