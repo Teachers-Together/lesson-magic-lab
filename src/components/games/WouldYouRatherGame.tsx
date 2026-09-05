@@ -213,7 +213,13 @@ export default function WouldYouRatherGame(props: Props) {
   }
 
   // Which side the student argues after a swap.
-  const studentSide: "A" | "B" | null = picked ? (swapped ? (picked === "A" ? "B" : "A") : picked) : null;
+  const studentSide: "A" | "B" | null = picked
+    ? swapped
+      ? picked === "A"
+        ? "B"
+        : "A"
+      : picked
+    : null;
   const timerPct = Math.min(100, (elapsed / SUGGESTED_SECONDS) * 100);
 
   const renderCard = (side: "A" | "B", text: string) => {
