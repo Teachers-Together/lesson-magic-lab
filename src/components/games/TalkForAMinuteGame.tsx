@@ -302,7 +302,10 @@ export default function TalkForAMinuteGame(props: Props) {
                 {phase === "speak" ? "Speak" : "Prep"}
               </span>
               <span
-                className={cn("tabular-nums", overTime ? "text-destructive" : "text-muted-foreground")}
+                className={cn(
+                  "tabular-nums",
+                  overTime ? "text-destructive" : "text-muted-foreground",
+                )}
               >
                 {elapsed}s / {phaseLimit}s{overTime ? " — over time (advisory only)" : ""}
               </span>
