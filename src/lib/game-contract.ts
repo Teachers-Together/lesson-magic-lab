@@ -13,4 +13,6 @@ export type GameItem = {
   /** e.g. "present continuous", or a phoneme contrast like "/ɪ/ vs /iː/". */
   targetStructure?: string;
   l1Gloss?: string;
+  /** British equivalent where a dialogue turns on an American word. */
+  britishVariant?: string;
 };
