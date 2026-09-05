@@ -2,11 +2,6 @@ import * as React from "react";
 import { ArrowLeftRight, RotateCcw, Volume2 } from "lucide-react";
 import type { GameItem } from "@/lib/game-contract";
 import { speakSequence, cancelSpeech } from "@/lib/voice";
-
-/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
-function say(text: string, rate: number, lang?: string) {
-  void speakSequence([text], lang ? { rate, lang } : { rate });
-}
 import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,8 +9,9 @@ import { cn } from "@/lib/utils";
 export type RoleplayGameProps = {
   items: GameItem[];
   teacherMode: boolean;
-  onComplete: () => void;
-  onEvent?: (event: string, payload?: unknown) => void;
+  onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
+  onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
   /** Function label shown at the lowest support level, e.g. "order politely". */
   targetStructure?: string;
 };
@@ -24,14 +20,14 @@ type SupportLevel = 0 | 1 | 2; // 0 = full text, 1 = first word, 2 = function la
 
 const SUPPORT_LABELS = ["Full text", "First word", "Function label"] as const;
 
-function AudioButton({ text, label }: { text: string; label: string }) {
+function AudioButton({ text, label, lang }: { text: string; label: string; lang?: string }) {
   return (
     <button
       type="button"
       onClick={(e) => {
         e.stopPropagation();
         cancelSpeech();
-        speak(text, { rate: 0.95 });
+        void speakSequence([text], lang ? { rate: 0.95, lang } : { rate: 0.95 });
       }}
       aria-label={label}
       className="inline-grid size-10 shrink-0 place-items-center rounded-full bg-secondary text-secondary-foreground shadow transition hover:scale-105"
@@ -47,6 +43,7 @@ export function RoleplayGame({
   onComplete,
   onEvent,
   targetStructure,
+  lang,
 }: RoleplayGameProps) {
   const roles = React.useMemo(() => {
     const seen: string[] = [];
@@ -64,15 +61,16 @@ export function RoleplayGame({
   const done = lineIndex >= items.length;
 
   const advance = React.useCallback(() => {
-    setLineIndex((i) => {
-      const next = Math.min(i + 1, items.length);
-      if (next >= items.length) {
-        onEvent?.("complete");
-        onComplete();
-      }
-      return next;
-    });
-  }, [items.length, onComplete, onEvent]);
+    setLineIndex((i) => Math.min(i + 1, items.length));
+  }, [items.length]);
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!done || completedRef.current) return;
+    completedRef.current = true;
+    onEvent?.({ type: "complete" });
+    onComplete({ correct: items.length, total: items.length, missedIds: [] });
+  }, [done, items.length, onComplete, onEvent]);
 
   const undo = React.useCallback(() => {
     setLineIndex((i) => Math.max(0, i - 1));
@@ -82,20 +80,20 @@ export function RoleplayGame({
     const item = items[Math.min(lineIndex, items.length - 1)];
     if (item) {
       cancelSpeech();
-      speak(item.prompt, { rate: 0.95 });
+      void speakSequence([item.prompt], lang ? { rate: 0.95, lang } : { rate: 0.95 });
     }
-  }, [items, lineIndex]);
+  }, [items, lineIndex, lang]);
 
   const swapRoles = React.useCallback(() => {
     setStudentRole((r) => (r === 0 ? 1 : 0));
     setLineIndex(0);
-    onEvent?.("swap-roles");
+    onEvent?.({ type: "swap-roles" });
   }, [onEvent]);
 
   const runAgainLessHelp = React.useCallback(() => {
     setSupport((s) => (s < 2 ? ((s + 1) as SupportLevel) : s));
     setLineIndex(0);
-    onEvent?.("reduce-support");
+    onEvent?.({ type: "reduce-support" });
   }, [onEvent]);
 
   const hiddenFor = (role: string) => role === roles[studentRole];

@@ -144,12 +144,13 @@ export function SignalWordGame(props: {
     [problem, picked, onEvent],
   );
 
+  const [finalAnswers, setFinalAnswers] = React.useState<Placement[] | null>(null);
+
   const finishRound2 = React.useCallback((all: Placement[]) => {
     setDone(true);
     setFinalAnswers(all);
   }, []);
 
-  const [finalAnswers, setFinalAnswers] = React.useState<Placement[] | null>(null);
   const completedRef = React.useRef(false);
   React.useEffect(() => {
     if (!done || !finalAnswers || completedRef.current) return;
