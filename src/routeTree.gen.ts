@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ActivitiesRouteImport } from './routes/activities'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as JoinRouteImport } from './routes/join'
+import { Route as WordformationRouteImport } from './routes/wordformation'
 import { Route as PlayIndexRouteImport } from './routes/play.index'
 import { Route as PlayActivityIdRouteImport } from './routes/play.$activityId'
 
@@ -36,6 +37,11 @@ const JoinRoute = JoinRouteImport.update({
   path: '/join',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WordformationRoute = WordformationRouteImport.update({
+  id: '/wordformation',
+  path: '/wordformation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlayIndexRoute = PlayIndexRouteImport.update({
   id: '/play/',
   path: '/play/',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/activities': typeof ActivitiesRoute
   '/create': typeof CreateRoute
   '/join': typeof JoinRoute
+  '/wordformation': typeof WordformationRoute
   '/play/$activityId': typeof PlayActivityIdRoute
   '/play/': typeof PlayIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/activities': typeof ActivitiesRoute
   '/create': typeof CreateRoute
   '/join': typeof JoinRoute
+  '/wordformation': typeof WordformationRoute
   '/play/$activityId': typeof PlayActivityIdRoute
   '/play': typeof PlayIndexRoute
 }
@@ -69,21 +77,36 @@ export interface FileRoutesById {
   '/activities': typeof ActivitiesRoute
   '/create': typeof CreateRoute
   '/join': typeof JoinRoute
+  '/wordformation': typeof WordformationRoute
   '/play/$activityId': typeof PlayActivityIdRoute
   '/play/': typeof PlayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/activities' | '/create' | '/join' | '/play/$activityId' | '/play/'
+    | '/'
+    | '/activities'
+    | '/create'
+    | '/join'
+    | '/wordformation'
+    | '/play/$activityId'
+    | '/play/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/activities' | '/create' | '/join' | '/play/$activityId' | '/play'
+  to:
+    | '/'
+    | '/activities'
+    | '/create'
+    | '/join'
+    | '/wordformation'
+    | '/play/$activityId'
+    | '/play'
   id:
     | '__root__'
     | '/'
     | '/activities'
     | '/create'
     | '/join'
+    | '/wordformation'
     | '/play/$activityId'
     | '/play/'
   fileRoutesById: FileRoutesById
@@ -93,6 +116,7 @@ export interface RootRouteChildren {
   ActivitiesRoute: typeof ActivitiesRoute
   CreateRoute: typeof CreateRoute
   JoinRoute: typeof JoinRoute
+  WordformationRoute: typeof WordformationRoute
   PlayActivityIdRoute: typeof PlayActivityIdRoute
   PlayIndexRoute: typeof PlayIndexRoute
 }
@@ -127,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JoinRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wordformation': {
+      id: '/wordformation'
+      path: '/wordformation'
+      fullPath: '/wordformation'
+      preLoaderRoute: typeof WordformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/play/': {
       id: '/play/'
       path: '/play'
@@ -149,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   ActivitiesRoute: ActivitiesRoute,
   CreateRoute: CreateRoute,
   JoinRoute: JoinRoute,
+  WordformationRoute: WordformationRoute,
   PlayActivityIdRoute: PlayActivityIdRoute,
   PlayIndexRoute: PlayIndexRoute,
 }
