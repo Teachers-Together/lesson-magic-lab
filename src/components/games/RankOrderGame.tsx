@@ -87,7 +87,7 @@ export default function RankOrderGame({
     if (completed) return;
     if (selected === null) {
       setSelected(index);
-      onEvent?.({ type: "select", itemId: rows[index]?.id });
+      emit("select", index);
       return;
     }
     if (selected === index) {
@@ -95,7 +95,7 @@ export default function RankOrderGame({
       return;
     }
     swap(selected, index);
-    onEvent?.({ type: "swap", itemId: rows[selected]?.id });
+    emit("swap", selected);
     setSelected(null);
   }
 
@@ -169,7 +169,7 @@ export default function RankOrderGame({
         return next;
       });
       setFeedback(null);
-      onEvent?.({ type: "drag", itemId: rows[dragIndex]?.id });
+      emit("drag", dragIndex);
     }
     setDragIndex(null);
     setHoverIndex(null);
@@ -191,18 +191,18 @@ export default function RankOrderGame({
       e.preventDefault();
       if (pendingKey === null) {
         setPendingKey(n - 1);
-        onEvent?.({ type: "select", itemId: rows[n - 1]?.id });
+        emit("select", n - 1);
       } else if (pendingKey === n - 1) {
         setPendingKey(null);
       } else {
         swap(pendingKey, n - 1);
-        onEvent?.({ type: "swap", itemId: rows[pendingKey]?.id });
+        emit("swap", pendingKey);
         setPendingKey(null);
       }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [teacherMode, completed, pendingKey, rows, swap, onEvent]);
+  }, [teacherMode, completed, pendingKey, rows, swap, emit]);
 
   if (ordered.length === 0) {
     return (
