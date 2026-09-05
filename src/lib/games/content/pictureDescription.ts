@@ -9,7 +9,7 @@ import type { GameItem } from "@/lib/game-contract";
 
 export const PIC_FAMILY_MEAL: GameItem[] = [
   { id: "pd-fam-0", prompt: "A family meal", answer: "A family meal", imageUrl: "", targetStructure: "describing people, food and actions at a family dinner", cefr: "A2" },
-  { id: "pd-fam-1", prompt: "there is / there are", answer: "there is / there are", targetStructure: "there is / there are", exampleSentence: "There are five people sitting around the table.", cefr: "A2", targetStructureNote: undefined } as GameItem,
+  { id: "pd-fam-1", prompt: "there is / there are", answer: "there is / there are", targetStructure: "there is / there are", exampleSentence: "There are five people sitting around the table.", cefr: "A2" },
   { id: "pd-fam-2", prompt: "present continuous", answer: "present continuous", targetStructure: "present continuous", exampleSentence: "The mother is serving soup from a big pot.", cefr: "A2" },
   { id: "pd-fam-3", prompt: "food vocabulary", answer: "food vocabulary", targetStructure: "food vocabulary", exampleSentence: "I can see a roast chicken, some potatoes and a bowl of salad.", cefr: "A2" },
   { id: "pd-fam-4", prompt: "prepositions of place", answer: "prepositions of place", targetStructure: "prepositions of place", exampleSentence: "The youngest child is sitting between her father and her grandmother.", cefr: "A2" },
