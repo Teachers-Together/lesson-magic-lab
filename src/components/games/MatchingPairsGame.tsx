@@ -45,7 +45,12 @@ function shuffle<T>(arr: T[]): T[] {
 function buildCards(items: GameItem[]): Card[] {
   return shuffle(
     items.flatMap((it): Card[] => {
-      const promptCard: Card = { key: `${it.id}-p`, itemId: it.id, half: "prompt", text: it.prompt };
+      const promptCard: Card = {
+        key: `${it.id}-p`,
+        itemId: it.id,
+        half: "prompt",
+        text: it.prompt,
+      };
       if (it.imageUrl) promptCard.imageUrl = it.imageUrl;
       return [promptCard, { key: `${it.id}-a`, itemId: it.id, half: "answer", text: it.answer }];
     }),
