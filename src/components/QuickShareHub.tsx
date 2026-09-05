@@ -91,7 +91,9 @@ export function QuickShareHub() {
             onClick={() => copy(pin, "pin")}
             className="rounded-2xl border-2 border-primary/40 bg-card px-6 py-4 text-center transition-colors hover:border-primary"
           >
-            <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">PIN</p>
+            <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+              PIN
+            </p>
             <p className="font-display text-4xl font-extrabold tracking-[0.2em] text-primary tabular-nums">
               {pin}
             </p>
@@ -106,7 +108,12 @@ export function QuickShareHub() {
                 {copied === "url" ? <Check className="size-4" /> : <Copy className="size-4" />}
                 {copied === "url" ? "Copied!" : "Copy link"}
               </Button>
-              <Button size="sm" variant="outline" onClick={() => copy(pin, "pin")} className="gap-2 font-bold">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => copy(pin, "pin")}
+                className="gap-2 font-bold"
+              >
                 {copied === "pin" ? <Check className="size-4" /> : <Copy className="size-4" />}
                 {copied === "pin" ? "Copied!" : "Copy PIN"}
               </Button>

@@ -12,8 +12,8 @@ export function DualModeBar({
   showCashToggle?: boolean;
   showHotSeat?: boolean;
 }) {
-  const { mode, setMode, roomCode, cashEnabled, setCashEnabled, hotSeat, setHotSeat } = usePlayMode();
-
+  const { mode, setMode, roomCode, cashEnabled, setCashEnabled, hotSeat, setHotSeat } =
+    usePlayMode();
 
   return (
     <div className="border-b border-border bg-muted/40 px-4 py-3 sm:px-8">
@@ -29,7 +29,8 @@ export function DualModeBar({
             onClick={() => setMode("independent")}
             className={cn(
               "rounded-full gap-2 text-xs font-bold",
-              mode === "independent" && "bg-gradient-brand text-primary-foreground hover:text-primary-foreground",
+              mode === "independent" &&
+                "bg-gradient-brand text-primary-foreground hover:text-primary-foreground",
             )}
           >
             <Hand className="size-4" /> Independent Student Play
@@ -40,7 +41,8 @@ export function DualModeBar({
             onClick={() => setMode("control")}
             className={cn(
               "rounded-full gap-2 text-xs font-bold",
-              mode === "control" && "bg-gradient-action text-action-foreground hover:text-action-foreground",
+              mode === "control" &&
+                "bg-gradient-action text-action-foreground hover:text-action-foreground",
             )}
           >
             <MonitorPlay className="size-4" /> Teacher Screen-Control

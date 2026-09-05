@@ -102,7 +102,11 @@ export function HotSeatOverlay({ activity, onClose }: { activity: Activity; onCl
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button onClick={gotIt} size="lg" className="gap-2 bg-success font-bold text-success-foreground">
+          <Button
+            onClick={gotIt}
+            size="lg"
+            className="gap-2 bg-success font-bold text-success-foreground"
+          >
             <Check className="size-5" /> Got It! (+Point)
           </Button>
           <Button onClick={next} size="lg" variant="secondary" className="gap-2 font-bold">

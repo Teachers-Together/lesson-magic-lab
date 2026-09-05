@@ -28,7 +28,10 @@ export const Route = createFileRoute("/play/$activityId")({
   head: () => ({
     meta: [
       { title: "Play — EduPulse AI" },
-      { name: "description", content: "A distraction-free, full-screen interactive learning game." },
+      {
+        name: "description",
+        content: "A distraction-free, full-screen interactive learning game.",
+      },
       { property: "og:title", content: "Play — EduPulse AI" },
       { property: "og:description", content: "Play an AI-generated interactive learning game." },
     ],
@@ -57,71 +60,76 @@ function PlayZone() {
 
   const adaptClass = activity.adaptation === "dyslexia" ? "dyslexia-mode" : "";
   const tpl = GAME_TEMPLATES.find((t) => t.type === activity.gameType)!;
-  const supportsHotSeat = ["carddeck", "flipcards", "anagram", "matchup", "openbox", "quiz", "wheel", "showdown"].includes(
-    activity.gameType,
-  );
+  const supportsHotSeat = [
+    "carddeck",
+    "flipcards",
+    "anagram",
+    "matchup",
+    "openbox",
+    "quiz",
+    "wheel",
+    "showdown",
+  ].includes(activity.gameType);
   const supportsCash = activity.gameType === "quiz" || activity.gameType === "cloze";
 
   return (
     <PlayModeProvider>
-    <div className="flex min-h-screen flex-col bg-background">
-      <header className="flex items-center gap-3 border-b border-border px-4 py-3 sm:px-8">
-        <div className="min-w-0 flex-1">
-          <p className="font-display truncate text-base font-bold">{activity.title}</p>
-          <p className="truncate text-xs text-muted-foreground">
-            {activity.gradeLevel} · {tpl.name}
-          </p>
-        </div>
-        <Badge variant="secondary" className="hidden sm:inline-flex capitalize">
-          {activity.adaptation === "standard" ? "Standard" : activity.adaptation}
-        </Badge>
-        <Button variant="ghost" size="icon" onClick={toggleSound} aria-label="Toggle sound">
-          {soundOn ? <Volume2 className="size-5" /> : <VolumeX className="size-5" />}
-        </Button>
-        <Button asChild variant="ghost" size="icon" aria-label="Exit game">
-          <Link to="/play">
-            <X className="size-5" />
-          </Link>
-        </Button>
-      </header>
+      <div className="flex min-h-screen flex-col bg-background">
+        <header className="flex items-center gap-3 border-b border-border px-4 py-3 sm:px-8">
+          <div className="min-w-0 flex-1">
+            <p className="font-display truncate text-base font-bold">{activity.title}</p>
+            <p className="truncate text-xs text-muted-foreground">
+              {activity.gradeLevel} · {tpl.name}
+            </p>
+          </div>
+          <Badge variant="secondary" className="hidden sm:inline-flex capitalize">
+            {activity.adaptation === "standard" ? "Standard" : activity.adaptation}
+          </Badge>
+          <Button variant="ghost" size="icon" onClick={toggleSound} aria-label="Toggle sound">
+            {soundOn ? <Volume2 className="size-5" /> : <VolumeX className="size-5" />}
+          </Button>
+          <Button asChild variant="ghost" size="icon" aria-label="Exit game">
+            <Link to="/play">
+              <X className="size-5" />
+            </Link>
+          </Button>
+        </header>
 
-      <DualModeBar showCashToggle={supportsCash} showHotSeat={supportsHotSeat} />
-      <HotSeatLayer activity={activity} />
+        <DualModeBar showCashToggle={supportsCash} showHotSeat={supportsHotSeat} />
+        <HotSeatLayer activity={activity} />
 
-
-
-      <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-8">
-        {activity.gameType === "quiz" ? (
-          <QuizGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "matchup" ? (
-          <MatchupGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "wheel" ? (
-          <WheelGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "flipcards" ? (
-          <FlipCardsGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "maze" ? (
-          <MazeGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "openbox" ? (
-          <OpenBoxGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "groupsort" ? (
-          <GroupSortGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "whack" ? (
-          <WhackAMoleGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "anagram" ? (
-          <AnagramGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "cloze" ? (
-          <ClozeGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "gameshow" ? (
-          <GameshowQuizGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "carddeck" ? (
-          <CardDeckGame activity={activity} adaptClass={adaptClass} />
-        ) : activity.gameType === "showdown" ? (
-          <TeamShowdownGame activity={activity} adaptClass={adaptClass} />
-        ) : (
-          <SortingGame activity={activity} adaptClass={adaptClass} />
-        )}
-      </main>
-      <UpgradeShop />
+        <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-8">
+          {activity.gameType === "quiz" ? (
+            <QuizGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "matchup" ? (
+            <MatchupGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "wheel" ? (
+            <WheelGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "flipcards" ? (
+            <FlipCardsGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "maze" ? (
+            <MazeGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "openbox" ? (
+            <OpenBoxGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "groupsort" ? (
+            <GroupSortGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "whack" ? (
+            <WhackAMoleGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "anagram" ? (
+            <AnagramGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "cloze" ? (
+            <ClozeGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "gameshow" ? (
+            <GameshowQuizGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "carddeck" ? (
+            <CardDeckGame activity={activity} adaptClass={adaptClass} />
+          ) : activity.gameType === "showdown" ? (
+            <TeamShowdownGame activity={activity} adaptClass={adaptClass} />
+          ) : (
+            <SortingGame activity={activity} adaptClass={adaptClass} />
+          )}
+        </main>
+        <UpgradeShop />
       </div>
     </PlayModeProvider>
   );

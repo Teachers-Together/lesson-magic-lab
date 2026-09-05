@@ -87,7 +87,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "EduPulse AI" },
       { property: "og:title", content: "EduPulse AI" },
-      { property: "og:description", content: "AI-generated interactive learning games for K-12 classrooms." },
+      {
+        property: "og:description",
+        content: "AI-generated interactive learning games for K-12 classrooms.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },

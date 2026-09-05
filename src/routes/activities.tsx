@@ -26,7 +26,10 @@ export const Route = createFileRoute("/activities")({
           "Your library of AI-generated classroom games. Play, edit, share, or review results for every activity you've built.",
       },
       { property: "og:title", content: "My Activities — EduPulse AI" },
-      { property: "og:description", content: "Play, edit, share, and review your AI-built classroom games." },
+      {
+        property: "og:description",
+        content: "Play, edit, share, and review your AI-built classroom games.",
+      },
     ],
   }),
   component: ActivitiesPage,
@@ -98,7 +101,11 @@ function ActivitiesPage() {
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <Button asChild size="sm" className="bg-gradient-action text-action-foreground hover:opacity-90">
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-gradient-action text-action-foreground hover:opacity-90"
+                  >
                     <Link to="/play/$activityId" params={{ activityId: a.id }}>
                       <Play className="size-4" /> Play
                     </Link>

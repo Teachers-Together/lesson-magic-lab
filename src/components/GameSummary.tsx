@@ -75,7 +75,10 @@ export function GameSummary({
       </div>
 
       <div className="mt-6 flex flex-wrap gap-3">
-        <Button onClick={onReplay} className="flex-1 bg-gradient-action text-action-foreground hover:opacity-90">
+        <Button
+          onClick={onReplay}
+          className="flex-1 bg-gradient-action text-action-foreground hover:opacity-90"
+        >
           <RotateCcw className="size-4" /> Play again
         </Button>
         <Button asChild variant="outline" className="flex-1">

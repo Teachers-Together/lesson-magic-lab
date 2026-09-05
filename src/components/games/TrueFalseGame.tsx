@@ -107,14 +107,12 @@ export function TrueFalseGame(props: {
   if (completed || !item) {
     const mistakes = falseMarkedTrue;
     return (
-    <GameChrome
-      title="True or False — Summary"
-      {...(items[0]?.targetStructure
-        ? { targetStructure: items[0].targetStructure }
-        : {})}
-      teacherMode={teacherMode}
-      progress={{ done: items.length, total: items.length }}
-    >
+      <GameChrome
+        title="True or False — Summary"
+        {...(items[0]?.targetStructure ? { targetStructure: items[0].targetStructure } : {})}
+        teacherMode={teacherMode}
+        progress={{ done: items.length, total: items.length }}
+      >
         <Card className="mx-auto w-full max-w-3xl p-6 text-center">
           <h2 className="font-display text-2xl font-bold">Finished</h2>
           <p className="mt-2 text-muted-foreground">
@@ -130,10 +128,7 @@ export function TrueFalseGame(props: {
               </p>
               <ul className="space-y-3">
                 {mistakes.map((m) => (
-                  <li
-                    key={m.id}
-                    className="rounded-xl border border-border bg-muted/40 p-4"
-                  >
+                  <li key={m.id} className="rounded-xl border border-border bg-muted/40 p-4">
                     <p className="font-medium text-foreground">{m.prompt}</p>
                     <p className="mt-1 text-sm text-emerald-600 dark:text-emerald-400">
                       Correction: {m.exampleSentence ?? "—"}
