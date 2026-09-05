@@ -156,10 +156,7 @@ export default function HangmanGame({
   const advance = React.useCallback(() => {
     if (phase === "playing") return;
     if (index + 1 >= items.length) {
-      finish(
-        solvedCount,
-        missedIds.filter(Boolean),
-      );
+      finish(solvedCount, missedIds.filter(Boolean));
       return;
     }
     setIndex((i) => i + 1);
