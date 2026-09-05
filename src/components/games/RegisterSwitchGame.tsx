@@ -180,7 +180,7 @@ export default function RegisterSwitchGame(props: Props) {
   return (
     <GameChrome
       title="Register Switch"
-      targetStructure={firstRung?.targetStructure}
+      {...(firstRung?.targetStructure ? { targetStructure: firstRung.targetStructure } : {})}
       teacherMode={teacherMode}
       onAdvance={advance}
       onUndo={hideAgain}
