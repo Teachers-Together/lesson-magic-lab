@@ -265,8 +265,7 @@ export default function WordStressGame(props: Props) {
               <div className="flex flex-wrap items-center justify-center gap-2">
                 {sylls.map((s, si) => {
                   const isPicked = picked === si;
-                  const isWrong =
-                    wrongFlash?.id === it.id && wrongFlash.syll === si && !isPicked;
+                  const isWrong = wrongFlash?.id === it.id && wrongFlash.syll === si && !isPicked;
                   return (
                     <button
                       key={si}
@@ -284,7 +283,10 @@ export default function WordStressGame(props: Props) {
                     >
                       {s.text}
                       {teacherMode && !solved ? (
-                        <NumberBadge n={si + 1} className="absolute -right-3 -top-3 size-6 text-xs" />
+                        <NumberBadge
+                          n={si + 1}
+                          className="absolute -right-3 -top-3 size-6 text-xs"
+                        />
                       ) : null}
                     </button>
                   );
