@@ -172,7 +172,10 @@ export function TrueFalseGame(props: {
   return (
     <GameChrome
       title="True or False"
-      targetStructure={items.find((i) => i.targetStructure)?.targetStructure}
+      {...(() => {
+        const ts = items.find((i) => i.targetStructure)?.targetStructure;
+        return ts ? { targetStructure: ts } : {};
+      })()}
       teacherMode={teacherMode}
       progress={{ done: index, total: items.length }}
       onAdvance={advance}
