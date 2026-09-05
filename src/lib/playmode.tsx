@@ -77,7 +77,10 @@ const g = globalThis as unknown as { __eduPulsePlayModeCtx?: Context<Ctx | null>
 const PlayModeContext = (g.__eduPulsePlayModeCtx ??= createContext<Ctx | null>(null));
 
 const makeRoomCode = () =>
-  Array.from({ length: 6 }, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 32)]).join("");
+  Array.from(
+    { length: 6 },
+    () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 32)],
+  ).join("");
 
 /** Big numbered / lettered badge shown on interactive items in Teacher Screen-Control mode. */
 export const labelFor = (index: number, style: "letter" | "number" = "number") =>
@@ -92,23 +95,20 @@ export function PlayModeProvider({ children }: { children: ReactNode }) {
   const [owned, setOwned] = useState<PerkId[]>([]);
   const [insured, setInsured] = useState(false);
 
-  const buy = useCallback(
-    (id: PerkId) => {
-      const perk = PERKS.find((p) => p.id === id);
-      if (!perk) return false;
-      let ok = false;
-      setCash((c) => {
-        if (c < perk.cost) return c;
-        ok = true;
-        return c - perk.cost;
-      });
-      if (!ok) return false;
-      if (id === "insurance") setInsured(true);
-      setOwned((o) => (o.includes(id) ? o : [...o, id]));
-      return true;
-    },
-    [],
-  );
+  const buy = useCallback((id: PerkId) => {
+    const perk = PERKS.find((p) => p.id === id);
+    if (!perk) return false;
+    let ok = false;
+    setCash((c) => {
+      if (c < perk.cost) return c;
+      ok = true;
+      return c - perk.cost;
+    });
+    if (!ok) return false;
+    if (id === "insurance") setInsured(true);
+    setOwned((o) => (o.includes(id) ? o : [...o, id]));
+    return true;
+  }, []);
 
   const awardCorrect = useCallback(() => {
     const amount = 10 + (owned.includes("streak") ? 5 : 0);
@@ -151,7 +151,19 @@ export function PlayModeProvider({ children }: { children: ReactNode }) {
       awardWrong,
       resetCash,
     }),
-    [mode, roomCode, cashEnabled, hotSeat, cash, owned, insured, buy, awardCorrect, awardWrong, resetCash],
+    [
+      mode,
+      roomCode,
+      cashEnabled,
+      hotSeat,
+      cash,
+      owned,
+      insured,
+      buy,
+      awardCorrect,
+      awardWrong,
+      resetCash,
+    ],
   );
 
   return <PlayModeContext.Provider value={value}>{children}</PlayModeContext.Provider>;

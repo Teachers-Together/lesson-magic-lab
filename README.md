@@ -1,8 +1,8 @@
 # EduPulse AI Games
 
-Build a modern, AI-first educational game platform inspired by Wordwall but amplified by AI automation, named "EduPulse AI". 
+Build a modern, AI-first educational game platform inspired by Wordwall but amplified by AI automation, named "EduPulse AI".
 
-The platform must be highly interactive, sleek, and responsive (mobile + desktop) using React, Tailwind CSS, and Shadcn UI. 
+The platform must be highly interactive, sleek, and responsive (mobile + desktop) using React, Tailwind CSS, and Shadcn UI.
 
 ### 1. CORE ARCHITECTURE & PAGES
 
@@ -32,7 +32,7 @@ Create an interactive multi-step generator interface:
 
 - **Configuration Controls:** Dropdowns for Grade Level (K-12) and Game Type (Quiz, Matchup, Wheel).
 
-- **Mock AI Processing Engine:** When the user clicks "Generate Game Assets", show a beautiful, multi-stage loading animation (e.g., "Step 1: Scaffolding curriculum...", "Step 2: Designing interactive vectors..."). 
+- **Mock AI Processing Engine:** When the user clicks "Generate Game Assets", show a beautiful, multi-stage loading animation (e.g., "Step 1: Scaffolding curriculum...", "Step 2: Designing interactive vectors...").
 
 - **The Magic Switch (Better than Wordwall):** Provide a "Differentiate / Adapt" toggle that lets the teacher instantly morph the generated content into "Dyslexia-Friendly Mode", "ELL/ESL Support", or "Simplified Reading Level" with simulated instant adjustments.
 
@@ -44,7 +44,7 @@ When an activity is launched in the "Student Play Zone", render hyper-tactile HT
 
 - **Template A: Kinetic Flip Cards & Word Clicker**
 
-  - **The Interaction:** A grid of beautiful 3D HTML5 card structures that smoothly flip on user click using CSS 3D transforms (`rotateY`). 
+  - **The Interaction:** A grid of beautiful 3D HTML5 card structures that smoothly flip on user click using CSS 3D transforms (`rotateY`).
 
   - **Outside-the-Box Mechanic:** Once flipped, sentences are revealed where specific words are interactive "hotspots." Students must click the correct grammatical token or keyword. Incorrect clicks trigger a subtle HTML5 Vibration API pulse (on mobile) and a physical "shake" animation.
 
@@ -56,7 +56,7 @@ When an activity is launched in the "Student Play Zone", render hyper-tactile HT
 
 - **Template C: The AI Wheel of Wonder (Canvas/SVG Hybrid)**
 
-  - **The Interaction:** A beautiful, responsive SVG or HTML5 Canvas wheel. 
+  - **The Interaction:** A beautiful, responsive SVG or HTML5 Canvas wheel.
 
   - **Outside-the-Box Mechanic:** Implement a true pointer gesture swipe. Students can actually "flick" the wheel with their mouse or finger to spin it. The spinning velocity matches their swipe speed, decelerates naturally using a physics easing function, and dynamically brings up a full-screen micro-challenge when it stops.
 

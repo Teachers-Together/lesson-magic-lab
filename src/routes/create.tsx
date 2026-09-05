@@ -199,13 +199,19 @@ function CreatorHub() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {["General", "ESL / ELL", "Mathematics", "Science", "Language Arts", "World Languages", "Social Studies"].map(
-                      (s) => (
-                        <SelectItem key={s} value={s}>
-                          {s}
-                        </SelectItem>
-                      ),
-                    )}
+                    {[
+                      "General",
+                      "ESL / ELL",
+                      "Mathematics",
+                      "Science",
+                      "Language Arts",
+                      "World Languages",
+                      "Social Studies",
+                    ].map((s) => (
+                      <SelectItem key={s} value={s}>
+                        {s}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -237,7 +243,11 @@ function CreatorHub() {
               disabled={generating}
               className="mt-5 h-12 w-full rounded-2xl bg-gradient-action text-base font-bold text-action-foreground hover:opacity-90"
             >
-              {generating ? <Loader2 className="size-5 animate-spin" /> : <Sparkles className="size-5" />}
+              {generating ? (
+                <Loader2 className="size-5 animate-spin" />
+              ) : (
+                <Sparkles className="size-5" />
+              )}
               Generate Game Assets
             </Button>
           </div>
@@ -287,7 +297,9 @@ function CreatorHub() {
               <div className="rounded-3xl border border-border bg-card p-6 shadow-soft">
                 <div className="flex items-center gap-2">
                   <Wand2 className="size-4 text-action" />
-                  <h3 className="font-display font-bold">The Magic Switch · Differentiate & Adapt</h3>
+                  <h3 className="font-display font-bold">
+                    The Magic Switch · Differentiate & Adapt
+                  </h3>
                 </div>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">
                   {ADAPTATIONS.map((a) => (
@@ -337,7 +349,9 @@ function CreatorHub() {
                         <Input
                           value={it.distractors.join(" | ")}
                           onChange={(e) =>
-                            edit(it.id, { distractors: e.target.value.split("|").map((s) => s.trim()) })
+                            edit(it.id, {
+                              distractors: e.target.value.split("|").map((s) => s.trim()),
+                            })
                           }
                           placeholder="Wrong answers separated by |"
                           className="mt-2 rounded-xl text-sm"

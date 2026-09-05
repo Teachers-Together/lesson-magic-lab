@@ -10,7 +10,8 @@ export const Route = createFileRoute("/play/")({
       { title: "Student Play Zone — EduPulse AI" },
       {
         name: "description",
-        content: "Pick a class activity and jump into a distraction-free, full-screen learning game.",
+        content:
+          "Pick a class activity and jump into a distraction-free, full-screen learning game.",
       },
       { property: "og:title", content: "Student Play Zone — EduPulse AI" },
       { property: "og:description", content: "Distraction-free full-screen play for students." },

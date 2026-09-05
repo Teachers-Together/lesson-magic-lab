@@ -31,7 +31,9 @@ let ctx: AudioContext | null = null;
 function audio() {
   if (typeof window === "undefined") return null;
   if (!ctx) {
-    const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const AC =
+      window.AudioContext ??
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (!AC) return null;
     ctx = new AC();
   }
@@ -84,7 +86,14 @@ export function megaCelebrate() {
       confetti({ ...base, particleCount: 90, angle: 60, spread: 80, origin: { x: 0, y: 0.7 } });
       confetti({ ...base, particleCount: 90, angle: 120, spread: 80, origin: { x: 1, y: 0.7 } });
       if (i % 2 === 0)
-        confetti({ ...base, particleCount: 120, spread: 360, startVelocity: 30, scalar: 1.1, origin: { y: 0.4 } });
+        confetti({
+          ...base,
+          particleCount: 120,
+          spread: 360,
+          startVelocity: 30,
+          scalar: 1.1,
+          origin: { y: 0.4 },
+        });
     }, d),
   );
 }

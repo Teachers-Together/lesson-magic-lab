@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { PERKS, usePlayMode } from "@/lib/playmode";
 import { cn } from "@/lib/utils";
 
@@ -54,7 +61,10 @@ export function UpgradeShop() {
                       size="sm"
                       disabled={active || !afford}
                       onClick={() => buy(p.id)}
-                      className={cn("shrink-0 font-bold", !active && "bg-gradient-action text-action-foreground")}
+                      className={cn(
+                        "shrink-0 font-bold",
+                        !active && "bg-gradient-action text-action-foreground",
+                      )}
                     >
                       {active ? "Active" : `$${p.cost}`}
                     </Button>

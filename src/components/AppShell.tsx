@@ -1,5 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, Sparkles, LibraryBig, Gamepad2, Menu, Volume2, VolumeX } from "lucide-react";
+import {
+  LayoutDashboard,
+  Sparkles,
+  LibraryBig,
+  Gamepad2,
+  Menu,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -117,9 +125,7 @@ export function AppShell({
             <h1 className="font-display truncate text-xl font-extrabold tracking-tight sm:text-2xl">
               {title}
             </h1>
-            {subtitle ? (
-              <p className="truncate text-sm text-muted-foreground">{subtitle}</p>
-            ) : null}
+            {subtitle ? <p className="truncate text-sm text-muted-foreground">{subtitle}</p> : null}
           </div>
           {actions}
         </header>

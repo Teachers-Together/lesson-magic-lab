@@ -42,9 +42,7 @@ export function MatchupGame({
       const el = targetRefs.current[it.id];
       if (!el || matched.includes(it.id)) return false;
       const r = el.getBoundingClientRect();
-      return (
-        x >= r.left - PAD && x <= r.right + PAD && y >= r.top - PAD && y <= r.bottom + PAD
-      );
+      return x >= r.left - PAD && x <= r.right + PAD && y >= r.top - PAD && y <= r.bottom + PAD;
     })?.id ?? null;
 
   const attempt = (

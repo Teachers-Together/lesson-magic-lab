@@ -74,7 +74,9 @@ export function LeaderboardOverlay({
                     style.bg,
                   )}
                 >
-                  <span className="font-display text-3xl font-extrabold text-white/90">{style.place}</span>
+                  <span className="font-display text-3xl font-extrabold text-white/90">
+                    {style.place}
+                  </span>
                 </div>
               </div>
             );

@@ -11,15 +11,21 @@ export const Route = createFileRoute("/join")({
       { title: "Join a Game with a PIN — EduPulse AI" },
       {
         name: "description",
-        content: "Enter your class game PIN and your name to jump straight into today's EduPulse AI activity.",
+        content:
+          "Enter your class game PIN and your name to jump straight into today's EduPulse AI activity.",
       },
       { property: "og:title", content: "Join a Game with a PIN — EduPulse AI" },
-      { property: "og:description", content: "Type the PIN your teacher shared and start playing instantly." },
+      {
+        property: "og:description",
+        content: "Type the PIN your teacher shared and start playing instantly.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  validateSearch: (s: Record<string, unknown>) => ({ pin: typeof s['pin'] === "string" ? (s['pin'] as string) : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    pin: typeof s["pin"] === "string" ? (s["pin"] as string) : undefined,
+  }),
   component: JoinPage,
 });
 

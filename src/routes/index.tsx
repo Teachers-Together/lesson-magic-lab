@@ -19,7 +19,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "EduPulse AI — AI-Generated Classroom Games" },
       {
         property: "og:description",
-        content: "Generate playable, differentiated learning games from any lesson text in seconds.",
+        content:
+          "Generate playable, differentiated learning games from any lesson text in seconds.",
       },
     ],
   }),
@@ -32,8 +33,18 @@ const COMMUNITY = [
   { title: "Periodic Table Wheel", author: "Dr. Kaur", type: "Wheel", plays: "980" },
   { title: "Fraction Sorting Bins", author: "Mrs. Chen", type: "Sorting", plays: "742" },
   { title: "Present Continuous Maze Chase", author: "Ms. Nakamura", type: "Maze", plays: "2.6k" },
-  { title: "Prepositions of Place Hotspots", author: "Mr. Duarte", type: "Flip Cards", plays: "2.1k" },
-  { title: "Countable vs. Uncountable Sort", author: "Ms. Adeyemi", type: "Group Sort", plays: "1.4k" },
+  {
+    title: "Prepositions of Place Hotspots",
+    author: "Mr. Duarte",
+    type: "Flip Cards",
+    plays: "2.1k",
+  },
+  {
+    title: "Countable vs. Uncountable Sort",
+    author: "Ms. Adeyemi",
+    type: "Group Sort",
+    plays: "1.4k",
+  },
   { title: "Speaking Warm-Up Boxes", author: "Mr. Lindqvist", type: "Open the Box", plays: "1.1k" },
 ];
 
@@ -78,9 +89,24 @@ function Dashboard() {
 
         <section className="grid gap-4 sm:grid-cols-3">
           {[
-            { label: "Activities created", value: activities.length, icon: Gamepad2, tint: "text-primary bg-primary/10" },
-            { label: "Student plays", value: totalPlays, icon: Users, tint: "text-action bg-action/15" },
-            { label: "Average score", value: `${avg}%`, icon: TrendingUp, tint: "text-success bg-success/15" },
+            {
+              label: "Activities created",
+              value: activities.length,
+              icon: Gamepad2,
+              tint: "text-primary bg-primary/10",
+            },
+            {
+              label: "Student plays",
+              value: totalPlays,
+              icon: Users,
+              tint: "text-action bg-action/15",
+            },
+            {
+              label: "Average score",
+              value: `${avg}%`,
+              icon: TrendingUp,
+              tint: "text-success bg-success/15",
+            },
           ].map((s) => (
             <div key={s.label} className="rounded-3xl border border-border bg-card p-6 shadow-soft">
               <span className={`grid size-11 place-items-center rounded-2xl ${s.tint}`}>

@@ -53,20 +53,85 @@ export const GAME_TEMPLATES: {
   blurb: string;
   emoji: string;
 }[] = [
-  { type: "quiz", name: "Next-Gen Quiz", blurb: "Timed multiple choice with live score", emoji: "⚡" },
-  { type: "matchup", name: "Interactive Matchup", blurb: "Drag terms onto definitions", emoji: "🔗" },
+  {
+    type: "quiz",
+    name: "Next-Gen Quiz",
+    blurb: "Timed multiple choice with live score",
+    emoji: "⚡",
+  },
+  {
+    type: "matchup",
+    name: "Interactive Matchup",
+    blurb: "Drag terms onto definitions",
+    emoji: "🔗",
+  },
   { type: "wheel", name: "Wheel of Wonder", blurb: "Flick-to-spin physics wheel", emoji: "🎡" },
-  { type: "flipcards", name: "Kinetic Flip Cards", blurb: "3D flip + word hotspot clicker", emoji: "🃏" },
-  { type: "sorting", name: "Fluid Sorting Bins", blurb: "Organic drag-and-drop sticky notes", emoji: "🧲" },
-  { type: "maze", name: "Arcade Maze Chase", blurb: "Dodge obstacles, grab the right answer", emoji: "👾" },
-  { type: "openbox", name: "Open the Box", blurb: "Tap mystery boxes for speaking prompts", emoji: "🎁" },
-  { type: "groupsort", name: "ESL Group Sort", blurb: "Drag words into labelled category bins", emoji: "🗂️" },
-  { type: "whack", name: "Whack-a-Mole", blurb: "Whack only the words that fit the rule", emoji: "🔨" },
-  { type: "anagram", name: "Anagram / Unjumble", blurb: "Drag letters or words into order", emoji: "🔤" },
-  { type: "cloze", name: "Advanced Cloze", blurb: "Drag words into blanks in the passage", emoji: "✍️" },
-  { type: "gameshow", name: "Gameshow Quiz", blurb: "High-drama quiz with 3 lifelines", emoji: "🎬" },
-  { type: "carddeck", name: "Random Card Deck", blurb: "Deal speaking & roleplay prompt cards", emoji: "🂡" },
-  { type: "showdown", name: "Team Showdown", blurb: "Team vs team tiles with chance cards", emoji: "🏆" },
+  {
+    type: "flipcards",
+    name: "Kinetic Flip Cards",
+    blurb: "3D flip + word hotspot clicker",
+    emoji: "🃏",
+  },
+  {
+    type: "sorting",
+    name: "Fluid Sorting Bins",
+    blurb: "Organic drag-and-drop sticky notes",
+    emoji: "🧲",
+  },
+  {
+    type: "maze",
+    name: "Arcade Maze Chase",
+    blurb: "Dodge obstacles, grab the right answer",
+    emoji: "👾",
+  },
+  {
+    type: "openbox",
+    name: "Open the Box",
+    blurb: "Tap mystery boxes for speaking prompts",
+    emoji: "🎁",
+  },
+  {
+    type: "groupsort",
+    name: "ESL Group Sort",
+    blurb: "Drag words into labelled category bins",
+    emoji: "🗂️",
+  },
+  {
+    type: "whack",
+    name: "Whack-a-Mole",
+    blurb: "Whack only the words that fit the rule",
+    emoji: "🔨",
+  },
+  {
+    type: "anagram",
+    name: "Anagram / Unjumble",
+    blurb: "Drag letters or words into order",
+    emoji: "🔤",
+  },
+  {
+    type: "cloze",
+    name: "Advanced Cloze",
+    blurb: "Drag words into blanks in the passage",
+    emoji: "✍️",
+  },
+  {
+    type: "gameshow",
+    name: "Gameshow Quiz",
+    blurb: "High-drama quiz with 3 lifelines",
+    emoji: "🎬",
+  },
+  {
+    type: "carddeck",
+    name: "Random Card Deck",
+    blurb: "Deal speaking & roleplay prompt cards",
+    emoji: "🂡",
+  },
+  {
+    type: "showdown",
+    name: "Team Showdown",
+    blurb: "Team vs team tiles with chance cards",
+    emoji: "🏆",
+  },
 ];
 
 export const uid = () => Math.random().toString(36).slice(2, 10);
@@ -87,7 +152,11 @@ const SEED: Activity[] = [
     avgScore: 82,
     contentData: seedContent([
       ["Which fraction is equal to one half?", "2/4", ["1/3", "3/5", "2/5"]],
-      ["What is the top number of a fraction called?", "Numerator", ["Denominator", "Divisor", "Quotient"]],
+      [
+        "What is the top number of a fraction called?",
+        "Numerator",
+        ["Denominator", "Divisor", "Quotient"],
+      ],
       ["Which is larger: 3/4 or 1/4?", "3/4", ["1/4", "They are equal", "Cannot tell"]],
       ["1/3 + 1/3 equals what?", "2/3", ["1/6", "2/6", "1/3"]],
       ["A pizza cut into 8 equal slices: one slice is…", "1/8", ["8/1", "1/4", "2/8"]],
@@ -142,7 +211,11 @@ const SEED: Activity[] = [
     contentData: seedContent([
       ["She ______ to school every day.", "goes", ["go", "going", "gone"]],
       ["Look! The baby ______ right now.", "is sleeping", ["sleep", "sleeps", "slept"]],
-      ["They ______ football in the park at the moment.", "are playing", ["play", "plays", "played"]],
+      [
+        "They ______ football in the park at the moment.",
+        "are playing",
+        ["play", "plays", "played"],
+      ],
       ["I ______ my homework right now.", "am doing", ["do", "does", "did"]],
       ["He ______ TV every evening.", "watches", ["watch", "watching", "is watch"]],
     ]),
@@ -226,9 +299,17 @@ const SEED: Activity[] = [
     contentData: seedContent([
       ["Unscramble the sentence: pizza / likes / she / eating", "she likes eating pizza", []],
       ["Unscramble the word: S-H-O-O-C-L", "school", []],
-      ["Unscramble the sentence: to / going / I / am / market / the", "I am going to the market", []],
+      [
+        "Unscramble the sentence: to / going / I / am / market / the",
+        "I am going to the market",
+        [],
+      ],
       ["Unscramble the word: E-A-T-C-H-R-E", "teacher", []],
-      ["Unscramble the sentence: never / has / he / London / visited", "he has never visited London", []],
+      [
+        "Unscramble the sentence: never / has / he / London / visited",
+        "he has never visited London",
+        [],
+      ],
     ]),
   },
   {
@@ -260,9 +341,21 @@ const SEED: Activity[] = [
     plays: 27,
     avgScore: 88,
     contentData: seedContent([
-      ["Choose the correct form: I ____ to Paris last year.", "went", ["go", "have gone", "am going"]],
-      ["Which sentence is correct?", "She doesn't like coffee.", ["She don't like coffee.", "She not like coffee.", "She isn't like coffee."]],
-      ["Pick the comparative: This test is ____ than the last one.", "easier", ["easyer", "more easy", "most easy"]],
+      [
+        "Choose the correct form: I ____ to Paris last year.",
+        "went",
+        ["go", "have gone", "am going"],
+      ],
+      [
+        "Which sentence is correct?",
+        "She doesn't like coffee.",
+        ["She don't like coffee.", "She not like coffee.", "She isn't like coffee."],
+      ],
+      [
+        "Pick the comparative: This test is ____ than the last one.",
+        "easier",
+        ["easyer", "more easy", "most easy"],
+      ],
       ["Complete: If it rains, we ____ stay home.", "will", ["would", "did", "are"]],
       ["Choose the preposition: I'm interested ____ music.", "in", ["on", "at", "for"]],
     ]),
@@ -278,11 +371,31 @@ const SEED: Activity[] = [
     plays: 15,
     avgScore: 93,
     contentData: seedContent([
-      ["Roleplay: You are ordering food at a busy cafe, but they got your order wrong.", "Complaining politely", []],
-      ["Roleplay: You are checking into a hotel and your room is not ready.", "Making requests", []],
-      ["Roleplay: A friend invites you out, but you are busy. Decline kindly.", "Refusing invitations", []],
-      ["Roleplay: You lost your bag at the airport. Explain it to staff.", "Describing objects", []],
-      ["Roleplay: You are at a job interview. Describe your best qualities.", "Self-description", []],
+      [
+        "Roleplay: You are ordering food at a busy cafe, but they got your order wrong.",
+        "Complaining politely",
+        [],
+      ],
+      [
+        "Roleplay: You are checking into a hotel and your room is not ready.",
+        "Making requests",
+        [],
+      ],
+      [
+        "Roleplay: A friend invites you out, but you are busy. Decline kindly.",
+        "Refusing invitations",
+        [],
+      ],
+      [
+        "Roleplay: You lost your bag at the airport. Explain it to staff.",
+        "Describing objects",
+        [],
+      ],
+      [
+        "Roleplay: You are at a job interview. Describe your best qualities.",
+        "Self-description",
+        [],
+      ],
       ["Roleplay: Ask a stranger for directions to the train station.", "Directions", []],
       ["Roleplay: Return a broken item to a shop and ask for a refund.", "Negotiating", []],
       ["Roleplay: Introduce your family to a new classmate.", "Introductions", []],
@@ -407,7 +520,11 @@ type Row = [string, string, string[]];
 const BANKS = {
   fractions: [
     ["Which fraction is equivalent to 1/2?", "4/8", ["1/4", "2/6", "3/8"]],
-    ["The bottom number of a fraction is the…", "Denominator", ["Numerator", "Remainder", "Factor"]],
+    [
+      "The bottom number of a fraction is the…",
+      "Denominator",
+      ["Numerator", "Remainder", "Factor"],
+    ],
     ["Which is greater, 2/3 or 1/6?", "2/3", ["1/6", "Equal", "Not enough info"]],
     ["1/4 + 2/4 =", "3/4", ["3/8", "2/8", "1/2"]],
     ["Half of 10 cookies is…", "5", ["2", "10", "20"]],
@@ -430,12 +547,32 @@ const BANKS = {
     ["What is the main energy source?", "Sunlight", ["Soil", "Wind", "Moonlight"]],
   ],
   default: [
-    ["What is the main idea of the lesson?", "The central concept being taught", ["A minor detail", "An unrelated fact", "The page number"]],
+    [
+      "What is the main idea of the lesson?",
+      "The central concept being taught",
+      ["A minor detail", "An unrelated fact", "The page number"],
+    ],
     ["Which word best describes the key term?", "Essential", ["Optional", "Random", "Hidden"]],
-    ["Which example fits the concept?", "A real-world application", ["A guess", "An error", "A typo"]],
-    ["What should you do first?", "Identify the key vocabulary", ["Skip ahead", "Close the book", "Change subject"]],
-    ["Why does this concept matter?", "It builds the next skill", ["It never matters", "It is decorative", "It is optional"]],
-    ["Which is a supporting detail?", "An example that proves the idea", ["A contradiction", "An unrelated story", "A title"]],
+    [
+      "Which example fits the concept?",
+      "A real-world application",
+      ["A guess", "An error", "A typo"],
+    ],
+    [
+      "What should you do first?",
+      "Identify the key vocabulary",
+      ["Skip ahead", "Close the book", "Change subject"],
+    ],
+    [
+      "Why does this concept matter?",
+      "It builds the next skill",
+      ["It never matters", "It is decorative", "It is optional"],
+    ],
+    [
+      "Which is a supporting detail?",
+      "An example that proves the idea",
+      ["A contradiction", "An unrelated story", "A title"],
+    ],
   ],
   presentContinuous: [
     ["Look! She ______ a letter right now.", "is writing", ["write", "writes", "wrote"]],
@@ -478,7 +615,8 @@ function pickBank(prompt: string, notes: string) {
   if (t.includes("preposition")) return BANKS.prepositions;
   if (t.includes("syllable") || t.includes("cvc") || t.includes("phonic") || t.includes("spelling"))
     return BANKS.phonics;
-  if (t.includes("countable") || t.includes("uncountable") || t.includes("noun")) return BANKS.nouns;
+  if (t.includes("countable") || t.includes("uncountable") || t.includes("noun"))
+    return BANKS.nouns;
   if (t.includes("fraction") || t.includes("math")) return BANKS.fractions;
   if (t.includes("spanish")) return BANKS.spanish;
   if (t.includes("esl") || t.includes("english as a second") || t.includes("ell"))
@@ -567,7 +705,12 @@ export function adaptContent(items: ContentItem[], mode: Adaptation): ContentIte
       case "simplified":
         return {
           ...it,
-          prompt: it.prompt.split(" ").slice(0, 9).join(" ").replace(/[,;:]$/, "") + "?",
+          prompt:
+            it.prompt
+              .split(" ")
+              .slice(0, 9)
+              .join(" ")
+              .replace(/[,;:]$/, "") + "?",
           distractors: it.distractors.slice(0, 2),
         };
       default:
@@ -578,7 +721,11 @@ export function adaptContent(items: ContentItem[], mode: Adaptation): ContentIte
 
 export const ADAPTATIONS: { id: Adaptation; label: string; detail: string }[] = [
   { id: "standard", label: "Standard", detail: "Original AI output, grade-level aligned" },
-  { id: "dyslexia", label: "Dyslexia-Friendly", detail: "Wider tracking, heavier weight, calmer contrast" },
+  {
+    id: "dyslexia",
+    label: "Dyslexia-Friendly",
+    detail: "Wider tracking, heavier weight, calmer contrast",
+  },
   { id: "ell", label: "ELL / ESL Support", detail: "First-letter hints and simpler phrasing" },
   { id: "simplified", label: "Simplified Reading", detail: "Shorter stems, fewer answer choices" },
 ];
