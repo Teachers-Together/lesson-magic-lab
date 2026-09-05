@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import type { GameItem } from "@/lib/game-contract";
-import { speak, cancel } from "@/lib/speech";
+import { speakSequence, cancelSpeech } from "@/lib/voice";
 import { cn } from "@/lib/utils";
 
 type Token = { id: string; text: string };
@@ -132,8 +132,9 @@ export function SentenceBuilderGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
-  const { items, teacherMode, onComplete, onEvent } = props;
+  const { items, teacherMode, onComplete, onEvent, lang } = props;
 
   const [index, setIndex] = React.useState(0);
   const [slots, setSlots] = React.useState<(Token | null)[]>([]);
@@ -150,21 +151,18 @@ export function SentenceBuilderGame(props: {
   const item = items[index];
   const words = React.useMemo(() => (item ? splitWords(item.answer) : []), [item]);
 
-  const setupRound = React.useCallback(
-    (target: GameItem | undefined) => {
-      if (!target) return;
-      const w = splitWords(target.answer);
-      const tokens: Token[] = w.map((text, i) => ({ id: `${i}-${text}`, text }));
-      setSlots(Array.from({ length: w.length }, () => null));
-      setTray(shuffle(tokens));
-      setFeedback(null);
-      setSolved(false);
-      setHintUsed(false);
-      setSelected(null);
-      setAttempted(false);
-    },
-    [],
-  );
+  const setupRound = React.useCallback((target: GameItem | undefined) => {
+    if (!target) return;
+    const w = splitWords(target.answer);
+    const tokens: Token[] = w.map((text, i) => ({ id: `${i}-${text}`, text }));
+    setSlots(Array.from({ length: w.length }, () => null));
+    setTray(shuffle(tokens));
+    setFeedback(null);
+    setSolved(false);
+    setHintUsed(false);
+    setSelected(null);
+    setAttempted(false);
+  }, []);
 
   React.useEffect(() => {
     setupRound(items[index]);
@@ -227,8 +225,7 @@ export function SentenceBuilderGame(props: {
     const filled = slots.filter(Boolean) as Token[];
     const attempt = filled.map((t) => t.text);
     const ok =
-      filled.length === words.length &&
-      attempt.map(clean).join(" ") === words.map(clean).join(" ");
+      filled.length === words.length && attempt.map(clean).join(" ") === words.map(clean).join(" ");
     setAttempted(true);
     if (ok) {
       setSolved(true);
@@ -255,17 +252,26 @@ export function SentenceBuilderGame(props: {
     if (!item) return;
     if (index + 1 >= items.length) {
       setFinished(true);
-      onComplete({ correct: correctCount, total: items.length, missedIds: missed });
     } else {
       setIndex((i) => i + 1);
     }
-  }, [correctCount, index, item, items.length, missed, onComplete]);
+  }, [index, item, items.length]);
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!finished || completedRef.current) return;
+    completedRef.current = true;
+    onComplete({ correct: correctCount, total: items.length, missedIds: missed });
+  }, [finished, correctCount, items.length, missed, onComplete]);
 
   const replayAudio = React.useCallback(() => {
     if (!item) return;
-    cancel();
-    speak(item.audioText ?? item.answer, { rate: 0.85 });
-  }, [item]);
+    cancelSpeech();
+    void speakSequence(
+      [item.audioText ?? item.answer],
+      lang ? { rate: 0.85, lang } : { rate: 0.85 },
+    );
+  }, [item, lang]);
 
   // Number keys place tray words in teacherMode.
   React.useEffect(() => {
@@ -424,3 +430,5 @@ export function SentenceBuilderGame(props: {
     </GameChrome>
   );
 }
+
+export default SentenceBuilderGame;

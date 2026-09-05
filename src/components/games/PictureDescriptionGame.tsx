@@ -14,6 +14,7 @@ export type PictureDescriptionGameProps = {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 };
 
 function formatTime(totalSeconds: number): string {
@@ -27,6 +28,7 @@ export function PictureDescriptionGame({
   teacherMode,
   onComplete,
   onEvent,
+  lang,
 }: PictureDescriptionGameProps) {
   const imageItem = items[0];
   const checklist = React.useMemo(() => items.slice(1), [items]);
@@ -95,8 +97,10 @@ export function PictureDescriptionGame({
     setElapsed(0);
   }, []);
 
+  const completedRef = React.useRef(false);
   React.useEffect(() => {
-    if (!done) return;
+    if (!done || completedRef.current) return;
+    completedRef.current = true;
     const used = checklist.filter((i) => usedIds.has(i.id));
     onComplete({
       correct: used.length,
@@ -227,7 +231,9 @@ export function PictureDescriptionGame({
                   {formatTime(elapsed)}
                 </div>
               ) : (
-                <span className="text-sm font-semibold text-muted-foreground">Timer off in teacher mode</span>
+                <span className="text-sm font-semibold text-muted-foreground">
+                  Timer off in teacher mode
+                </span>
               )}
             </div>
 
@@ -262,9 +268,7 @@ export function PictureDescriptionGame({
                         <p className="font-display text-lg font-bold">
                           {item.targetStructure || item.prompt}
                         </p>
-                        {isUsed ? (
-                          <Check className="size-5 shrink-0 text-emerald-500" />
-                        ) : null}
+                        {isUsed ? <Check className="size-5 shrink-0 text-emerald-500" /> : null}
                       </div>
                       {item.exampleSentence ? (
                         <p className="mt-1 text-sm text-muted-foreground">{item.exampleSentence}</p>
@@ -275,7 +279,12 @@ export function PictureDescriptionGame({
                     </div>
                     {item.exampleSentence ? (
                       <div className="mt-0.5 shrink-0">
-                        <AudioButton text={item.exampleSentence} rate={0.9} label="Play example" />
+                        <AudioButton
+                          text={item.exampleSentence}
+                          rate={0.9}
+                          label="Play example"
+                          {...(lang ? { lang } : {})}
+                        />
                       </div>
                     ) : null}
                   </button>
@@ -294,3 +303,5 @@ export function PictureDescriptionGame({
     </GameChrome>
   );
 }
+
+export default PictureDescriptionGame;

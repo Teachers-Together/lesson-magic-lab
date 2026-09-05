@@ -8,7 +8,14 @@ import { cn } from "@/lib/utils";
 
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 
-export function MatchupGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function MatchupGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const [round, setRound] = useState(0);
@@ -137,3 +144,5 @@ export function MatchupGame({ activity, adaptClass }: { activity: Activity; adap
     </div>
   );
 }
+
+export default MatchupGame;

@@ -11,7 +11,14 @@ const BIN_TONES = [
   "text-success border-success/40 bg-success/8",
 ];
 
-export function GroupSortGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function GroupSortGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
 
@@ -97,7 +104,8 @@ export function GroupSortGame({ activity, adaptClass }: { activity: Activity; ad
       onPointerCancel={onUp}
     >
       <p className="mb-5 text-center text-sm text-muted-foreground">
-        Drag every word into the right group — correct bins glow green, wrong ones push the word back.
+        Drag every word into the right group — correct bins glow green, wrong ones push the word
+        back.
       </p>
 
       <div className={cn("grid gap-4", bins.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3")}>
@@ -171,3 +179,5 @@ export function GroupSortGame({ activity, adaptClass }: { activity: Activity; ad
     </div>
   );
 }
+
+export default GroupSortGame;

@@ -44,8 +44,9 @@ export function BingoGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
-  const { items, teacherMode, onComplete, onEvent } = props;
+  const { items, teacherMode, onComplete, onEvent, lang } = props;
   const maxSize: Size = items.length >= 16 ? 4 : 3;
   const [size, setSize] = React.useState<Size>(items.length >= 9 ? maxSize : 3);
   const [mode, setMode] = React.useState<Mode>("listen");
@@ -68,7 +69,7 @@ export function BingoGame(props: {
       setMarked([]);
       setBingo(false);
     },
-    [items]
+    [items],
   );
 
   React.useEffect(() => {
@@ -85,17 +86,21 @@ export function BingoGame(props: {
 
   const toggleMark = (item: GameItem) => {
     if (bingo || !called.includes(item.id)) return;
-    setMarked((m) =>
-      m.includes(item.id) ? m.filter((id) => id !== item.id) : [...m, item.id]
-    );
+    setMarked((m) => (m.includes(item.id) ? m.filter((id) => id !== item.id) : [...m, item.id]));
     onEvent?.({ type: "mark", itemId: item.id });
   };
 
   const sayBingo = () => {
     if (bingo) return;
     setBingo(true);
-    onComplete({ correct: marked.length, total: card.length, missedIds: [] });
   };
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!bingo || completedRef.current) return;
+    completedRef.current = true;
+    onComplete({ correct: marked.length, total: card.length, missedIds: [] });
+  }, [bingo, marked.length, card.length, onComplete]);
 
   const redeal = () => {
     setRound((r) => r + 1);
@@ -165,8 +170,8 @@ export function BingoGame(props: {
 
         {mode === "definition" && (
           <Badge variant="secondary" className="text-sm">
-            Recall mode: the voice reads a sentence with the word missing — the
-            student finds the word on the card.
+            Recall mode: the voice reads a sentence with the word missing — the student finds the
+            word on the card.
           </Badge>
         )}
 
@@ -207,9 +212,7 @@ export function BingoGame(props: {
                     {item.answer}
                   </span>
                   {isMarked && (
-                    <span className="text-xs font-bold uppercase text-emerald-500">
-                      marked
-                    </span>
+                    <span className="text-xs font-bold uppercase text-emerald-500">marked</span>
                   )}
                 </Card>
               );
@@ -223,8 +226,7 @@ export function BingoGame(props: {
             </p>
             {calledItems.length === 0 ? (
               <p className="text-sm text-muted-foreground">
-                Press a word's speaker to call it — or just read it aloud
-                yourself.
+                Press a word's speaker to call it — or just read it aloud yourself.
               </p>
             ) : (
               <ul className="flex flex-col gap-2">
@@ -238,9 +240,10 @@ export function BingoGame(props: {
                       text={
                         mode === "definition" && item.exampleSentence
                           ? blankOut(item.exampleSentence, item.answer)
-                          : item.audioText ?? item.answer
+                          : (item.audioText ?? item.answer)
                       }
                       label="Replay"
+                      {...(lang ? { lang } : {})}
                     />
                   </li>
                 ))}
@@ -280,9 +283,10 @@ export function BingoGame(props: {
                     text={
                       mode === "definition" && item.exampleSentence
                         ? blankOut(item.exampleSentence, item.answer)
-                        : item.audioText ?? item.answer
+                        : (item.audioText ?? item.answer)
                     }
                     label={mode === "definition" ? "Read definition" : "Say word"}
+                    {...(lang ? { lang } : {})}
                   />
                 </div>
               );
@@ -305,3 +309,5 @@ export function BingoGame(props: {
     </GameChrome>
   );
 }
+
+export default BingoGame;

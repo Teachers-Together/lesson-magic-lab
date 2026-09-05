@@ -13,10 +13,7 @@ export type AudioButtonProps = {
 
 export function AudioButton({ text, lang, rate, label }: AudioButtonProps) {
   const [playing, setPlaying] = React.useState(false);
-  const lines = React.useMemo(
-    () => (Array.isArray(text) ? text : [text]),
-    [text],
-  );
+  const lines = React.useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
   React.useEffect(() => {
     primeVoices();
@@ -54,7 +51,15 @@ export function AudioButton({ text, lang, rate, label }: AudioButtonProps) {
 export function SlowAudioButton(props: Omit<AudioButtonProps, "rate" | "label">) {
   return (
     <span className="relative inline-flex">
-      <AudioButton {...props} rate={0.6} label={props.text ? `Play slowly: ${Array.isArray(props.text) ? props.text[0] : props.text}` : "Play slowly"} />
+      <AudioButton
+        {...props}
+        rate={0.6}
+        label={
+          props.text
+            ? `Play slowly: ${Array.isArray(props.text) ? props.text[0] : props.text}`
+            : "Play slowly"
+        }
+      />
       <span className="pointer-events-none absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-muted px-1.5 text-[10px] font-bold text-muted-foreground">
         0.6x
       </span>

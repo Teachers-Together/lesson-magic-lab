@@ -3,8 +3,6 @@
  * Thin wrapper over the shared speech helpers — never reimplemented per game.
  */
 
-import { speak, cancel } from "@/lib/speech";
-
 /** Warm the speechSynthesis voice cache (first utterance otherwise uses a robotic fallback). */
 export function primeVoices(): void {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
@@ -12,7 +10,8 @@ export function primeVoices(): void {
 }
 
 export function cancelSpeech(): void {
-  cancel();
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
 }
 
 export type SpeakOptions = { lang?: string; rate?: number };
@@ -22,7 +21,7 @@ export function speakSequence(lines: string[], opts?: SpeakOptions): Promise<voi
   if (typeof window === "undefined" || !("speechSynthesis" in window)) {
     return Promise.resolve();
   }
-  cancel();
+  cancelSpeech();
   const synth = window.speechSynthesis;
   let chain: Promise<void> = Promise.resolve();
   for (const line of lines) {
@@ -38,7 +37,5 @@ export function speakSequence(lines: string[], opts?: SpeakOptions): Promise<voi
         }),
     );
   }
-  // Keep `speak` referenced so the shared helper stays the single implementation.
-  void speak;
   return chain;
 }

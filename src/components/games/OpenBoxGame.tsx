@@ -13,7 +13,14 @@ const LID_TONES = [
   "from-success to-success/70",
 ];
 
-export function OpenBoxGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function OpenBoxGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
 
@@ -139,3 +146,5 @@ export function OpenBoxGame({ activity, adaptClass }: { activity: Activity; adap
     </div>
   );
 }
+
+export default OpenBoxGame;
