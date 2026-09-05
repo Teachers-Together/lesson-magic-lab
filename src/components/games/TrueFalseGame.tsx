@@ -107,12 +107,14 @@ export function TrueFalseGame(props: {
   if (completed || !item) {
     const mistakes = falseMarkedTrue;
     return (
-      <GameChrome
-        title="True or False — Summary"
-        targetStructure={items[0]?.targetStructure}
-        teacherMode={teacherMode}
-        progress={{ done: items.length, total: items.length }}
-      >
+    <GameChrome
+      title="True or False — Summary"
+      {...(items[0]?.targetStructure
+        ? { targetStructure: items[0].targetStructure }
+        : {})}
+      teacherMode={teacherMode}
+      progress={{ done: items.length, total: items.length }}
+    >
         <Card className="mx-auto w-full max-w-3xl p-6 text-center">
           <h2 className="font-display text-2xl font-bold">Finished</h2>
           <p className="mt-2 text-muted-foreground">
