@@ -11,15 +11,7 @@ import { cn } from "@/lib/utils";
 /* The rule                                                            */
 /* ------------------------------------------------------------------ */
 
-type Category =
-  | "opinion"
-  | "size"
-  | "age"
-  | "shape"
-  | "color"
-  | "origin"
-  | "material"
-  | "purpose";
+type Category = "opinion" | "size" | "age" | "shape" | "color" | "origin" | "material" | "purpose";
 
 const ORDER: Category[] = [
   "opinion",
@@ -672,7 +664,7 @@ export function AdjectiveOrderGame(props: {
         return;
       }
       const token = tray[n];
-      if (token) clickTrayWord(token);
+      if (token) setSelected((cur) => (cur === token.id ? null : token.id));
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
