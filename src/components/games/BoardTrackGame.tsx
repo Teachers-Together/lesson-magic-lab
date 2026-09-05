@@ -51,6 +51,7 @@ export function BoardTrackGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
   const { items, onComplete, onEvent } = props;
 
@@ -104,18 +105,20 @@ export function BoardTrackGame(props: {
         later(() => {
           if (target >= lastSquare) {
             setPhase({ kind: "won", winner: current });
-            onComplete({
-              correct: answered,
-              total: Math.max(answered, 1),
-              missedIds: [],
-            });
           } else {
             setPhase({ kind: "prompt", square: target, marker: markerOf(items[target]!) });
           }
         }, (target - start) * 250 + 300);
       }
     }, 90);
-  }, [rolling, phase.kind, positions, current, lastSquare, items, answered, onComplete, onEvent]);
+  }, [rolling, phase.kind, positions, current, lastSquare, items, onEvent]);
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (phase.kind !== "won" || completedRef.current) return;
+    completedRef.current = true;
+    onComplete({ correct: answered, total: Math.max(answered, 1), missedIds: [] });
+  }, [phase.kind, answered, onComplete]);
 
   // Space = roll, via GameChrome
   const handleAdvance = React.useCallback(() => {

@@ -62,6 +62,7 @@ export function ErrorHuntGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
   const { items, teacherMode, onComplete, onEvent } = props;
 
@@ -89,14 +90,6 @@ export function ErrorHuntGame(props: {
   const next = React.useCallback(() => {
     if (index + 1 >= items.length) {
       setDone(true);
-      const all = [...results];
-      // current item may not be recorded yet if next called early; guard:
-      const missedIds = all.filter((r) => r.missed).map((r) => r.item.id);
-      onComplete({
-        correct: all.filter((r) => !r.missed).length,
-        total: items.length,
-        missedIds,
-      });
       return;
     }
     setIndex((i) => i + 1);
@@ -104,7 +97,18 @@ export function ErrorHuntGame(props: {
     setPicked(null);
     setShaking(null);
     setHadWrong(false);
-  }, [index, items.length, results, onComplete]);
+  }, [index, items.length]);
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!done || completedRef.current) return;
+    completedRef.current = true;
+    onComplete({
+      correct: results.filter((r) => !r.missed).length,
+      total: items.length,
+      missedIds: results.filter((r) => r.missed).map((r) => r.item.id),
+    });
+  }, [done, results, items.length, onComplete]);
 
   const pickWord = (wi: number) => {
     if (!item || stage.kind !== "pick") return;

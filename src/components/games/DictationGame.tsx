@@ -12,6 +12,7 @@ export type DictationGameProps = {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 };
 
 const RATES = [0.6, 0.8, 1.0] as const;
@@ -40,6 +41,7 @@ export function DictationGame({
   teacherMode,
   onComplete,
   onEvent,
+  lang,
 }: DictationGameProps) {
   const [index, setIndex] = React.useState(0);
   const [rate, setRate] = React.useState<number>(1.0);
@@ -62,9 +64,9 @@ export function DictationGame({
       if (!item) return;
       cancelSpeech();
       onEvent?.({ type: "play", itemId: item.id });
-      void speakSequence([target], { rate: r });
+      void speakSequence([target], lang ? { rate: r, lang } : { rate: r });
     },
-    [item, target, onEvent],
+    [item, target, onEvent, lang],
   );
 
   const check = React.useCallback(() => {
@@ -172,7 +174,7 @@ export function DictationGame({
 
           {/* Playback controls */}
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <AudioButton text={target} rate={rate} label="Play sentence" />
+            <AudioButton text={target} rate={rate} label="Play sentence" {...(lang ? { lang } : {})} />
             {RATES.map((r) => (
               <button
                 key={r}

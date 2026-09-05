@@ -44,8 +44,9 @@ export function BingoGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
-  const { items, teacherMode, onComplete, onEvent } = props;
+  const { items, teacherMode, onComplete, onEvent, lang } = props;
   const maxSize: Size = items.length >= 16 ? 4 : 3;
   const [size, setSize] = React.useState<Size>(items.length >= 9 ? maxSize : 3);
   const [mode, setMode] = React.useState<Mode>("listen");
@@ -94,8 +95,14 @@ export function BingoGame(props: {
   const sayBingo = () => {
     if (bingo) return;
     setBingo(true);
-    onComplete({ correct: marked.length, total: card.length, missedIds: [] });
   };
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!bingo || completedRef.current) return;
+    completedRef.current = true;
+    onComplete({ correct: marked.length, total: card.length, missedIds: [] });
+  }, [bingo, marked.length, card.length, onComplete]);
 
   const redeal = () => {
     setRound((r) => r + 1);
@@ -241,6 +248,7 @@ export function BingoGame(props: {
                           : item.audioText ?? item.answer
                       }
                       label="Replay"
+                      {...(lang ? { lang } : {})}
                     />
                   </li>
                 ))}
@@ -283,6 +291,7 @@ export function BingoGame(props: {
                         : item.audioText ?? item.answer
                     }
                     label={mode === "definition" ? "Read definition" : "Say word"}
+                    {...(lang ? { lang } : {})}
                   />
                 </div>
               );

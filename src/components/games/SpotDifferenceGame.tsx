@@ -162,6 +162,7 @@ export function SpotDifferenceGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
   const { items, teacherMode, onComplete, onEvent } = props;
 
@@ -239,19 +240,22 @@ export function SpotDifferenceGame(props: {
   const allFound = foundIds.size >= differences.length && differences.length > 0;
 
   React.useEffect(() => {
-    if (allFound && !done) {
-      setDone(true);
-      onComplete({ correct: differences.length, total: differences.length, missedIds: [] });
-    }
-  }, [allFound, done, differences.length, onComplete]);
+    if (allFound && !done) setDone(true);
+  }, [allFound, done]);
+
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!done || completedRef.current) return;
+    completedRef.current = true;
+    const missed = differences.filter((d) => !foundIds.has(d.id)).map((d) => d.id);
+    onComplete({ correct: foundIds.size, total: differences.length, missedIds: missed });
+  }, [done, differences, foundIds, onComplete]);
 
   const frame = sentenceFrame(items[0]?.targetStructure);
 
   const finishEarly = () => {
     if (done) return;
     setDone(true);
-    const missed = differences.filter((d) => !foundIds.has(d.id)).map((d) => d.id);
-    onComplete({ correct: foundIds.size, total: differences.length, missedIds: missed });
   };
 
   return (
