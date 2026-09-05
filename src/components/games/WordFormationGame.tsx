@@ -128,6 +128,23 @@ export default function WordFormationGame(props: Props) {
     emit("restart");
   }, [emit]);
 
+  const root = (item?.audioText ?? "").toUpperCase() || "ROOT";
+
+  const familyForms = React.useMemo(() => {
+    if (!item) return [];
+    const forms = [root, item.answer, ...(item.distractors ?? [])];
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const f of forms) {
+      const key = normalize(f);
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      out.push(f);
+      if (out.length >= 5) break;
+    }
+    return out;
+  }, [item, root]);
+
   if (!item) {
     return (
       <GameChrome title="Word Formation" teacherMode={teacherMode}>
@@ -194,24 +211,8 @@ export default function WordFormationGame(props: Props) {
     );
   }
 
-  const root = (item.audioText ?? "").toUpperCase() || "ROOT";
   const resolved = stage === "correct" || stage === "revealed";
   const fullSentence = item.prompt.replace(/_{2,}/, item.answer);
-
-  const familyForms = React.useMemo(() => {
-    if (!item) return [];
-    const forms = [root, item.answer, ...(item.distractors ?? [])];
-    const seen = new Set<string>();
-    const out: string[] = [];
-    for (const f of forms) {
-      const key = normalize(f);
-      if (!key || seen.has(key)) continue;
-      seen.add(key);
-      out.push(f);
-      if (out.length >= 5) break;
-    }
-    return out;
-  }, [item, root]);
 
   return (
     <GameChrome
