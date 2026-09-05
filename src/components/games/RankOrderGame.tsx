@@ -62,7 +62,8 @@ export default function RankOrderGame({
   const completedRef = React.useRef(false);
 
   const [dragIndex, setDragIndex] = React.useState<number | null>(null);
-  const [dragY, setDragY] = React.useState(0);
+  const [dragStartY, setDragStartY] = React.useState(0);
+  const [dragOffset, setDragOffset] = React.useState(0);
   const [hoverIndex, setHoverIndex] = React.useState<number | null>(null);
   const rowRefs = React.useRef<(HTMLLIElement | null)[]>([]);
 
