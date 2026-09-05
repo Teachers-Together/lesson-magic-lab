@@ -25,7 +25,7 @@ const SPOTS: Cell[] = [
 
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 
-export function MazeGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function MazeGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
 
@@ -265,3 +265,5 @@ export function MazeGame({ activity, adaptClass }: { activity: Activity; adaptCl
     </div>
   );
 }
+
+export default MazeGame;

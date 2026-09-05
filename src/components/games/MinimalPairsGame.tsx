@@ -349,3 +349,5 @@ export function MinimalPairsGame({
     </GameChrome>
   );
 }
+
+export default MinimalPairsGame;

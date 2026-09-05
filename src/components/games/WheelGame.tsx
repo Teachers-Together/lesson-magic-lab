@@ -20,7 +20,7 @@ const polar = (cx: number, cy: number, r: number, deg: number) => {
   return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
 };
 
-export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const slice = 360 / items.length;
@@ -229,3 +229,5 @@ export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptC
     </div>
   );
 }
+
+export default WheelGame;

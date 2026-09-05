@@ -286,3 +286,5 @@ export function DictationGame({
     </GameChrome>
   );
 }
+
+export default DictationGame;

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const NOTE_TONES = ["bg-action/25", "bg-primary/15", "bg-success/20", "bg-secondary"];
 
-export function SortingGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function SortingGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
 
@@ -171,3 +171,5 @@ export function SortingGame({ activity, adaptClass }: { activity: Activity; adap
     </div>
   );
 }
+
+export default SortingGame;

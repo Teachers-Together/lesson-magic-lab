@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 
-export function CardDeckGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function CardDeckGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const [round, setRound] = useState(0);
   const deck = useMemo(
@@ -146,3 +146,5 @@ export function CardDeckGame({ activity, adaptClass }: { activity: Activity; ada
     </div>
   );
 }
+
+export default CardDeckGame;

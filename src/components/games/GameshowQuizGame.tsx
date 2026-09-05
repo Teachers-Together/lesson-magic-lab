@@ -235,3 +235,5 @@ export function GameshowQuizGame({
     </div>
   );
 }
+
+export default GameshowQuizGame;

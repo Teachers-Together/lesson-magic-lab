@@ -301,3 +301,5 @@ export function BoardTrackGame(props: {
     </GameChrome>
   );
 }
+
+export default BoardTrackGame;

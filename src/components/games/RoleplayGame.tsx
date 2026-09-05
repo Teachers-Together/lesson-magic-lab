@@ -203,3 +203,5 @@ export function RoleplayGame({
     </GameChrome>
   );
 }
+
+export default RoleplayGame;

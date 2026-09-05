@@ -15,7 +15,7 @@ function pieces(answer: string): string[] {
   return words.length > 1 ? words : answer.trim().split("");
 }
 
-export function AnagramGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function AnagramGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const [round, setRound] = useState(0);
@@ -185,3 +185,5 @@ export function AnagramGame({ activity, adaptClass }: { activity: Activity; adap
     </div>
   );
 }
+
+export default AnagramGame;

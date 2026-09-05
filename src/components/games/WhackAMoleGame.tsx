@@ -10,7 +10,7 @@ type Mole = { key: number; hole: number; text: string; correct: boolean };
 const HOLES = 9;
 const ROUND_SECONDS = 45;
 
-export function WhackAMoleGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function WhackAMoleGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const target = items[0]?.answer ?? "Correct";
@@ -158,3 +158,5 @@ export function WhackAMoleGame({ activity, adaptClass }: { activity: Activity; a
     </div>
   );
 }
+
+export default WhackAMoleGame;

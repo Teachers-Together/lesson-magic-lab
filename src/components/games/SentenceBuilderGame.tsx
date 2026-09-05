@@ -424,3 +424,5 @@ export function SentenceBuilderGame(props: {
     </GameChrome>
   );
 }
+
+export default SentenceBuilderGame;

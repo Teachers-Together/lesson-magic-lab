@@ -363,3 +363,5 @@ export function SpotDifferenceGame(props: {
     </GameChrome>
   );
 }
+
+export default SpotDifferenceGame;

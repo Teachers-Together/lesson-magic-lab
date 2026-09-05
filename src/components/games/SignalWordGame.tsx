@@ -542,3 +542,5 @@ export const SOCIAL_STUDIES_SIGNAL_ITEMS: GameItem[] = [
     targetStructure: "compare",
   },
 ];
+
+export default SignalWordGame;

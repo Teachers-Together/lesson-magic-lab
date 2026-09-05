@@ -17,7 +17,7 @@ function buildTokens(prompt: string, answer: string): Token[] {
     .sort(() => Math.random() - 0.5);
 }
 
-export function FlipCardsGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function FlipCardsGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const [round, setRound] = useState(0);
@@ -141,3 +141,5 @@ export function FlipCardsGame({ activity, adaptClass }: { activity: Activity; ad
     </div>
   );
 }
+
+export default FlipCardsGame;

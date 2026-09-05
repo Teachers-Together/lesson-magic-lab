@@ -308,3 +308,5 @@ export function ErrorHuntGame(props: {
     </GameChrome>
   );
 }
+
+export default ErrorHuntGame;

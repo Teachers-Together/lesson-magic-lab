@@ -22,7 +22,7 @@ const TILE_TONES = [
 
 type Tile = { n: number; chance: Chance | null; itemIndex: number };
 
-export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const [round, setRound] = useState(0);
@@ -209,3 +209,5 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
     </div>
   );
 }
+
+export default TeamShowdownGame;

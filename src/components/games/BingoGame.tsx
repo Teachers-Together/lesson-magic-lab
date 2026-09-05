@@ -305,3 +305,5 @@ export function BingoGame(props: {
     </GameChrome>
   );
 }
+
+export default BingoGame;

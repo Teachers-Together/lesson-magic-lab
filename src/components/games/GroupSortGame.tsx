@@ -11,7 +11,7 @@ const BIN_TONES = [
   "text-success border-success/40 bg-success/8",
 ];
 
-export function GroupSortGame({ activity, adaptClass }: { activity: Activity; adaptClass: string }) {
+export function GroupSortGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
 
@@ -171,3 +171,5 @@ export function GroupSortGame({ activity, adaptClass }: { activity: Activity; ad
     </div>
   );
 }
+
+export default GroupSortGame;

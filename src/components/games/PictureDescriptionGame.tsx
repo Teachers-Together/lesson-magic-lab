@@ -294,3 +294,5 @@ export function PictureDescriptionGame({
     </GameChrome>
   );
 }
+
+export default PictureDescriptionGame;
