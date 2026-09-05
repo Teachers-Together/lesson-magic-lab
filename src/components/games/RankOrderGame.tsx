@@ -64,6 +64,14 @@ export default function RankOrderGame({
   const [hoverIndex, setHoverIndex] = React.useState<number | null>(null);
   const rowRefs = React.useRef<(HTMLLIElement | null)[]>([]);
 
+  const emit = React.useCallback(
+    (type: string, index?: number, extra?: { choice?: string; correct?: boolean }) => {
+      const itemId = index !== undefined ? rows[index]?.id : undefined;
+      onEvent?.({ type, ...(itemId ? { itemId } : {}), ...extra });
+    },
+    [rows, onEvent],
+  );
+
   const swap = React.useCallback((a: number, b: number) => {
     if (a === b || a < 0 || b < 0) return;
     setRows((prev) => {
