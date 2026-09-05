@@ -2,11 +2,6 @@ import * as React from "react";
 import { Play, Repeat, Rabbit, ArrowRight } from "lucide-react";
 import type { GameItem } from "@/lib/game-contract";
 import { speakSequence, cancelSpeech } from "@/lib/voice";
-
-/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
-function say(text: string, rate: number, lang?: string) {
-  void speakSequence([text], lang ? { rate, lang } : { rate });
-}
 import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -16,6 +11,7 @@ export type MinimalPairsGameProps = {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 };
 
 type Side = 0 | 1;
@@ -27,6 +23,7 @@ export function MinimalPairsGame({
   teacherMode,
   onComplete,
   onEvent,
+  lang,
 }: MinimalPairsGameProps) {
   const [index, setIndex] = React.useState(0);
   const [spoken, setSpoken] = React.useState<Side>(0);
@@ -45,10 +42,13 @@ export function MinimalPairsGame({
   );
   const contrast = item?.targetStructure ?? CONTRAST_FALLBACK;
 
-  const say = React.useCallback((text: string, rate: number) => {
-    cancelSpeech();
-    speak(text, { rate });
-  }, []);
+  const say = React.useCallback(
+    (text: string, rate: number) => {
+      cancelSpeech();
+      void speakSequence([text], lang ? { rate, lang } : { rate });
+    },
+    [lang],
+  );
 
   // Pick a fresh random side whenever we land on a new item.
   React.useEffect(() => {
@@ -73,10 +73,12 @@ export function MinimalPairsGame({
     (pair: GameItem | undefined, rate = 0.85) => {
       if (!pair) return;
       cancelSpeech();
-      speak(pair.prompt, { rate });
-      window.setTimeout(() => speak(pair.answer, { rate }), 1100);
+      void speakSequence(
+        [pair.prompt, pair.answer],
+        lang ? { rate, lang } : { rate },
+      );
     },
-    [],
+    [lang],
   );
 
   const commit = React.useCallback(
