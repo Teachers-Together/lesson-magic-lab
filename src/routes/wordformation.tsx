@@ -28,7 +28,7 @@ const ITEMS: GameItem[] = [
     id: "wf-3",
     prompt: "The weather was extremely _______ yesterday.",
     answer: "unpleasant",
-    distractors: ["displeasant"],
+    distractors: ["pleasing"],
     audioText: "PLEASANT",
     hint: "adjective → negative with un-",
     targetStructure: "negative prefixes",
