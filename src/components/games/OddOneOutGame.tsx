@@ -162,7 +162,9 @@ export default function OddOneOutGame(props: {
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="font-bold text-foreground">{m.answer}</span>
                         <span className="text-muted-foreground">vs</span>
-                        <span className="text-muted-foreground">{(m.distractors ?? []).join(", ")}</span>
+                        <span className="text-muted-foreground">
+                          {(m.distractors ?? []).join(", ")}
+                        </span>
                       </div>
                       <p className="mt-2 flex items-start gap-2 text-sm text-emerald-600 dark:text-emerald-400">
                         <Lightbulb className="mt-0.5 size-4 shrink-0" />
@@ -224,9 +226,7 @@ export default function OddOneOutGame(props: {
           <Card
             className={cn(
               "w-full border-l-4 p-5 text-left",
-              isCorrect
-                ? "border-emerald-500 bg-emerald-500/5"
-                : "border-rose-500 bg-rose-500/5",
+              isCorrect ? "border-emerald-500 bg-emerald-500/5" : "border-rose-500 bg-rose-500/5",
             )}
           >
             <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
@@ -282,9 +282,7 @@ export default function OddOneOutGame(props: {
         </div>
 
         {phase === "review" && (
-          <p className="text-sm font-medium text-muted-foreground">
-            Press Space for the next set
-          </p>
+          <p className="text-sm font-medium text-muted-foreground">Press Space for the next set</p>
         )}
       </div>
     </GameChrome>
