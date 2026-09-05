@@ -101,12 +101,10 @@ export const REGISTER_MAKE_REQUEST: GameItem[] = [
   {
     id: "rp-mr-3c",
     prompt: "Check this proposal before I send it.",
-    answer:
-      "I would appreciate it if you could review the attached proposal prior to submission.",
+    answer: "I would appreciate it if you could review the attached proposal prior to submission.",
     targetStructure: "make a request",
     hint: "add appreciate + prior to",
-    exampleSentence:
-      "I would be grateful if you could review the proposal before it is submitted.",
+    exampleSentence: "I would be grateful if you could review the proposal before it is submitted.",
     cefr: "B2",
   },
 
@@ -153,8 +151,7 @@ export const REGISTER_DECLINE_OR_PUSH_BACK: GameItem[] = [
       "Unfortunately, due to my current workload, I am not in a position to assume responsibility for an additional project at this time.",
     targetStructure: "decline or push back",
     hint: "add due to + not in a position",
-    exampleSentence:
-      "Regrettably, my current commitments prevent me from taking on further work.",
+    exampleSentence: "Regrettably, my current commitments prevent me from taking on further work.",
     cefr: "B2",
   },
 
@@ -184,8 +181,7 @@ export const REGISTER_DECLINE_OR_PUSH_BACK: GameItem[] = [
       "I would like to respectfully suggest that the proposed deadline may not be feasible in light of the project scope.",
     targetStructure: "decline or push back",
     hint: "add respectfully + feasible",
-    exampleSentence:
-      "I would respectfully question whether the proposed deadline is achievable.",
+    exampleSentence: "I would respectfully question whether the proposed deadline is achievable.",
     cefr: "B2",
   },
 
@@ -251,8 +247,7 @@ export const REGISTER_APOLOGIZE_AND_RECOVER: GameItem[] = [
     answer: "I'm sorry I didn't meet the deadline. I'll send it by noon.",
     targetStructure: "apologize and recover",
     hint: "add correction + timeline",
-    exampleSentence:
-      "I apologize for missing the deadline and will send the file by noon.",
+    exampleSentence: "I apologize for missing the deadline and will send the file by noon.",
     cefr: "B1",
   },
   {
@@ -283,8 +278,7 @@ export const REGISTER_APOLOGIZE_AND_RECOVER: GameItem[] = [
     answer: "I'm sorry, there was an error in the report. I've corrected it.",
     targetStructure: "apologize and recover",
     hint: "use passive error + correction",
-    exampleSentence:
-      "I apologize for the error in the report; it has now been corrected.",
+    exampleSentence: "I apologize for the error in the report; it has now been corrected.",
     cefr: "B1",
   },
   {
@@ -294,8 +288,7 @@ export const REGISTER_APOLOGIZE_AND_RECOVER: GameItem[] = [
       "I must apologize for the error in the report. A revised version is attached for your review.",
     targetStructure: "apologize and recover",
     hint: "use must apologize + revised",
-    exampleSentence:
-      "Please accept my apologies for the error; the revised report is attached.",
+    exampleSentence: "Please accept my apologies for the error; the revised report is attached.",
     cefr: "B2",
   },
 
@@ -306,8 +299,7 @@ export const REGISTER_APOLOGIZE_AND_RECOVER: GameItem[] = [
     answer: "I'm sorry I arrived late. I got held up by another call.",
     targetStructure: "apologize and recover",
     hint: "add explanation + held up",
-    exampleSentence:
-      "Please accept my apologies for arriving late; I was delayed by another call.",
+    exampleSentence: "Please accept my apologies for arriving late; I was delayed by another call.",
     cefr: "B1",
   },
   {
@@ -316,30 +308,25 @@ export const REGISTER_APOLOGIZE_AND_RECOVER: GameItem[] = [
     answer: "I'm sorry — I forgot to attach the file. It's included now.",
     targetStructure: "apologize and recover",
     hint: "dash + correction",
-    exampleSentence:
-      "My apologies; the attachment was missing from my previous message.",
+    exampleSentence: "My apologies; the attachment was missing from my previous message.",
     cefr: "B1",
   },
   {
     id: "rp-ar-5",
     prompt: "I double-booked the meeting.",
-    answer:
-      "I'm sorry for the scheduling conflict. Let me find a time that works for everyone.",
+    answer: "I'm sorry for the scheduling conflict. Let me find a time that works for everyone.",
     targetStructure: "apologize and recover",
     hint: "add conflict + solution",
-    exampleSentence:
-      "I apologize for the overlap; I'll send out a new invite shortly.",
+    exampleSentence: "I apologize for the overlap; I'll send out a new invite shortly.",
     cefr: "B1",
   },
   {
     id: "rp-ar-6",
     prompt: "I didn't get back to you sooner.",
-    answer:
-      "I apologize for the delayed response. I needed to confirm a few details first.",
+    answer: "I apologize for the delayed response. I needed to confirm a few details first.",
     targetStructure: "apologize and recover",
     hint: "use delayed response + reason",
-    exampleSentence:
-      "I'm sorry for not replying sooner; I wanted to verify the details.",
+    exampleSentence: "I'm sorry for not replying sooner; I wanted to verify the details.",
     cefr: "B1",
   },
 ];
@@ -375,8 +362,7 @@ export const REGISTER_DISAGREE_IN_A_MEETING: GameItem[] = [
       "I am not convinced that the proposed timeline is feasible, and I would welcome the opportunity to discuss alternatives.",
     targetStructure: "disagree in a meeting",
     hint: "add not convinced + feasible",
-    exampleSentence:
-      "I would respectfully question whether the proposed timeline is achievable.",
+    exampleSentence: "I would respectfully question whether the proposed timeline is achievable.",
     cefr: "B2",
   },
 
@@ -406,8 +392,7 @@ export const REGISTER_DISAGREE_IN_A_MEETING: GameItem[] = [
       "I would respectfully disagree with the proposal to reduce the budget, as it may compromise the quality of the deliverables.",
     targetStructure: "disagree in a meeting",
     hint: "add respectfully + compromise",
-    exampleSentence:
-      "I have reservations about the budget reduction and its impact on quality.",
+    exampleSentence: "I have reservations about the budget reduction and its impact on quality.",
     cefr: "B2",
   },
 
@@ -428,8 +413,7 @@ export const REGISTER_DISAGREE_IN_A_MEETING: GameItem[] = [
     answer: "I'm not sure hiring this candidate is the right move for the team.",
     targetStructure: "disagree in a meeting",
     hint: "soften with not sure + right move",
-    exampleSentence:
-      "I have reservations about whether this candidate is the best fit.",
+    exampleSentence: "I have reservations about whether this candidate is the best fit.",
     cefr: "B1",
   },
   {
@@ -438,8 +422,7 @@ export const REGISTER_DISAGREE_IN_A_MEETING: GameItem[] = [
     answer: "I'm not convinced this strategy will reach our customers.",
     targetStructure: "disagree in a meeting",
     hint: "use not convinced",
-    exampleSentence:
-      "I have doubts about whether this strategy will reach our customers.",
+    exampleSentence: "I have doubts about whether this strategy will reach our customers.",
     cefr: "B1",
   },
   {
@@ -448,8 +431,7 @@ export const REGISTER_DISAGREE_IN_A_MEETING: GameItem[] = [
     answer: "I'm not sure this feature should be our first priority.",
     targetStructure: "disagree in a meeting",
     hint: "use not sure + priority",
-    exampleSentence:
-      "I would question whether this feature should take priority over the others.",
+    exampleSentence: "I would question whether this feature should take priority over the others.",
     cefr: "B1",
   },
 ];
