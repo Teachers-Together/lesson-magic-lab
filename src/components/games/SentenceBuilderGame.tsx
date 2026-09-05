@@ -4,7 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import type { GameItem } from "@/lib/game-contract";
-import { speak, cancel } from "@/lib/speech";
+import { speakSequence, cancelSpeech } from "@/lib/voice";
+
+/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
+function say(text: string, rate: number, lang?: string) {
+  void speakSequence([text], lang ? { rate, lang } : { rate });
+}
 import { cn } from "@/lib/utils";
 
 type Token = { id: string; text: string };
@@ -263,7 +268,7 @@ export function SentenceBuilderGame(props: {
 
   const replayAudio = React.useCallback(() => {
     if (!item) return;
-    cancel();
+    cancelSpeech();
     speak(item.audioText ?? item.answer, { rate: 0.85 });
   }, [item]);
 

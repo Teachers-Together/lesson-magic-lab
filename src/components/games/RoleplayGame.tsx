@@ -1,7 +1,12 @@
 import * as React from "react";
 import { ArrowLeftRight, RotateCcw, Volume2 } from "lucide-react";
 import type { GameItem } from "@/lib/game-contract";
-import { speak, cancel } from "@/lib/speech";
+import { speakSequence, cancelSpeech } from "@/lib/voice";
+
+/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
+function say(text: string, rate: number, lang?: string) {
+  void speakSequence([text], lang ? { rate, lang } : { rate });
+}
 import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -25,7 +30,7 @@ function AudioButton({ text, label }: { text: string; label: string }) {
       type="button"
       onClick={(e) => {
         e.stopPropagation();
-        cancel();
+        cancelSpeech();
         speak(text, { rate: 0.95 });
       }}
       aria-label={label}
@@ -76,7 +81,7 @@ export function RoleplayGame({
   const replayAudio = React.useCallback(() => {
     const item = items[Math.min(lineIndex, items.length - 1)];
     if (item) {
-      cancel();
+      cancelSpeech();
       speak(item.prompt, { rate: 0.95 });
     }
   }, [items, lineIndex]);

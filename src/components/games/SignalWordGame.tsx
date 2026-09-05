@@ -5,7 +5,12 @@ import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { speak, cancel } from "@/lib/speech";
+import { speakSequence, cancelSpeech } from "@/lib/voice";
+
+/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
+function say(text: string, rate: number, lang?: string) {
+  void speakSequence([text], lang ? { rate, lang } : { rate });
+}
 import { cn } from "@/lib/utils";
 
 /*
@@ -90,7 +95,7 @@ export function SignalWordGame(props: {
     setPicked(null);
   }, [index, round]);
 
-  React.useEffect(() => () => cancel(), []);
+  React.useEffect(() => () => cancelSpeech(), []);
 
   // ---------- round 1 actions ----------
   const placeInBin = React.useCallback(
@@ -162,7 +167,7 @@ export function SignalWordGame(props: {
   }, [round, remaining.length, problemItems.length, picked, index, done, answers, finishRound2]);
 
   const replayAudio = React.useCallback(() => {
-    cancel();
+    cancelSpeech();
     if (round === 1) {
       const item = sortItems.find((i) => i.id === selected) ?? remaining[0];
       if (item) speak(item.audioText ?? item.exampleSentence ?? item.prompt, { rate: 0.85 });

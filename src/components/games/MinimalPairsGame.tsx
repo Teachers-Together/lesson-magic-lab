@@ -1,7 +1,12 @@
 import * as React from "react";
 import { Play, Repeat, Rabbit, ArrowRight } from "lucide-react";
 import type { GameItem } from "@/lib/game-contract";
-import { speak, cancel } from "@/lib/speech";
+import { speakSequence, cancelSpeech } from "@/lib/voice";
+
+/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
+function say(text: string, rate: number, lang?: string) {
+  void speakSequence([text], lang ? { rate, lang } : { rate });
+}
 import { GameChrome, NumberBadge } from "@/components/games/GameChrome";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -41,7 +46,7 @@ export function MinimalPairsGame({
   const contrast = item?.targetStructure ?? CONTRAST_FALLBACK;
 
   const say = React.useCallback((text: string, rate: number) => {
-    cancel();
+    cancelSpeech();
     speak(text, { rate });
   }, []);
 
@@ -67,7 +72,7 @@ export function MinimalPairsGame({
   const playBoth = React.useCallback(
     (pair: GameItem | undefined, rate = 0.85) => {
       if (!pair) return;
-      cancel();
+      cancelSpeech();
       speak(pair.prompt, { rate });
       window.setTimeout(() => speak(pair.answer, { rate }), 1100);
     },
