@@ -54,8 +54,7 @@ export const IELTS_STYLE_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-ielts-4",
     prompt: "Describe an event you enjoyed recently.",
     answer: "Describe an event you enjoyed recently.",
-    exampleSentence:
-      "what the event was | where it happened | who was there | why you enjoyed it",
+    exampleSentence: "what the event was | where it happened | who was there | why you enjoyed it",
     distractors: ["memorable", "celebrate", "atmosphere", "guests"],
     hint: "good, nice, thing",
     targetStructure: "narrating past events",
@@ -98,8 +97,7 @@ export const IELTS_STYLE_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-ielts-8",
     prompt: "Describe a piece of technology that helps you at work or school.",
     answer: "Describe a piece of technology that helps you at work or school.",
-    exampleSentence:
-      "what it is | what it does | how long you have used it | why it is useful",
+    exampleSentence: "what it is | what it does | how long you have used it | why it is useful",
     distractors: ["efficient", "software", "organize", "save time"],
     hint: "good, nice, thing",
     targetStructure: "explaining how something works",
@@ -248,8 +246,7 @@ export const BUSINESS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-bus-9",
     prompt: "Describe a customer or client you worked with.",
     answer: "Describe a customer or client you worked with.",
-    exampleSentence:
-      "who they were | what they needed | how you helped them | what the result was",
+    exampleSentence: "who they were | what they needed | how you helped them | what the result was",
     distractors: ["client", "requirement", "solution", "satisfied"],
     hint: "good, nice, thing",
     targetStructure: "describing a service interaction",
@@ -310,8 +307,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-2",
     prompt: "Describe a friend you spend a lot of time with.",
     answer: "Describe a friend you spend a lot of time with.",
-    exampleSentence:
-      "who the person is | what you do together | why you get on well | how you met",
+    exampleSentence: "who the person is | what you do together | why you get on well | how you met",
     distractors: ["friendly", "share", "hobby", "laugh"],
     hint: "good, nice, thing",
     targetStructure: "describing people and routines",
@@ -321,8 +317,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-3",
     prompt: "Describe a hobby you enjoy in your free time.",
     answer: "Describe a hobby you enjoy in your free time.",
-    exampleSentence:
-      "what the hobby is | when you do it | what you need for it | why you like it",
+    exampleSentence: "what the hobby is | when you do it | what you need for it | why you like it",
     distractors: ["creative", "relax", "practise", "enjoy"],
     hint: "good, nice, thing",
     targetStructure: "describing free-time activities",
@@ -343,8 +338,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-5",
     prompt: "Describe a trip you went on recently.",
     answer: "Describe a trip you went on recently.",
-    exampleSentence:
-      "where you went | who you went with | what you did | what you liked most",
+    exampleSentence: "where you went | who you went with | what you did | what you liked most",
     distractors: ["journey", "visit", "activity", "remember"],
     hint: "good, nice, thing",
     targetStructure: "past-tense narrative",
@@ -365,8 +359,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-7",
     prompt: "Describe a place in your town where you like to go.",
     answer: "Describe a place in your town where you like to go.",
-    exampleSentence:
-      "where it is | what you can do there | who you go with | why you like it",
+    exampleSentence: "where it is | what you can do there | who you go with | why you like it",
     distractors: ["local", "neighbourhood", "hang out", "favourite"],
     hint: "good, nice, thing",
     targetStructure: "describing a local place",
@@ -376,8 +369,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-8",
     prompt: "Describe a time you helped someone at school.",
     answer: "Describe a time you helped someone at school.",
-    exampleSentence:
-      "who you helped | what the problem was | what you did | how the person felt",
+    exampleSentence: "who you helped | what the problem was | what you did | how the person felt",
     distractors: ["help", "problem", "kind", "thank"],
     hint: "good, nice, thing",
     targetStructure: "past-tense helping narrative",
@@ -398,8 +390,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-10",
     prompt: "Describe a club or team you belong to.",
     answer: "Describe a club or team you belong to.",
-    exampleSentence:
-      "what it is | when it meets | what you do there | why you joined",
+    exampleSentence: "what it is | when it meets | what you do there | why you joined",
     distractors: ["member", "meeting", "activity", "belong"],
     hint: "good, nice, thing",
     targetStructure: "describing groups and routines",
@@ -420,8 +411,7 @@ export const TEENS_LONG_TURN_TOPICS: GameItem[] = [
     id: "lt-teens-12",
     prompt: "Describe your favourite way to relax after school.",
     answer: "Describe your favourite way to relax after school.",
-    exampleSentence:
-      "what you do | where you do it | who you do it with | why it helps you",
+    exampleSentence: "what you do | where you do it | who you do it with | why it helps you",
     distractors: ["relax", "tired", "unwind", "comfortable"],
     hint: "good, nice, thing",
     targetStructure: "describing routines and reasons",
