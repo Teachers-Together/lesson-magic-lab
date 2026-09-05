@@ -18,7 +18,7 @@ const ITEMS: GameItem[] = [
     id: "wf-2",
     prompt: "He made a quick _______ to leave early.",
     answer: "decision",
-    distractors: ["decide"],
+    distractors: ["decisive"],
     audioText: "DECIDE",
     hint: "verb → noun with -sion",
     targetStructure: "verb → noun",
