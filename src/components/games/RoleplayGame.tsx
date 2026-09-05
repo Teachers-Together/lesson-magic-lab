@@ -195,7 +195,7 @@ export function RoleplayGame({
                         </p>
                       ) : null}
                     </div>
-                    <AudioButton text={item.prompt} label={`Play line ${i + 1}`} />
+                    <AudioButton text={item.prompt} label={`Play line ${i + 1}`} {...(lang ? { lang } : {})} />
                   </div>
                 );
               })}
