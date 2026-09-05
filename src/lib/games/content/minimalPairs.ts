@@ -123,7 +123,7 @@ export const B_V: GameItem[] = [
   { id: "bv-6", prompt: "bat", answer: "vat", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "A bat flew out of the tree." },
   { id: "bv-7", prompt: "kerb", answer: "curve", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The car stopped at the kerb." },
   { id: "bv-8", prompt: "banish", answer: "vanish", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The king can banish you from the land." },
-  { id: "bv-9", prompt: "beer", answer: "veer", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The lorry began to veer across the road." },
+  { id: "bv-9", prompt: "gibbon", answer: "given", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The gibbon swings from tree to tree." },
   { id: "bv-10", prompt: "marble", answer: "marvel", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The floor is made of marble." },
   { id: "bv-11", prompt: "bent", answer: "vent", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The nail is bent, get a new one." },
   { id: "bv-12", prompt: "bolt", answer: "volt", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "Slide the bolt to lock the gate." },
