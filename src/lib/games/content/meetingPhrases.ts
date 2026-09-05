@@ -448,8 +448,4 @@ export const SMALL_TALK: GameItem[] = [
 // Combined bank
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const MEETING_PHRASES: GameItem[] = [
-  ...MEETING_MOVES,
-  ...NEGOTIATION_MOVES,
-  ...SMALL_TALK,
-];
+export const MEETING_PHRASES: GameItem[] = [...MEETING_MOVES, ...NEGOTIATION_MOVES, ...SMALL_TALK];
