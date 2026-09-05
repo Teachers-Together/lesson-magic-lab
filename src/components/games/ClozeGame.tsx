@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { GameSummary } from "@/components/GameSummary";
 import { ControlLabel } from "@/components/ControlLabel";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 const BLANK = /_{2,}/;
+const PAD = 16;
 
 export function ClozeGame({
   activity,
@@ -21,13 +22,18 @@ export function ClozeGame({
 }) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
-  const { cashEnabled, awardCorrect, awardWrong } = usePlayMode();
+  const { cashEnabled, awardCorrect, awardWrong, controlMode } = usePlayMode();
   const [round, setRound] = useState(0);
   const [filled, setFilled] = useState<Record<string, string>>({});
   const [wrongId, setWrongId] = useState<string | null>(null);
   const [misses, setMisses] = useState(0);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [dragWord, setDragWord] = useState<string | null>(null);
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
+  const [hoverId, setHoverId] = useState<string | null>(null);
   const start = useRef(Date.now());
-  const dragged = useRef<string | null>(null);
+  const blankRefs = useRef<Record<string, HTMLSpanElement | null>>({});
+  const moved = useRef(false);
 
   const bank = useMemo(
     () =>
@@ -41,8 +47,20 @@ export function ClozeGame({
 
   const done = items.length > 0 && items.every((it) => filled[it.id] === it.answer);
 
+  const blankUnder = (x: number, y: number) =>
+    items.find((it) => {
+      const el = blankRefs.current[it.id];
+      if (!el || filled[it.id]) return false;
+      const r = el.getBoundingClientRect();
+      return x >= r.left - PAD && x <= r.right + PAD && y >= r.top - PAD && y <= r.bottom + PAD;
+    })?.id ?? null;
+
   const drop = (id: string, word: string, x: number, y: number) => {
     const item = items.find((it) => it.id === id);
+    setSelected(null);
+    setDragWord(null);
+    setPos(null);
+    setHoverId(null);
     if (!item || filled[id]) return;
     if (word.toLowerCase() === item.answer.toLowerCase()) {
       const next = { ...filled, [id]: item.answer };
@@ -65,6 +83,43 @@ export function ClozeGame({
     }
   };
 
+  const onMove = (e: React.PointerEvent) => {
+    if (!dragWord) return;
+    moved.current = true;
+    setPos({ x: e.clientX, y: e.clientY });
+    setHoverId(blankUnder(e.clientX, e.clientY));
+  };
+
+  const onUp = (e: React.PointerEvent) => {
+    if (!dragWord) return;
+    const id = blankUnder(e.clientX, e.clientY);
+    if (moved.current && id) {
+      drop(id, dragWord, e.clientX, e.clientY);
+    } else {
+      setSelected((s) => (s === dragWord ? null : dragWord));
+      setDragWord(null);
+      setPos(null);
+      setHoverId(null);
+    }
+  };
+
+  const used = new Set(Object.values(filled).map((w) => w.toLowerCase()));
+
+  useEffect(() => {
+    if (!controlMode) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (/^[1-9]$/.test(e.key)) {
+        const word = bank[Number(e.key) - 1];
+        if (word && !used.has(word.toLowerCase())) setSelected((s) => (s === word ? null : word));
+      } else if (/^[a-z]$/i.test(e.key)) {
+        const it = items[e.key.toLowerCase().charCodeAt(0) - 97];
+        if (it && selected) drop(it.id, selected, window.innerWidth / 2, window.innerHeight / 2);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
   if (done)
     return (
       <GameSummary
@@ -75,15 +130,21 @@ export function ClozeGame({
           setRound((r) => r + 1);
           setFilled({});
           setMisses(0);
+          setSelected(null);
           start.current = Date.now();
         }}
       />
     );
 
-  const used = new Set(Object.values(filled).map((w) => w.toLowerCase()));
+  const active = dragWord ?? selected;
 
   return (
-    <div className={cn("mx-auto w-full max-w-3xl", adaptClass)}>
+    <div
+      className={cn("mx-auto w-full max-w-3xl touch-none select-none", adaptClass)}
+      onPointerMove={onMove}
+      onPointerUp={onUp}
+      onPointerCancel={onUp}
+    >
       <p className="mb-5 text-center text-sm text-muted-foreground">
         Drag a word from the bank into each blank — or tap a word, then tap the blank.
       </p>
@@ -96,15 +157,11 @@ export function ClozeGame({
             <p key={it.id} className="text-lg leading-relaxed font-medium sm:text-xl">
               {parts[0]}
               <span
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  if (dragged.current) drop(it.id, dragged.current, e.clientX, e.clientY);
-                  dragged.current = null;
+                ref={(el) => {
+                  blankRefs.current[it.id] = el;
                 }}
-                onClick={(e) => {
-                  if (dragged.current) drop(it.id, dragged.current, e.clientX, e.clientY);
-                  dragged.current = null;
+                onPointerUp={(e) => {
+                  if (!dragWord && selected) drop(it.id, selected, e.clientX, e.clientY);
                 }}
                 className={cn(
                   "mx-1 inline-flex min-w-28 justify-center rounded-lg border-2 px-3 py-1 align-middle text-base font-bold transition-all",
@@ -112,7 +169,9 @@ export function ClozeGame({
                     ? "animate-pop border-success bg-success/12 text-success"
                     : wrongId === it.id
                       ? "animate-shake border-destructive bg-destructive/10"
-                      : "border-dashed border-primary/50 bg-muted/50",
+                      : hoverId === it.id
+                        ? "border-action bg-action/12 shadow-lift"
+                        : "border-dashed border-primary/50 bg-muted/50",
                 )}
               >
                 {value ?? "\u00a0"}
@@ -130,13 +189,18 @@ export function ClozeGame({
             <Button
               key={`${word}-${idx}`}
               variant="outline"
-              draggable={!spent}
               disabled={spent}
-              onDragStart={() => (dragged.current = word)}
-              onClick={() => (dragged.current = word)}
+              onPointerDown={(e) => {
+                if (spent) return;
+                (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
+                moved.current = false;
+                setDragWord(word);
+                setPos({ x: e.clientX, y: e.clientY });
+              }}
               className={cn(
                 "h-auto cursor-grab gap-2 rounded-full border-2 px-5 py-2 font-semibold",
                 spent && "opacity-35",
+                active === word && !spent && "border-action bg-action/15 shadow-lift",
               )}
             >
               <ControlLabel index={idx} className="size-7 text-sm" />
@@ -145,6 +209,16 @@ export function ClozeGame({
           );
         })}
       </div>
+
+      {dragWord && pos && moved.current ? (
+        <div
+          className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-1/2 rounded-full bg-action px-5 py-2 font-semibold text-action-foreground shadow-lift"
+          style={{ left: pos.x, top: pos.y }}
+        >
+          {dragWord}
+        </div>
+      ) : null}
+
       <p className="mt-4 text-center text-sm text-muted-foreground">
         Filled {Object.keys(filled).length} / {items.length} · Misses {misses}
       </p>
