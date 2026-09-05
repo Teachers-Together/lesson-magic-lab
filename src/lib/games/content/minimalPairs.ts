@@ -10,18 +10,18 @@
 import type { GameItem } from "@/lib/game-contract";
 
 export const VOWELS_I: GameItem[] = [
-  { id: "vpi-1", prompt: "ship", answer: "sheep", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "The ship is big and white." },
-  { id: "vpi-2", prompt: "bit", answer: "beat", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "Can I have a bit of cake?" },
-  { id: "vpi-3", prompt: "live", answer: "leave", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "I live near the school." },
-  { id: "vpi-4", prompt: "hit", answer: "heat", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "Do not hit the ball with your hand." },
-  { id: "vpi-5", prompt: "sit", answer: "seat", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "Please sit on the chair." },
-  { id: "vpi-6", prompt: "fill", answer: "feel", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "Fill the glass with water." },
-  { id: "vpi-7", prompt: "slip", answer: "sleep", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "Be careful you do not slip on the ice." },
-  { id: "vpi-8", prompt: "chip", answer: "cheap", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "I ate one hot chip." },
-  { id: "vpi-9", prompt: "mill", answer: "meal", targetStructure: "/ɪ/ vs /iː/", cefr: "A2", exampleSentence: "The old mill makes flour." },
-  { id: "vpi-10", prompt: "it", answer: "eat", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "It is on the table." },
-  { id: "vpi-11", prompt: "list", answer: "least", targetStructure: "/ɪ/ vs /iː/", cefr: "A2", exampleSentence: "Write a list of ten words." },
-  { id: "vpi-12", prompt: "will", answer: "wheel", targetStructure: "/ɪ/ vs /iː/", cefr: "A1", exampleSentence: "I will come to your house tomorrow." },
+  { id: "vpi-1", prompt: "ship", answer: "sheep", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "The ship is big and white." },
+  { id: "vpi-2", prompt: "bit", answer: "beat", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Can I have a bit of cake?" },
+  { id: "vpi-3", prompt: "live", answer: "leave", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "I live near the school." },
+  { id: "vpi-4", prompt: "hit", answer: "heat", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Do not hit the ball with your hand." },
+  { id: "vpi-5", prompt: "sit", answer: "seat", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Please sit on the chair." },
+  { id: "vpi-6", prompt: "fill", answer: "feel", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Fill the glass with water." },
+  { id: "vpi-7", prompt: "slip", answer: "sleep", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Be careful you do not slip on the ice." },
+  { id: "vpi-8", prompt: "chip", answer: "cheap", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "I ate one hot chip." },
+  { id: "vpi-9", prompt: "mill", answer: "meal", targetStructure: "/ɪ/ vs /i/", cefr: "A2", exampleSentence: "The old mill makes flour." },
+  { id: "vpi-10", prompt: "it", answer: "eat", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "It is on the table." },
+  { id: "vpi-11", prompt: "list", answer: "least", targetStructure: "/ɪ/ vs /i/", cefr: "A2", exampleSentence: "Write a list of ten words." },
+  { id: "vpi-12", prompt: "will", answer: "wheel", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "I will come to your house tomorrow." },
 ];
 
 export const VOWELS_A: GameItem[] = [
@@ -40,18 +40,18 @@ export const VOWELS_A: GameItem[] = [
 ];
 
 export const VOWELS_O: GameItem[] = [
-  { id: "vpo-1", prompt: "not", answer: "note", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A1", exampleSentence: "I am not tired." },
-  { id: "vpo-2", prompt: "cost", answer: "coast", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A2", exampleSentence: "How much did the ticket cost?" },
-  { id: "vpo-3", prompt: "cot", answer: "coat", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A2", exampleSentence: "The baby is asleep in the cot." },
-  { id: "vpo-4", prompt: "rod", answer: "road", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A2", exampleSentence: "He caught a fish with his rod." },
-  { id: "vpo-5", prompt: "sock", answer: "soak", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A2", exampleSentence: "One sock is under the bed." },
-  { id: "vpo-6", prompt: "got", answer: "goat", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A1", exampleSentence: "I got a new pen for my birthday." },
-  { id: "vpo-7", prompt: "hop", answer: "hope", targetStructure: "/ɒ/ vs /əʊ/", cefr: "B1", exampleSentence: "The rabbit can hop very fast." },
-  { id: "vpo-8", prompt: "rob", answer: "robe", targetStructure: "/ɒ/ vs /əʊ/", cefr: "B1", exampleSentence: "They tried to rob the shop." },
-  { id: "vpo-9", prompt: "cod", answer: "code", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A2", exampleSentence: "We had cod and chips for dinner." },
-  { id: "vpo-10", prompt: "on", answer: "own", targetStructure: "/ɒ/ vs /əʊ/", cefr: "A1", exampleSentence: "The book is on the desk." },
-  { id: "vpo-11", prompt: "clock", answer: "cloak", targetStructure: "/ɒ/ vs /əʊ/", cefr: "B1", exampleSentence: "The clock on the wall is slow." },
-  { id: "vpo-12", prompt: "mop", answer: "mope", targetStructure: "/ɒ/ vs /əʊ/", cefr: "B1", exampleSentence: "Use the mop to clean the floor." },
+  { id: "vpo-1", prompt: "not", answer: "note", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A1", exampleSentence: "I am not tired." },
+  { id: "vpo-2", prompt: "cost", answer: "coast", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "How much did the ticket cost?" },
+  { id: "vpo-3", prompt: "cot", answer: "coat", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "The baby is asleep in the cot." },
+  { id: "vpo-4", prompt: "rod", answer: "road", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "He caught a fish with his rod." },
+  { id: "vpo-5", prompt: "sock", answer: "soak", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "One sock is under the bed." },
+  { id: "vpo-6", prompt: "got", answer: "goat", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A1", exampleSentence: "I got a new pen for my birthday." },
+  { id: "vpo-7", prompt: "hop", answer: "hope", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "The rabbit can hop very fast." },
+  { id: "vpo-8", prompt: "rob", answer: "robe", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "They tried to rob the shop." },
+  { id: "vpo-9", prompt: "cod", answer: "code", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "We had cod and chips for dinner." },
+  { id: "vpo-10", prompt: "on", answer: "own", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A1", exampleSentence: "The book is on the desk." },
+  { id: "vpo-11", prompt: "clock", answer: "cloak", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "The clock on the wall is slow." },
+  { id: "vpo-12", prompt: "mop", answer: "mope", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "Use the mop to clean the floor." },
 ];
 
 export const TH_T: GameItem[] = [
