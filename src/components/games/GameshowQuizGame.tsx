@@ -151,12 +151,21 @@ export function GameshowQuizGame({
         </div>
 
         <svg width="84" height="84" viewBox="0 0 84 84" className="shrink-0">
-          <circle cx="42" cy="42" r={R} className="fill-none stroke-primary-foreground/20" strokeWidth="8" />
           <circle
             cx="42"
             cy="42"
             r={R}
-            className={cn("fill-none transition-all duration-1000", left <= 6 ? "stroke-destructive" : "stroke-action")}
+            className="fill-none stroke-primary-foreground/20"
+            strokeWidth="8"
+          />
+          <circle
+            cx="42"
+            cy="42"
+            r={R}
+            className={cn(
+              "fill-none transition-all duration-1000",
+              left <= 6 ? "stroke-destructive" : "stroke-action",
+            )}
             strokeWidth="8"
             strokeLinecap="round"
             strokeDasharray={circ}
@@ -180,13 +189,20 @@ export function GameshowQuizGame({
             DOUBLE SCORE ACTIVE
           </span>
         ) : null}
-        <p className="font-display text-2xl leading-snug font-extrabold sm:text-3xl">{item.prompt}</p>
+        <p className="font-display text-2xl leading-snug font-extrabold sm:text-3xl">
+          {item.prompt}
+        </p>
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {options.map((opt, oi) => {
           if (hidden.includes(opt))
-            return <div key={opt} className="rounded-2xl border-2 border-dashed border-primary-foreground/20 opacity-30" />;
+            return (
+              <div
+                key={opt}
+                className="rounded-2xl border-2 border-dashed border-primary-foreground/20 opacity-30"
+              />
+            );
           const isAnswer = opt === item.answer;
           const state = !picked ? "idle" : isAnswer ? "correct" : opt === picked ? "wrong" : "dim";
           return (
@@ -199,7 +215,8 @@ export function GameshowQuizGame({
                 state === "idle" &&
                   "border-primary-foreground/25 bg-background/90 hover:-translate-y-1 hover:border-action hover:shadow-lift active:scale-[0.98]",
                 state === "correct" && "border-success bg-success text-success-foreground",
-                state === "wrong" && "animate-shake border-destructive bg-destructive/90 text-destructive-foreground",
+                state === "wrong" &&
+                  "animate-shake border-destructive bg-destructive/90 text-destructive-foreground",
                 state === "dim" && "border-primary-foreground/20 bg-background/60 opacity-45",
               )}
             >

@@ -8,7 +8,14 @@ import { cn } from "@/lib/utils";
 
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 
-export function CardDeckGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function CardDeckGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const [round, setRound] = useState(0);
   const deck = useMemo(
@@ -122,7 +129,9 @@ export function CardDeckGame({ activity, adaptClass }: { activity: Activity; ada
                 <div
                   key={idx}
                   className="absolute inset-0 rounded-2xl border border-white/25 bg-white/85 shadow-soft"
-                  style={{ transform: `translate(${idx * 3}px, ${idx * 3}px) rotate(${idx * 2.5 - 3}deg)` }}
+                  style={{
+                    transform: `translate(${idx * 3}px, ${idx * 3}px) rotate(${idx * 2.5 - 3}deg)`,
+                  }}
                 />
               ))
             )}

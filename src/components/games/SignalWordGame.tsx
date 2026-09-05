@@ -219,7 +219,11 @@ export function SignalWordGame(props: {
     const combined = [...placements, ...answers];
     const missed = combined.filter((c) => !c.correct);
     return (
-      <GameChrome title="Signal Words" teacherMode={teacherMode} progress={{ done: totalSteps, total: totalSteps }}>
+      <GameChrome
+        title="Signal Words"
+        teacherMode={teacherMode}
+        progress={{ done: totalSteps, total: totalSteps }}
+      >
         <Card className="space-y-4 p-6 text-center">
           <h2 className="font-display text-3xl font-extrabold">
             {combined.filter((c) => c.correct).length} / {combined.length} right
@@ -242,7 +246,9 @@ export function SignalWordGame(props: {
               })}
             </div>
           ) : (
-            <p className="text-muted-foreground">Every signal word matched to the right operation.</p>
+            <p className="text-muted-foreground">
+              Every signal word matched to the right operation.
+            </p>
           )}
           <Button
             className="gap-2"
@@ -276,7 +282,9 @@ export function SignalWordGame(props: {
       >
         <div className="space-y-6 pb-16">
           <p className="text-center text-lg text-muted-foreground">
-            {selected ? "Which operation does it signal? Click a bin." : "Pick a word, then its operation."}
+            {selected
+              ? "Which operation does it signal? Click a bin."
+              : "Pick a word, then its operation."}
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
@@ -346,7 +354,9 @@ export function SignalWordGame(props: {
               </div>
               {activeItem.hint ? <p className="text-base">{activeItem.hint}</p> : null}
               {activeItem.exampleSentence ? (
-                <p className="mt-1 text-base italic text-muted-foreground">{activeItem.exampleSentence}</p>
+                <p className="mt-1 text-base italic text-muted-foreground">
+                  {activeItem.exampleSentence}
+                </p>
               ) : null}
               <p className="mt-1 text-sm">
                 Answer: <span className="font-bold capitalize">{activeItem.answer}</span>
@@ -379,7 +389,9 @@ export function SignalWordGame(props: {
     >
       <div className="space-y-6 pb-16">
         <Card className="p-6">
-          <p className="text-center font-display text-3xl font-bold leading-snug">{problem.prompt}</p>
+          <p className="text-center font-display text-3xl font-bold leading-snug">
+            {problem.prompt}
+          </p>
         </Card>
 
         <p className="text-center text-lg text-muted-foreground">
@@ -414,7 +426,9 @@ export function SignalWordGame(props: {
           <div className="flex flex-col items-center gap-3">
             {problem.hint ? (
               showHint ? (
-                <Card className="max-w-2xl border-dashed p-4 text-center text-base">{problem.hint}</Card>
+                <Card className="max-w-2xl border-dashed p-4 text-center text-base">
+                  {problem.hint}
+                </Card>
               ) : (
                 <Button variant="outline" className="gap-2" onClick={() => setShowHint(true)}>
                   <Lightbulb className="size-4" /> Why this operation?
@@ -422,7 +436,8 @@ export function SignalWordGame(props: {
               )
             ) : null}
             <Button size="lg" className="gap-2" onClick={advance}>
-              {index + 1 < problemItems.length ? "Next problem" : "Finish"} <ArrowRight className="size-5" />
+              {index + 1 < problemItems.length ? "Next problem" : "Finish"}{" "}
+              <ArrowRight className="size-5" />
             </Button>
           </div>
         ) : (
@@ -442,21 +457,69 @@ export function SignalWordGame(props: {
 /* ------------------------------------------------------------------ */
 
 export const MATHS_SIGNAL_ITEMS: GameItem[] = [
-  { id: "m-w1", prompt: "altogether", answer: "add", hint: "Combining separate groups into one total.", exampleSentence: "How many cakes do they have altogether?" },
-  { id: "m-w2", prompt: "each", answer: "divide", hint: "Sharing a total equally between groups.", exampleSentence: "Each child gets the same number of pencils." },
-  { id: "m-w3", prompt: "per", answer: "divide", hint: "A rate: one unit of something for each unit of another.", exampleSentence: "The cost per ticket is $4." },
-  { id: "m-w4", prompt: "remaining", answer: "subtract", hint: "What is left after some is taken away.", exampleSentence: "How many apples are remaining?" },
-  { id: "m-w5", prompt: "twice as many", answer: "multiply", hint: "Multiply by 2.", exampleSentence: "Sam has twice as many marbles as Ana." },
-  { id: "m-w6", prompt: "fewer than", answer: "subtract", hint: "A comparison showing a smaller amount.", exampleSentence: "Ben has 5 fewer than Mia." },
-  { id: "m-w7", prompt: "difference", answer: "subtract", hint: "The gap between two amounts.", exampleSentence: "What is the difference between 9 and 4?" },
-  { id: "m-w8", prompt: "product", answer: "multiply", hint: "The result of multiplying.", exampleSentence: "Find the product of 6 and 3." },
+  {
+    id: "m-w1",
+    prompt: "altogether",
+    answer: "add",
+    hint: "Combining separate groups into one total.",
+    exampleSentence: "How many cakes do they have altogether?",
+  },
+  {
+    id: "m-w2",
+    prompt: "each",
+    answer: "divide",
+    hint: "Sharing a total equally between groups.",
+    exampleSentence: "Each child gets the same number of pencils.",
+  },
+  {
+    id: "m-w3",
+    prompt: "per",
+    answer: "divide",
+    hint: "A rate: one unit of something for each unit of another.",
+    exampleSentence: "The cost per ticket is $4.",
+  },
+  {
+    id: "m-w4",
+    prompt: "remaining",
+    answer: "subtract",
+    hint: "What is left after some is taken away.",
+    exampleSentence: "How many apples are remaining?",
+  },
+  {
+    id: "m-w5",
+    prompt: "twice as many",
+    answer: "multiply",
+    hint: "Multiply by 2.",
+    exampleSentence: "Sam has twice as many marbles as Ana.",
+  },
+  {
+    id: "m-w6",
+    prompt: "fewer than",
+    answer: "subtract",
+    hint: "A comparison showing a smaller amount.",
+    exampleSentence: "Ben has 5 fewer than Mia.",
+  },
+  {
+    id: "m-w7",
+    prompt: "difference",
+    answer: "subtract",
+    hint: "The gap between two amounts.",
+    exampleSentence: "What is the difference between 9 and 4?",
+  },
+  {
+    id: "m-w8",
+    prompt: "product",
+    answer: "multiply",
+    hint: "The result of multiplying.",
+    exampleSentence: "Find the product of 6 and 3.",
+  },
 
   {
     id: "m-p1",
     prompt: "Ana has 7 stickers. Ben has 5 stickers. How many do they have altogether?",
     answer: "add",
     distractors: ["subtract", "multiply", "divide"],
-    hint: "\"Altogether\" joins the two groups, so we add.",
+    hint: '"Altogether" joins the two groups, so we add.',
     targetStructure: "altogether",
   },
   {
@@ -464,7 +527,7 @@ export const MATHS_SIGNAL_ITEMS: GameItem[] = [
     prompt: "24 pencils are shared equally between 6 children. How many does each child get?",
     answer: "divide",
     distractors: ["multiply", "add", "subtract"],
-    hint: "\"Each\" with an equal share means division.",
+    hint: '"Each" with an equal share means division.',
     targetStructure: "each",
   },
   {
@@ -472,7 +535,7 @@ export const MATHS_SIGNAL_ITEMS: GameItem[] = [
     prompt: "A box holds 12 eggs. 5 eggs are used. How many are remaining?",
     answer: "subtract",
     distractors: ["add", "divide", "multiply"],
-    hint: "\"Remaining\" means what is left, so we take away.",
+    hint: '"Remaining" means what is left, so we take away.',
     targetStructure: "remaining",
   },
   {
@@ -480,7 +543,7 @@ export const MATHS_SIGNAL_ITEMS: GameItem[] = [
     prompt: "Leo reads 8 pages. Mia reads twice as many pages as Leo. How many does Mia read?",
     answer: "multiply",
     distractors: ["add", "subtract", "divide"],
-    hint: "\"Twice as many\" is multiplication by 2, not adding 2.",
+    hint: '"Twice as many" is multiplication by 2, not adding 2.',
     targetStructure: "twice as many",
   },
   {
@@ -488,29 +551,59 @@ export const MATHS_SIGNAL_ITEMS: GameItem[] = [
     prompt: "Tickets cost $4 per person. There are 5 people. What is the total cost?",
     answer: "multiply",
     distractors: ["divide", "add", "subtract"],
-    hint: "A rate (\"per\") times the number of people gives the total.",
+    hint: 'A rate ("per") times the number of people gives the total.',
     targetStructure: "per",
   },
 ];
 
 export const SCIENCE_SIGNAL_ITEMS: GameItem[] = [
-  { id: "s-w1", prompt: "observe", answer: "describe", hint: "Say only what you can see, hear or measure.", exampleSentence: "Observe what happens to the ice." },
-  { id: "s-w2", prompt: "predict", answer: "guess ahead", hint: "Say what will happen before it happens.", exampleSentence: "Predict what will happen if we add salt." },
-  { id: "s-w3", prompt: "classify", answer: "group", hint: "Put things into groups by shared features.", exampleSentence: "Classify these animals by habitat." },
-  { id: "s-w4", prompt: "evidence", answer: "support", hint: "Facts you use to back up a claim.", exampleSentence: "What evidence supports your answer?" },
-  { id: "s-w5", prompt: "therefore", answer: "conclude", hint: "Signals the conclusion that follows.", exampleSentence: "The plant had no light; therefore it died." },
+  {
+    id: "s-w1",
+    prompt: "observe",
+    answer: "describe",
+    hint: "Say only what you can see, hear or measure.",
+    exampleSentence: "Observe what happens to the ice.",
+  },
+  {
+    id: "s-w2",
+    prompt: "predict",
+    answer: "guess ahead",
+    hint: "Say what will happen before it happens.",
+    exampleSentence: "Predict what will happen if we add salt.",
+  },
+  {
+    id: "s-w3",
+    prompt: "classify",
+    answer: "group",
+    hint: "Put things into groups by shared features.",
+    exampleSentence: "Classify these animals by habitat.",
+  },
+  {
+    id: "s-w4",
+    prompt: "evidence",
+    answer: "support",
+    hint: "Facts you use to back up a claim.",
+    exampleSentence: "What evidence supports your answer?",
+  },
+  {
+    id: "s-w5",
+    prompt: "therefore",
+    answer: "conclude",
+    hint: "Signals the conclusion that follows.",
+    exampleSentence: "The plant had no light; therefore it died.",
+  },
 
   {
     id: "s-p1",
-    prompt: "\"The water in the open cup went down over three days. Therefore...\" What is the task?",
+    prompt: '"The water in the open cup went down over three days. Therefore..." What is the task?',
     answer: "conclude",
     distractors: ["describe", "group", "guess ahead"],
-    hint: "\"Therefore\" asks for the conclusion that follows from the data.",
+    hint: '"Therefore" asks for the conclusion that follows from the data.',
     targetStructure: "therefore",
   },
   {
     id: "s-p2",
-    prompt: "\"Sort these materials into metals and non-metals.\" What is the task?",
+    prompt: '"Sort these materials into metals and non-metals." What is the task?',
     answer: "group",
     distractors: ["describe", "conclude", "support"],
     hint: "Sorting by shared features is classifying.",
@@ -518,7 +611,7 @@ export const SCIENCE_SIGNAL_ITEMS: GameItem[] = [
   },
   {
     id: "s-p3",
-    prompt: "\"What will happen to the balloon if we heat the air inside it?\" What is the task?",
+    prompt: '"What will happen to the balloon if we heat the air inside it?" What is the task?',
     answer: "guess ahead",
     distractors: ["describe", "group", "support"],
     hint: "A question about what will happen asks for a prediction.",
@@ -527,33 +620,57 @@ export const SCIENCE_SIGNAL_ITEMS: GameItem[] = [
 ];
 
 export const SOCIAL_STUDIES_SIGNAL_ITEMS: GameItem[] = [
-  { id: "ss-w1", prompt: "cause", answer: "reason", hint: "The reason something happened.", exampleSentence: "One cause of the war was trade." },
-  { id: "ss-w2", prompt: "effect", answer: "result", hint: "What happened as a result.", exampleSentence: "The effect was a rise in prices." },
-  { id: "ss-w3", prompt: "compare", answer: "find similarities", hint: "Look for what is the same.", exampleSentence: "Compare the two cities." },
-  { id: "ss-w4", prompt: "in contrast", answer: "find differences", hint: "Signals a difference between two things.", exampleSentence: "In contrast, the south stayed rural." },
+  {
+    id: "ss-w1",
+    prompt: "cause",
+    answer: "reason",
+    hint: "The reason something happened.",
+    exampleSentence: "One cause of the war was trade.",
+  },
+  {
+    id: "ss-w2",
+    prompt: "effect",
+    answer: "result",
+    hint: "What happened as a result.",
+    exampleSentence: "The effect was a rise in prices.",
+  },
+  {
+    id: "ss-w3",
+    prompt: "compare",
+    answer: "find similarities",
+    hint: "Look for what is the same.",
+    exampleSentence: "Compare the two cities.",
+  },
+  {
+    id: "ss-w4",
+    prompt: "in contrast",
+    answer: "find differences",
+    hint: "Signals a difference between two things.",
+    exampleSentence: "In contrast, the south stayed rural.",
+  },
 
   {
     id: "ss-p1",
-    prompt: "\"The north built factories. In contrast, the south...\" What is the task?",
+    prompt: '"The north built factories. In contrast, the south..." What is the task?',
     answer: "find differences",
     distractors: ["find similarities", "reason", "result"],
-    hint: "\"In contrast\" always signals a difference.",
+    hint: '"In contrast" always signals a difference.',
     targetStructure: "in contrast",
   },
   {
     id: "ss-p2",
-    prompt: "\"Prices rose because the harvest failed.\" The failed harvest is the...?",
+    prompt: '"Prices rose because the harvest failed." The failed harvest is the...?',
     answer: "reason",
     distractors: ["result", "find similarities", "find differences"],
-    hint: "\"Because\" introduces the cause — the reason.",
+    hint: '"Because" introduces the cause — the reason.',
     targetStructure: "cause",
   },
   {
     id: "ss-p3",
-    prompt: "\"Both cities grew beside a river.\" What is the task?",
+    prompt: '"Both cities grew beside a river." What is the task?',
     answer: "find similarities",
     distractors: ["find differences", "reason", "result"],
-    hint: "\"Both\" points to something shared, so we compare.",
+    hint: '"Both" points to something shared, so we compare.',
     targetStructure: "compare",
   },
 ];

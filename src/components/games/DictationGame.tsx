@@ -18,7 +18,10 @@ export type DictationGameProps = {
 const RATES = [0.6, 0.8, 1.0] as const;
 
 function normalize(word: string): string {
-  return word.toLowerCase().replace(/[.,!?;:"'()\u2019\u2018\u201C\u201D-]+$/g, "").replace(/^[.,!?;:"'()\u2019\u2018\u201C\u201D-]+/g, "");
+  return word
+    .toLowerCase()
+    .replace(/[.,!?;:"'()\u2019\u2018\u201C\u201D-]+$/g, "")
+    .replace(/^[.,!?;:"'()\u2019\u2018\u201C\u201D-]+/g, "");
 }
 
 function targetOf(item: GameItem): string {
@@ -31,7 +34,9 @@ function firstLetters(sentence: string): string {
     .filter(Boolean)
     .map((w) => {
       const stripped = w.replace(/[^A-Za-z'’-]/g, "");
-      return stripped ? stripped[0] + " _".repeat(Math.max(0, Math.min(stripped.length - 1, 4))) : w;
+      return stripped
+        ? stripped[0] + " _".repeat(Math.max(0, Math.min(stripped.length - 1, 4)))
+        : w;
     })
     .join("  ");
 }
@@ -73,8 +78,7 @@ export function DictationGame({
     if (!item || checked) return;
     const expected = target.split(/\s+/).filter(Boolean).map(normalize);
     const got = typed.split(/\s+/).filter(Boolean).map(normalize);
-    const perfect =
-      expected.length === got.length && expected.every((w, i) => w === got[i]);
+    const perfect = expected.length === got.length && expected.every((w, i) => w === got[i]);
     setChecked(true);
     setResults((r) => [...r, { id: item.id, correct: perfect }]);
     onEvent?.({ type: perfect ? "correct" : "incorrect", itemId: item.id });
@@ -168,13 +172,19 @@ export function DictationGame({
           {teacherMode ? (
             <div className="flex items-center gap-3 rounded-2xl border-2 border-amber-500 bg-card p-4 text-base font-semibold">
               <Keyboard className="size-6 shrink-0 text-amber-500" />
-              Hand over remote control, or read the student&apos;s answer aloud and type it yourself.
+              Hand over remote control, or read the student&apos;s answer aloud and type it
+              yourself.
             </div>
           ) : null}
 
           {/* Playback controls */}
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <AudioButton text={target} rate={rate} label="Play sentence" {...(lang ? { lang } : {})} />
+            <AudioButton
+              text={target}
+              rate={rate}
+              label="Play sentence"
+              {...(lang ? { lang } : {})}
+            />
             {RATES.map((r) => (
               <button
                 key={r}
@@ -226,7 +236,12 @@ export function DictationGame({
             />
             {!checked ? (
               <div className="flex justify-center">
-                <Button size="lg" className="gap-2 rounded-xl" onClick={check} disabled={!typed.trim()}>
+                <Button
+                  size="lg"
+                  className="gap-2 rounded-xl"
+                  onClick={check}
+                  disabled={!typed.trim()}
+                >
                   {teacherMode ? <NumberBadge n={1} className="size-7 text-sm" /> : null}
                   Check
                 </Button>

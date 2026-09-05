@@ -20,7 +20,14 @@ const polar = (cx: number, cy: number, r: number, deg: number) => {
   return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];
 };
 
-export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function WheelGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const slice = 360 / items.length;
@@ -63,7 +70,12 @@ export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptC
     });
   };
 
-  useEffect(() => () => { if (raf.current) cancelAnimationFrame(raf.current); }, []);
+  useEffect(
+    () => () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    },
+    [],
+  );
 
   const launch = (v: number) => {
     if (spinning) return;
@@ -182,7 +194,14 @@ export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptC
               );
             })}
           </g>
-          <circle cx="100" cy="100" r="16" fill="white" stroke="oklch(0.48 0.22 292)" strokeWidth="3" />
+          <circle
+            cx="100"
+            cy="100"
+            r="16"
+            fill="white"
+            stroke="oklch(0.48 0.22 292)"
+            strokeWidth="3"
+          />
         </svg>
       </div>
 
@@ -215,7 +234,10 @@ export function WheelGame({ activity, adaptClass }: { activity: Activity; adaptC
             )}
             {revealed ? (
               <div className="mt-6 flex gap-3">
-                <Button className="flex-1 bg-success text-success-foreground hover:opacity-90" onClick={() => answer(true)}>
+                <Button
+                  className="flex-1 bg-success text-success-foreground hover:opacity-90"
+                  onClick={() => answer(true)}
+                >
                   I got it
                 </Button>
                 <Button variant="outline" className="flex-1" onClick={() => answer(false)}>

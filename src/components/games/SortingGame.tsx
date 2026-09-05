@@ -7,7 +7,14 @@ import { cn } from "@/lib/utils";
 
 const NOTE_TONES = ["bg-action/25", "bg-primary/15", "bg-success/20", "bg-secondary"];
 
-export function SortingGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function SortingGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
 
@@ -90,7 +97,8 @@ export function SortingGame({ activity, adaptClass }: { activity: Activity; adap
       onPointerCancel={onUp}
     >
       <p className="mb-5 text-center text-sm text-muted-foreground">
-        Drag each sticky note into the bin it belongs to — bins swell when you're over the right zone.
+        Drag each sticky note into the bin it belongs to — bins swell when you're over the right
+        zone.
       </p>
 
       <div className="flex flex-wrap justify-center gap-3">
@@ -128,10 +136,16 @@ export function SortingGame({ activity, adaptClass }: { activity: Activity; adap
               }}
               className={cn(
                 "relative min-h-36 overflow-hidden rounded-3xl border-2 border-dashed p-4 transition-all duration-200",
-                hot ? "scale-[1.03] border-action bg-action/10 shadow-lift" : "border-border bg-muted/40",
+                hot
+                  ? "scale-[1.03] border-action bg-action/10 shadow-lift"
+                  : "border-border bg-muted/40",
               )}
             >
-              <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <svg
+                className="pointer-events-none absolute inset-0 h-full w-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
                 <path
                   d="M2,20 C25,2 75,2 98,20 C99,55 92,88 50,98 C8,88 1,55 2,20 Z"
                   fill="none"

@@ -231,7 +231,9 @@ export function PictureDescriptionGame({
                   {formatTime(elapsed)}
                 </div>
               ) : (
-                <span className="text-sm font-semibold text-muted-foreground">Timer off in teacher mode</span>
+                <span className="text-sm font-semibold text-muted-foreground">
+                  Timer off in teacher mode
+                </span>
               )}
             </div>
 
@@ -266,9 +268,7 @@ export function PictureDescriptionGame({
                         <p className="font-display text-lg font-bold">
                           {item.targetStructure || item.prompt}
                         </p>
-                        {isUsed ? (
-                          <Check className="size-5 shrink-0 text-emerald-500" />
-                        ) : null}
+                        {isUsed ? <Check className="size-5 shrink-0 text-emerald-500" /> : null}
                       </div>
                       {item.exampleSentence ? (
                         <p className="mt-1 text-sm text-muted-foreground">{item.exampleSentence}</p>

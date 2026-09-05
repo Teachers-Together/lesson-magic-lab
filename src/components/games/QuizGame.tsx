@@ -12,7 +12,14 @@ import { cn } from "@/lib/utils";
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 const QUESTION_SECONDS = 25;
 
-export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function QuizGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const [round, setRound] = useState(0);
   const [i, setI] = useState(0);
@@ -22,7 +29,8 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
   const [done, setDone] = useState(false);
   const start = useRef(Date.now());
 
-  const { controlMode, cashEnabled, cash, secondChance, awardCorrect, awardWrong, resetCash } = usePlayMode();
+  const { controlMode, cashEnabled, cash, secondChance, awardCorrect, awardWrong, resetCash } =
+    usePlayMode();
   const [boardClosed, setBoardClosed] = useState(false);
   const items = activity.contentData;
   const item = items[i] ?? items[0];
@@ -95,7 +103,12 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
       <LeaderboardOverlay
         teams={[
           { name: "Your Team", score: cash, correct: score, attempts: items.length },
-          { name: "Class Average", score: Math.round(cash * 0.7), correct: Math.round(score * 0.7), attempts: items.length },
+          {
+            name: "Class Average",
+            score: Math.round(cash * 0.7),
+            correct: Math.round(score * 0.7),
+            attempts: items.length,
+          },
         ]}
         onPlayAgain={() => {
           resetCash();
@@ -161,7 +174,8 @@ export function QuizGame({ activity, adaptClass }: { activity: Activity; adaptCl
                 state === "idle" &&
                   "border-border bg-card hover:-translate-y-1 hover:border-primary hover:shadow-soft active:scale-[0.98]",
                 state === "correct" && "border-success bg-success/15 text-success",
-                state === "wrong" && "animate-shake border-destructive bg-destructive/12 text-destructive",
+                state === "wrong" &&
+                  "animate-shake border-destructive bg-destructive/12 text-destructive",
                 state === "dim" && "border-border bg-card opacity-45",
                 controlMode && "cursor-default",
               )}

@@ -102,13 +102,16 @@ export function BoardTrackGame(props: {
             });
           }, step * 250);
         }
-        later(() => {
-          if (target >= lastSquare) {
-            setPhase({ kind: "won", winner: current });
-          } else {
-            setPhase({ kind: "prompt", square: target, marker: markerOf(items[target]!) });
-          }
-        }, (target - start) * 250 + 300);
+        later(
+          () => {
+            if (target >= lastSquare) {
+              setPhase({ kind: "won", winner: current });
+            } else {
+              setPhase({ kind: "prompt", square: target, marker: markerOf(items[target]!) });
+            }
+          },
+          (target - start) * 250 + 300,
+        );
       }
     }, 90);
   }, [rolling, phase.kind, positions, current, lastSquare, items, onEvent]);
@@ -143,7 +146,8 @@ export function BoardTrackGame(props: {
     setPhase({ kind: "roll" });
   };
 
-  const cellAt = (col: number, row: number) => coords.findIndex((c) => c.col === col && c.row === row);
+  const cellAt = (col: number, row: number) =>
+    coords.findIndex((c) => c.col === col && c.row === row);
 
   const markerBadge = (m: Marker) =>
     m === "bonus" ? (
@@ -193,11 +197,7 @@ export function BoardTrackGame(props: {
             >
               {die}
             </span>
-            <Button
-              size="sm"
-              onClick={roll}
-              disabled={rolling || phase.kind !== "roll"}
-            >
+            <Button size="sm" onClick={roll} disabled={rolling || phase.kind !== "roll"}>
               <Dices className="mr-2 h-4 w-4" />
               Roll (Space)
             </Button>
@@ -268,9 +268,7 @@ export function BoardTrackGame(props: {
               {phase.marker === "bonus" && (
                 <Badge className="bg-amber-500 text-white">Bonus — roll again after!</Badge>
               )}
-              {phase.marker === "swap" && (
-                <Badge>Swap — you trade places!</Badge>
-              )}
+              {phase.marker === "swap" && <Badge>Swap — you trade places!</Badge>}
               {phase.marker === "challenge" && (
                 <Badge variant="destructive">Challenge — answer in a full sentence!</Badge>
               )}
@@ -292,9 +290,7 @@ export function BoardTrackGame(props: {
         {/* winner overlay */}
         {phase.kind === "won" && (
           <Card className="w-full border-emerald-500 bg-emerald-500/10 p-8 text-center">
-            <div className="text-3xl font-bold">
-              🏆 {PLAYERS[phase.winner]} wins!
-            </div>
+            <div className="text-3xl font-bold">🏆 {PLAYERS[phase.winner]} wins!</div>
             <p className="mt-2 text-muted-foreground">
               Final position — Teacher: {positions[0] + 1} · Student: {positions[1] + 1}
             </p>

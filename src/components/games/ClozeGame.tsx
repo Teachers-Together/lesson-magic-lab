@@ -11,7 +11,14 @@ import { cn } from "@/lib/utils";
 const shuffle = <T,>(a: T[]) => [...a].sort(() => Math.random() - 0.5);
 const BLANK = /_{2,}/;
 
-export function ClozeGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function ClozeGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const { cashEnabled, awardCorrect, awardWrong } = usePlayMode();

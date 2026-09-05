@@ -299,10 +299,7 @@ export function SpotDifferenceGame(props: {
 
         {/* scenes */}
         <div
-          className={cn(
-            "grid gap-4",
-            studentView ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2",
-          )}
+          className={cn("grid gap-4", studentView ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2")}
           style={{ minHeight: 380 }}
         >
           <ScenePanel

@@ -22,7 +22,14 @@ const TILE_TONES = [
 
 type Tile = { n: number; chance: Chance | null; itemIndex: number };
 
-export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function TeamShowdownGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const [round, setRound] = useState(0);
@@ -137,7 +144,9 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
               className={cn(
                 "aspect-square rounded-2xl bg-gradient-to-br font-display text-3xl font-extrabold text-white shadow-soft transition-all",
                 TILE_TONES[i % 3],
-                done ? "scale-95 opacity-25" : "hover:-translate-y-1 hover:shadow-lift active:scale-95",
+                done
+                  ? "scale-95 opacity-25"
+                  : "hover:-translate-y-1 hover:shadow-lift active:scale-95",
               )}
             >
               {t.n}
@@ -147,13 +156,31 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-3">
-        <div className={cn("rounded-2xl border-2 p-4 text-center", turn === 0 ? "border-primary bg-primary/10" : "border-border bg-card")}>
-          <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Team 1</p>
-          <p className="font-display text-3xl font-extrabold text-primary tabular-nums">{scores[0]}</p>
+        <div
+          className={cn(
+            "rounded-2xl border-2 p-4 text-center",
+            turn === 0 ? "border-primary bg-primary/10" : "border-border bg-card",
+          )}
+        >
+          <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
+            Team 1
+          </p>
+          <p className="font-display text-3xl font-extrabold text-primary tabular-nums">
+            {scores[0]}
+          </p>
         </div>
-        <div className={cn("rounded-2xl border-2 p-4 text-center", turn === 1 ? "border-action bg-action/10" : "border-border bg-card")}>
-          <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Team 2</p>
-          <p className="font-display text-3xl font-extrabold text-action tabular-nums">{scores[1]}</p>
+        <div
+          className={cn(
+            "rounded-2xl border-2 p-4 text-center",
+            turn === 1 ? "border-action bg-action/10" : "border-border bg-card",
+          )}
+        >
+          <p className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
+            Team 2
+          </p>
+          <p className="font-display text-3xl font-extrabold text-action tabular-nums">
+            {scores[1]}
+          </p>
         </div>
       </div>
 
@@ -187,15 +214,25 @@ export function TeamShowdownGame({ activity, adaptClass }: { activity: Activity;
                 ) : null}
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
                   {!revealed ? (
-                    <Button onClick={() => setRevealed(true)} className="bg-gradient-brand font-bold text-primary-foreground">
+                    <Button
+                      onClick={() => setRevealed(true)}
+                      className="bg-gradient-brand font-bold text-primary-foreground"
+                    >
                       Check answer
                     </Button>
                   ) : (
                     <>
-                      <Button onClick={() => score(true)} className="gap-2 bg-success font-bold text-success-foreground">
+                      <Button
+                        onClick={() => score(true)}
+                        className="gap-2 bg-success font-bold text-success-foreground"
+                      >
                         <Check className="size-4" /> Correct (+15 pts)
                       </Button>
-                      <Button onClick={() => score(false)} variant="outline" className="gap-2 font-bold">
+                      <Button
+                        onClick={() => score(false)}
+                        variant="outline"
+                        className="gap-2 font-bold"
+                      >
                         <X className="size-4" /> Incorrect
                       </Button>
                     </>

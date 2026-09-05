@@ -36,10 +36,7 @@ export function MinimalPairsGame({
   const [done, setDone] = React.useState(false);
 
   const item = items[Math.min(index, items.length - 1)];
-  const words = React.useMemo(
-    () => (item ? [item.prompt, item.answer] : ["", ""]),
-    [item],
-  );
+  const words = React.useMemo(() => (item ? [item.prompt, item.answer] : ["", ""]), [item]);
   const contrast = item?.targetStructure ?? CONTRAST_FALLBACK;
 
   const say = React.useCallback(
@@ -73,10 +70,7 @@ export function MinimalPairsGame({
     (pair: GameItem | undefined, rate = 0.85) => {
       if (!pair) return;
       cancelSpeech();
-      void speakSequence(
-        [pair.prompt, pair.answer],
-        lang ? { rate, lang } : { rate },
-      );
+      void speakSequence([pair.prompt, pair.answer], lang ? { rate, lang } : { rate });
     },
     [lang],
   );
@@ -86,10 +80,7 @@ export function MinimalPairsGame({
       if (!item || choice !== null) return;
       const correct = side === spoken;
       setChoice(side);
-      setResults((r) => [
-        ...r,
-        { id: item.id, contrast, word: words[spoken] ?? "", correct },
-      ]);
+      setResults((r) => [...r, { id: item.id, contrast, word: words[spoken] ?? "", correct }]);
       onEvent?.({ type: correct ? "correct" : "incorrect", itemId: item.id });
     },
     [item, choice, spoken, contrast, words, onEvent],
@@ -151,8 +142,7 @@ export function MinimalPairsGame({
     if (!teacherMode || bothRound || done) return;
     function onKeyDown(e: KeyboardEvent) {
       const t = e.target as HTMLElement | null;
-      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable))
-        return;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
       if (e.key === "1" || e.key === "2") {
         e.preventDefault();
         commit((Number(e.key) - 1) as Side);
@@ -198,9 +188,7 @@ export function MinimalPairsGame({
     >
       {done ? (
         <div className="grid gap-6 py-6">
-          <h2 className="text-center font-display text-3xl font-extrabold">
-            Listening summary
-          </h2>
+          <h2 className="text-center font-display text-3xl font-extrabold">Listening summary</h2>
           <div className="grid gap-3">
             {byContrast.map(([c, data]) => {
               const missed = data.missed.length;
@@ -217,9 +205,7 @@ export function MinimalPairsGame({
                   <span
                     className={cn(
                       "rounded-full px-3 py-1 text-sm font-bold",
-                      ok
-                        ? "bg-emerald-500 text-white"
-                        : "bg-rose-500 text-white",
+                      ok ? "bg-emerald-500 text-white" : "bg-rose-500 text-white",
                     )}
                   >
                     {data.total - missed}/{data.total} heard correctly

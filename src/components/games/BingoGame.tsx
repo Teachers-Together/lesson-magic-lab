@@ -69,7 +69,7 @@ export function BingoGame(props: {
       setMarked([]);
       setBingo(false);
     },
-    [items]
+    [items],
   );
 
   React.useEffect(() => {
@@ -86,9 +86,7 @@ export function BingoGame(props: {
 
   const toggleMark = (item: GameItem) => {
     if (bingo || !called.includes(item.id)) return;
-    setMarked((m) =>
-      m.includes(item.id) ? m.filter((id) => id !== item.id) : [...m, item.id]
-    );
+    setMarked((m) => (m.includes(item.id) ? m.filter((id) => id !== item.id) : [...m, item.id]));
     onEvent?.({ type: "mark", itemId: item.id });
   };
 
@@ -172,8 +170,8 @@ export function BingoGame(props: {
 
         {mode === "definition" && (
           <Badge variant="secondary" className="text-sm">
-            Recall mode: the voice reads a sentence with the word missing — the
-            student finds the word on the card.
+            Recall mode: the voice reads a sentence with the word missing — the student finds the
+            word on the card.
           </Badge>
         )}
 
@@ -214,9 +212,7 @@ export function BingoGame(props: {
                     {item.answer}
                   </span>
                   {isMarked && (
-                    <span className="text-xs font-bold uppercase text-emerald-500">
-                      marked
-                    </span>
+                    <span className="text-xs font-bold uppercase text-emerald-500">marked</span>
                   )}
                 </Card>
               );
@@ -230,8 +226,7 @@ export function BingoGame(props: {
             </p>
             {calledItems.length === 0 ? (
               <p className="text-sm text-muted-foreground">
-                Press a word's speaker to call it — or just read it aloud
-                yourself.
+                Press a word's speaker to call it — or just read it aloud yourself.
               </p>
             ) : (
               <ul className="flex flex-col gap-2">
@@ -245,7 +240,7 @@ export function BingoGame(props: {
                       text={
                         mode === "definition" && item.exampleSentence
                           ? blankOut(item.exampleSentence, item.answer)
-                          : item.audioText ?? item.answer
+                          : (item.audioText ?? item.answer)
                       }
                       label="Replay"
                       {...(lang ? { lang } : {})}
@@ -288,7 +283,7 @@ export function BingoGame(props: {
                     text={
                       mode === "definition" && item.exampleSentence
                         ? blankOut(item.exampleSentence, item.answer)
-                        : item.audioText ?? item.answer
+                        : (item.audioText ?? item.answer)
                     }
                     label={mode === "definition" ? "Read definition" : "Say word"}
                     {...(lang ? { lang } : {})}

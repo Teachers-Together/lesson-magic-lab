@@ -151,21 +151,18 @@ export function SentenceBuilderGame(props: {
   const item = items[index];
   const words = React.useMemo(() => (item ? splitWords(item.answer) : []), [item]);
 
-  const setupRound = React.useCallback(
-    (target: GameItem | undefined) => {
-      if (!target) return;
-      const w = splitWords(target.answer);
-      const tokens: Token[] = w.map((text, i) => ({ id: `${i}-${text}`, text }));
-      setSlots(Array.from({ length: w.length }, () => null));
-      setTray(shuffle(tokens));
-      setFeedback(null);
-      setSolved(false);
-      setHintUsed(false);
-      setSelected(null);
-      setAttempted(false);
-    },
-    [],
-  );
+  const setupRound = React.useCallback((target: GameItem | undefined) => {
+    if (!target) return;
+    const w = splitWords(target.answer);
+    const tokens: Token[] = w.map((text, i) => ({ id: `${i}-${text}`, text }));
+    setSlots(Array.from({ length: w.length }, () => null));
+    setTray(shuffle(tokens));
+    setFeedback(null);
+    setSolved(false);
+    setHintUsed(false);
+    setSelected(null);
+    setAttempted(false);
+  }, []);
 
   React.useEffect(() => {
     setupRound(items[index]);
@@ -228,8 +225,7 @@ export function SentenceBuilderGame(props: {
     const filled = slots.filter(Boolean) as Token[];
     const attempt = filled.map((t) => t.text);
     const ok =
-      filled.length === words.length &&
-      attempt.map(clean).join(" ") === words.map(clean).join(" ");
+      filled.length === words.length && attempt.map(clean).join(" ") === words.map(clean).join(" ");
     setAttempted(true);
     if (ok) {
       setSolved(true);

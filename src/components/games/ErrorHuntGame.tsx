@@ -275,13 +275,12 @@ export function ErrorHuntGame(props: {
               disabled={stage.kind !== "pick"}
               onClick={pickNoError}
               className={cn(
-                shaking === "noerror" && "animate-[shake-x_0.4s_ease-in-out] border-rose-500 text-rose-500",
+                shaking === "noerror" &&
+                  "animate-[shake-x_0.4s_ease-in-out] border-rose-500 text-rose-500",
                 picked === "noerror" && "bg-emerald-500 text-white hover:bg-emerald-500",
               )}
             >
-              {picked === "noerror" ? (
-                <CircleCheck className="mr-2 h-5 w-5" />
-              ) : null}
+              {picked === "noerror" ? <CircleCheck className="mr-2 h-5 w-5" /> : null}
               No error (0)
             </Button>
           </div>

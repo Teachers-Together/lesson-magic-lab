@@ -10,14 +10,24 @@ type Token = { text: string; correct: boolean };
 function buildTokens(prompt: string, answer: string): Token[] {
   const answerWords = answer.split(/\s+/).filter(Boolean);
   const key = answerWords[0] ?? answer;
-  const decoys = prompt.split(/\s+/).filter((w) => w.length > 3).slice(0, 5);
+  const decoys = prompt
+    .split(/\s+/)
+    .filter((w) => w.length > 3)
+    .slice(0, 5);
   const pool = [...new Set([key, ...answerWords.slice(1, 2), ...decoys])];
   return pool
     .map((text) => ({ text: text.replace(/[.,?]$/, ""), correct: text === key }))
     .sort(() => Math.random() - 0.5);
 }
 
-export function FlipCardsGame({ activity, adaptClass }: { activity: Activity; adaptClass: string; lang?: string }) {
+export function FlipCardsGame({
+  activity,
+  adaptClass,
+}: {
+  activity: Activity;
+  adaptClass: string;
+  lang?: string;
+}) {
   const { soundOn, recordPlay } = useStore();
   const items = activity.contentData;
   const [round, setRound] = useState(0);
