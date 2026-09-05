@@ -107,13 +107,18 @@ export default function WordStressGame(props: Props) {
       const stressedIdx = sylls.findIndex((s) => s.stressed);
       if (picks[it.id] === stressedIdx) return; // already solved
       const correct = syllIdx === stressedIdx;
+      const chosen = sylls[syllIdx]?.text;
+      const extra = {
+        ...(chosen !== undefined ? { choice: chosen } : {}),
+        correct,
+      };
       if (correct) {
         setPicks((p) => ({ ...p, [it.id]: syllIdx }));
         setResults((rs) => [...rs, { item: it, correct: true }]);
-        emit("pick", it, { choice: sylls[syllIdx]?.text, correct: true });
+        emit("pick", it, extra);
       } else {
         setWrongFlash({ id: it.id, syll: syllIdx });
-        emit("pick", it, { choice: sylls[syllIdx]?.text, correct: false });
+        emit("pick", it, extra);
         window.setTimeout(() => {
           setWrongFlash(null);
           setPicks((p) => ({ ...p, [it.id]: stressedIdx }));
