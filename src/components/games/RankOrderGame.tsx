@@ -130,7 +130,8 @@ export default function RankOrderGame({
     e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
     setDragIndex(index);
-    setDragY(e.clientY);
+    setDragStartY(e.clientY);
+    setDragOffset(0);
     setHoverIndex(index);
     setSelected(null);
   }
