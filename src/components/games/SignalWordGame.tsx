@@ -6,11 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { speakSequence, cancelSpeech } from "@/lib/voice";
-
-/** Single speech entry point for this game. Never bare speak(), never window.speechSynthesis. */
-function say(text: string, rate: number, lang?: string) {
-  void speakSequence([text], lang ? { rate, lang } : { rate });
-}
 import { cn } from "@/lib/utils";
 
 /*
@@ -52,8 +47,17 @@ export function SignalWordGame(props: {
   teacherMode: boolean;
   onComplete: (r: { correct: number; total: number; missedIds: string[] }) => void;
   onEvent?: (e: { type: string; itemId?: string }) => void;
+  lang?: string;
 }) {
-  const { items, teacherMode, onComplete, onEvent } = props;
+  const { items, teacherMode, onComplete, onEvent, lang } = props;
+
+  /** Single speech entry point for this game. */
+  const say = React.useCallback(
+    (text: string, rate: number) => {
+      void speakSequence([text], lang ? { rate, lang } : { rate });
+    },
+    [lang],
+  );
 
   const sortItems = React.useMemo(() => items.filter((i) => !isProblem(i)), [items]);
   const problemItems = React.useMemo(() => items.filter(isProblem), [items]);
@@ -140,18 +144,23 @@ export function SignalWordGame(props: {
     [problem, picked, onEvent],
   );
 
-  const finishRound2 = React.useCallback(
-    (all: Placement[]) => {
-      setDone(true);
-      const combined = [...placements, ...all];
-      onComplete({
-        correct: combined.filter((c) => c.correct).length,
-        total: combined.length,
-        missedIds: combined.filter((c) => !c.correct).map((c) => c.itemId),
-      });
-    },
-    [placements, onComplete],
-  );
+  const finishRound2 = React.useCallback((all: Placement[]) => {
+    setDone(true);
+    setFinalAnswers(all);
+  }, []);
+
+  const [finalAnswers, setFinalAnswers] = React.useState<Placement[] | null>(null);
+  const completedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!done || !finalAnswers || completedRef.current) return;
+    completedRef.current = true;
+    const combined = [...placements, ...finalAnswers];
+    onComplete({
+      correct: combined.filter((c) => c.correct).length,
+      total: combined.length,
+      missedIds: combined.filter((c) => !c.correct).map((c) => c.itemId),
+    });
+  }, [done, finalAnswers, placements, onComplete]);
 
   const advance = React.useCallback(() => {
     if (round === 1) {
@@ -170,11 +179,11 @@ export function SignalWordGame(props: {
     cancelSpeech();
     if (round === 1) {
       const item = sortItems.find((i) => i.id === selected) ?? remaining[0];
-      if (item) speak(item.audioText ?? item.exampleSentence ?? item.prompt, { rate: 0.85 });
+      if (item) say(item.audioText ?? item.exampleSentence ?? item.prompt, 0.85);
       return;
     }
-    if (problem) speak(problem.audioText ?? problem.prompt, { rate: 0.85 });
-  }, [round, sortItems, selected, remaining, problem]);
+    if (problem) say(problem.audioText ?? problem.prompt, 0.85);
+  }, [round, sortItems, selected, remaining, problem, say]);
 
   // ---------- number keys ----------
   React.useEffect(() => {
