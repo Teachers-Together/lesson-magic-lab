@@ -287,9 +287,9 @@ export default function WordFormationGame(props: Props) {
         </div>
 
         {stage === "hint" ? (
-          <Card className="border-l-4 border-l-amber-500 bg-amber-500/10 p-5">
+          <Card className="border-l-4 border-l-[var(--action)] bg-[var(--action)]/10 p-5">
             <div className="flex items-start gap-3">
-              <Lightbulb className="mt-0.5 size-5 shrink-0 text-amber-500" />
+              <Lightbulb className="mt-0.5 size-5 shrink-0 text-[var(--action)]" />
               <div className="space-y-1">
                 <p className="text-lg font-semibold">Hint</p>
                 <p className="text-foreground">{item.hint}</p>
