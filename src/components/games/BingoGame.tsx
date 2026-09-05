@@ -109,7 +109,10 @@ export function BingoGame(props: {
   return (
     <GameChrome
       title={mode === "definition" ? "Bingo — Definition Round" : "Bingo"}
-      targetStructure={items.find((i) => i.targetStructure)?.targetStructure}
+      {...(() => {
+        const ts = items.find((i) => i.targetStructure)?.targetStructure;
+        return ts ? { targetStructure: ts } : {};
+      })()}
       teacherMode={teacherMode}
       progress={{ done: marked.length, total: card.length }}
       onAdvance={redeal}
