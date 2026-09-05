@@ -299,11 +299,7 @@ export default function RankOrderGame({
                   isHover && "border-dashed border-primary",
                   isDragged && "relative z-20 opacity-90 shadow-xl",
                 )}
-                style={
-                  isDragged
-                    ? { position: "relative", transform: `translateY(${0}px)` }
-                    : undefined
-                }
+                style={isDragged ? { transform: `translateY(${dragOffset}px)` } : undefined}
               >
                 {teacherMode ? <NumberBadge n={i + 1} /> : null}
                 <span className="grid size-8 shrink-0 place-items-center rounded-full bg-muted font-display text-sm font-extrabold text-muted-foreground">
