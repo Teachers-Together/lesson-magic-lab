@@ -260,7 +260,9 @@ export default function TwentyQuestionsGame(props: Props) {
             {revealed ? item.answer : "? ? ?"}
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
-            {holder === "tutor" ? "The student asks; you answer." : "You hold the word; the tutor guesses."}{" "}
+            {holder === "tutor"
+              ? "The student asks; you answer."
+              : "You hold the word; the tutor guesses."}{" "}
             {questionCount}/{MAX_QUESTIONS} questions asked
           </p>
           {revealed && fallbackHints.length > 0 ? (
@@ -288,7 +290,9 @@ export default function TwentyQuestionsGame(props: Props) {
             </Badge>
           ))}
           {item.exampleSentence ? (
-            <span className="text-sm italic text-muted-foreground">e.g. “{item.exampleSentence}”</span>
+            <span className="text-sm italic text-muted-foreground">
+              e.g. “{item.exampleSentence}”
+            </span>
           ) : null}
         </div>
 
@@ -297,9 +301,17 @@ export default function TwentyQuestionsGame(props: Props) {
           <div className="flex justify-center gap-3">
             {(
               [
-                ["yes", "Yes", "border-[var(--success)] text-[var(--success)] hover:bg-[var(--success)]/10"],
+                [
+                  "yes",
+                  "Yes",
+                  "border-[var(--success)] text-[var(--success)] hover:bg-[var(--success)]/10",
+                ],
                 ["no", "No", "border-destructive text-destructive hover:bg-destructive/10"],
-                ["sortof", "Sort of", "border-[var(--action)] text-[var(--action)] hover:bg-[var(--action)]/10"],
+                [
+                  "sortof",
+                  "Sort of",
+                  "border-[var(--action)] text-[var(--action)] hover:bg-[var(--action)]/10",
+                ],
               ] as const
             ).map(([kind, label, cls], i) => (
               <Button
