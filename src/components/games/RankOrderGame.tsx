@@ -138,7 +138,7 @@ export default function RankOrderGame({
 
   function onPointerMove(e: React.PointerEvent<HTMLLIElement>) {
     if (dragIndex === null) return;
-    setDragY(e.clientY);
+    setDragOffset(e.clientY - dragStartY);
     let found: number | null = null;
     rowRefs.current.forEach((el, i) => {
       if (!el || i === dragIndex) return;
