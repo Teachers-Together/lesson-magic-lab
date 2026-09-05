@@ -274,12 +274,9 @@ export function PictureDescriptionGame({
                       ) : null}
                     </div>
                     {item.exampleSentence ? (
-                      <AudioButton
-                        text={item.exampleSentence}
-                        rate={0.9}
-                        label="Play example"
-                        className="mt-0.5 shrink-0"
-                      />
+                      <div className="mt-0.5 shrink-0">
+                        <AudioButton text={item.exampleSentence} rate={0.9} label="Play example" />
+                      </div>
                     ) : null}
                   </button>
                 );
