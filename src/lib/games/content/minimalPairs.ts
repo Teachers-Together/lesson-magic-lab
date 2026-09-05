@@ -17,7 +17,7 @@ export const VOWELS_I: GameItem[] = [
   { id: "vpi-5", prompt: "sit", answer: "seat", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Please sit on the chair." },
   { id: "vpi-6", prompt: "fill", answer: "feel", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Fill the glass with water." },
   { id: "vpi-7", prompt: "slip", answer: "sleep", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "Be careful you do not slip on the ice." },
-  { id: "vpi-8", prompt: "chip", answer: "cheap", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "I ate one hot chip." },
+  { id: "vpi-8", prompt: "chip", answer: "cheap", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "I ate one potato chip." },
   { id: "vpi-9", prompt: "mill", answer: "meal", targetStructure: "/ɪ/ vs /i/", cefr: "A2", exampleSentence: "The old mill makes flour." },
   { id: "vpi-10", prompt: "it", answer: "eat", targetStructure: "/ɪ/ vs /i/", cefr: "A1", exampleSentence: "It is on the table." },
   { id: "vpi-11", prompt: "list", answer: "least", targetStructure: "/ɪ/ vs /i/", cefr: "A2", exampleSentence: "Write a list of ten words." },
@@ -34,9 +34,9 @@ export const VOWELS_A: GameItem[] = [
   { id: "vpa-7", prompt: "hat", answer: "hut", targetStructure: "/æ/ vs /ʌ/", cefr: "A2", exampleSentence: "She put on her hat and went out." },
   { id: "vpa-8", prompt: "sang", answer: "sung", targetStructure: "/æ/ vs /ʌ/", cefr: "A2", exampleSentence: "We sang a song in class." },
   { id: "vpa-9", prompt: "track", answer: "truck", targetStructure: "/æ/ vs /ʌ/", cefr: "A2", exampleSentence: "They ran around the track." },
-  { id: "vpa-10", prompt: "match", answer: "much", targetStructure: "/æ/ vs /ʌ/", cefr: "A1", exampleSentence: "We watched the football match." },
+  { id: "vpa-10", prompt: "match", answer: "much", targetStructure: "/æ/ vs /ʌ/", cefr: "A1", exampleSentence: "We watched the soccer game." },
   { id: "vpa-11", prompt: "bad", answer: "bud", targetStructure: "/æ/ vs /ʌ/", cefr: "B1", exampleSentence: "The weather is very bad today." },
-  { id: "vpa-12", prompt: "ankle", answer: "uncle", targetStructure: "/æ/ vs /ʌ/", cefr: "A2", exampleSentence: "I hurt my ankle playing football." },
+  { id: "vpa-12", prompt: "ankle", answer: "uncle", targetStructure: "/æ/ vs /ʌ/", cefr: "A2", exampleSentence: "I hurt my ankle playing soccer." },
 ];
 
 export const VOWELS_O: GameItem[] = [
@@ -48,7 +48,7 @@ export const VOWELS_O: GameItem[] = [
   { id: "vpo-6", prompt: "got", answer: "goat", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A1", exampleSentence: "I got a new pen for my birthday." },
   { id: "vpo-7", prompt: "hop", answer: "hope", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "The rabbit can hop very fast." },
   { id: "vpo-8", prompt: "rob", answer: "robe", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "They tried to rob the shop." },
-  { id: "vpo-9", prompt: "cod", answer: "code", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "We had cod and chips for dinner." },
+  { id: "vpo-9", prompt: "cod", answer: "code", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A2", exampleSentence: "We had cod for dinner." },
   { id: "vpo-10", prompt: "on", answer: "own", targetStructure: "/ɑ/ vs /oʊ/", cefr: "A1", exampleSentence: "The book is on the desk." },
   { id: "vpo-11", prompt: "clock", answer: "cloak", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "The clock on the wall is slow." },
   { id: "vpo-12", prompt: "mop", answer: "mope", targetStructure: "/ɑ/ vs /oʊ/", cefr: "B1", exampleSentence: "Use the mop to clean the floor." },
@@ -64,8 +64,8 @@ export const TH_T: GameItem[] = [
   { id: "tht-7", prompt: "thorn", answer: "torn", targetStructure: "/θ/ vs /t/", cefr: "B1", exampleSentence: "A thorn from the rose cut my finger." },
   { id: "tht-8", prompt: "thread", answer: "tread", targetStructure: "/θ/ vs /t/", cefr: "B1", exampleSentence: "She put the thread through the needle." },
   { id: "tht-9", prompt: "bath", answer: "bat", targetStructure: "/θ/ vs /t/", cefr: "A1", exampleSentence: "I take a bath every evening." },
-  { id: "tht-10", prompt: "path", answer: "part", targetStructure: "/θ/ vs /t/", cefr: "A2", exampleSentence: "A small path goes through the wood." },
-  { id: "tht-11", prompt: "maths", answer: "mats", targetStructure: "/θ/ vs /t/", cefr: "A1", exampleSentence: "We have maths before lunch." },
+  { id: "tht-10", prompt: "path", answer: "part", targetStructure: "/θ/ vs /t/", cefr: "A2", exampleSentence: "A small path goes through the woods." },
+  { id: "tht-11", prompt: "math", answer: "mat", targetStructure: "/θ/ vs /t/", cefr: "A1", exampleSentence: "We have math before lunch." },
   { id: "tht-12", prompt: "cloth", answer: "clot", targetStructure: "/θ/ vs /t/", cefr: "B1", exampleSentence: "Wipe the table with a cloth." },
 ];
 
@@ -89,14 +89,7 @@ export const TH_D: GameItem[] = [
   { id: "thd-2", prompt: "breathe", answer: "breed", targetStructure: "/ð/ vs /d/", cefr: "A2", exampleSentence: "Open the window and breathe slowly." },
   { id: "thd-3", prompt: "though", answer: "dough", targetStructure: "/ð/ vs /d/", cefr: "A2", exampleSentence: "It was hard, though we finished." },
   { id: "thd-4", prompt: "then", answer: "den", targetStructure: "/ð/ vs /d/", cefr: "A1", exampleSentence: "We had dinner and then went home." },
-  { id: "thd-5", prompt: "their", answer: "dare", targetStructure: "/ð/ vs /d/", cefr: "A1", exampleSentence: "The children left their bags here." },
-  { id: "thd-6", prompt: "those", answer: "doze", targetStructure: "/ð/ vs /d/", cefr: "B1", exampleSentence: "I like those shoes." },
-  { id: "thd-7", prompt: "seethe", answer: "seed", targetStructure: "/ð/ vs /d/", cefr: "B2", exampleSentence: "The unfair answer made him seethe." },
-  { id: "thd-8", prompt: "soothe", answer: "sued", targetStructure: "/ð/ vs /d/", cefr: "B2", exampleSentence: "The soft music will soothe the baby." },
-  { id: "thd-9", prompt: "loathe", answer: "load", targetStructure: "/ð/ vs /d/", cefr: "B2", exampleSentence: "I loathe cold, wet weather." },
-  { id: "thd-10", prompt: "other", answer: "udder", targetStructure: "/ð/ vs /d/", cefr: "B2", exampleSentence: "Put it on the other table." },
-  { id: "thd-11", prompt: "worthy", answer: "wordy", targetStructure: "/ð/ vs /d/", cefr: "B1", exampleSentence: "It is a worthy plan." },
-  { id: "thd-12", prompt: "writhe", answer: "ride", targetStructure: "/ð/ vs /d/", cefr: "B2", exampleSentence: "The hurt player began to writhe on the ground." },
+  { id: "thd-5", prompt: "their", answer: "dare", targetStructure: "/ð/ vs /d/", cefr: "A2", exampleSentence: "The children left their bags here." },
 ];
 
 export const L_R: GameItem[] = [
@@ -109,24 +102,18 @@ export const L_R: GameItem[] = [
   { id: "lr-7", prompt: "lip", answer: "rip", targetStructure: "/l/ vs /r/", cefr: "A2", exampleSentence: "She put cream on her lip." },
   { id: "lr-8", prompt: "led", answer: "red", targetStructure: "/l/ vs /r/", cefr: "A2", exampleSentence: "He led the team onto the field." },
   { id: "lr-9", prompt: "late", answer: "rate", targetStructure: "/l/ vs /r/", cefr: "A2", exampleSentence: "Do not be late for school." },
-  { id: "lr-10", prompt: "load", answer: "road", targetStructure: "/l/ vs /r/", cefr: "A2", exampleSentence: "Load the boxes onto the lorry." },
+  { id: "lr-10", prompt: "load", answer: "road", targetStructure: "/l/ vs /r/", cefr: "A2", exampleSentence: "Load the boxes onto the truck." },
   { id: "lr-11", prompt: "clown", answer: "crown", targetStructure: "/l/ vs /r/", cefr: "A2", exampleSentence: "The clown made the children laugh." },
   { id: "lr-12", prompt: "play", answer: "pray", targetStructure: "/l/ vs /r/", cefr: "A1", exampleSentence: "The children play in the park." },
 ];
 
 export const B_V: GameItem[] = [
   { id: "bv-1", prompt: "berry", answer: "very", targetStructure: "/b/ vs /v/", cefr: "A1", exampleSentence: "This berry is sweet." },
-  { id: "bv-2", prompt: "boat", answer: "vote", targetStructure: "/b/ vs /v/", cefr: "A1", exampleSentence: "The boat is on the river." },
+  { id: "bv-2", prompt: "boat", answer: "vote", targetStructure: "/b/ vs /v/", cefr: "A2", exampleSentence: "The boat is on the river." },
   { id: "bv-3", prompt: "best", answer: "vest", targetStructure: "/b/ vs /v/", cefr: "A1", exampleSentence: "This is the best game." },
-  { id: "bv-4", prompt: "bet", answer: "vet", targetStructure: "/b/ vs /v/", cefr: "A2", exampleSentence: "I bet you five pounds he wins." },
-  { id: "bv-5", prompt: "ban", answer: "van", targetStructure: "/b/ vs /v/", cefr: "A1", exampleSentence: "They ban phones in the cinema." },
-  { id: "bv-6", prompt: "bat", answer: "vat", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "A bat flew out of the tree." },
-  { id: "bv-7", prompt: "kerb", answer: "curve", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The car stopped at the kerb." },
-  { id: "bv-8", prompt: "banish", answer: "vanish", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The king can banish you from the land." },
-  { id: "bv-9", prompt: "gibbon", answer: "given", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The gibbon swings from tree to tree." },
-  { id: "bv-10", prompt: "marble", answer: "marvel", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The floor is made of marble." },
-  { id: "bv-11", prompt: "bent", answer: "vent", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "The nail is bent, get a new one." },
-  { id: "bv-12", prompt: "bolt", answer: "volt", targetStructure: "/b/ vs /v/", cefr: "B1", exampleSentence: "Slide the bolt to lock the gate." },
+  { id: "bv-4", prompt: "bet", answer: "vet", targetStructure: "/b/ vs /v/", cefr: "A2", exampleSentence: "I bet it will rain later." },
+  { id: "bv-5", prompt: "ban", answer: "van", targetStructure: "/b/ vs /v/", cefr: "A2", exampleSentence: "They ban phones in the movie theater." },
+  { id: "bv-13", prompt: "base", answer: "vase", targetStructure: "/b/ vs /v/", cefr: "A2", exampleSentence: "The base of the lamp is heavy." },
 ];
 
 export const FINAL_T_D: GameItem[] = [
@@ -134,7 +121,7 @@ export const FINAL_T_D: GameItem[] = [
   { id: "ftd-2", prompt: "sent", answer: "send", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "She sent me a message." },
   { id: "ftd-3", prompt: "hat", answer: "had", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "My hat is blue." },
   { id: "ftd-4", prompt: "sat", answer: "sad", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "He sat by the window." },
-  { id: "ftd-5", prompt: "bet", answer: "bed", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "I bet he is late again." },
+  { id: "ftd-5", prompt: "bet", answer: "bed", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "I bet you are tired after the game." },
   { id: "ftd-6", prompt: "but", answer: "bud", targetStructure: "final /t/ vs /d/", cefr: "B1", exampleSentence: "I am tired but happy." },
   { id: "ftd-7", prompt: "feet", answer: "feed", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "My feet are cold." },
   { id: "ftd-8", prompt: "seat", answer: "seed", targetStructure: "final /t/ vs /d/", cefr: "A1", exampleSentence: "This seat is free." },
@@ -155,8 +142,8 @@ export const S_SH: GameItem[] = [
   { id: "ssh-8", prompt: "sort", answer: "short", targetStructure: "/s/ vs /ʃ/", cefr: "A1", exampleSentence: "Sort the cards into two piles." },
   { id: "ssh-9", prompt: "mass", answer: "mash", targetStructure: "/s/ vs /ʃ/", cefr: "B1", exampleSentence: "A mass of people waited outside." },
   { id: "ssh-10", prompt: "mess", answer: "mesh", targetStructure: "/s/ vs /ʃ/", cefr: "A2", exampleSentence: "Your room is a mess." },
-  { id: "ssh-11", prompt: "lease", answer: "leash", targetStructure: "/s/ vs /ʃ/", cefr: "B1", exampleSentence: "The lease on the flat ends in June." },
-  { id: "ssh-12", prompt: "sin", answer: "shin", targetStructure: "/s/ vs /ʃ/", cefr: "B1", exampleSentence: "I banged my shin on the chair." },
+  { id: "ssh-11", prompt: "lease", answer: "leash", targetStructure: "/s/ vs /ʃ/", cefr: "B1", exampleSentence: "The lease on the apartment ends in June." },
+  { id: "ssh-12", prompt: "same", answer: "shame", targetStructure: "/s/ vs /ʃ/", cefr: "A2", exampleSentence: "We are in the same class." },
 ];
 
 export const ALL_MINIMAL_PAIRS: GameItem[] = [
