@@ -121,7 +121,7 @@ export default function TalkForAMinuteGame(props: Props) {
       ...rs,
       { item, wordsUsed: used, forbiddenSlips: slipped, secondsSpoken: speakElapsedRef.current },
     ]);
-    emit("topic-done", item, { choice: followUp.trim() || undefined });
+    emit("topic-done", item, followUp.trim() ? { choice: followUp.trim() } : undefined);
     if (index + 1 < items.length) {
       setIndex((i) => i + 1);
       setPhase("ready");
